@@ -1,2 +1,2 @@
-api: yarn start:backend:dev
-web: PORT=5000 yarn start:frontend:dev
+api: yarn start:server:dev
+web: PORT=5000 yarn start:client:dev

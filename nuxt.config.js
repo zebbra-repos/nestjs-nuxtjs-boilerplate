@@ -74,4 +74,9 @@ export default {
      */
     extend() {},
   },
+  srcDir: "client",
+  buildDir: "dist/client",
+  server: {
+    port: 5000,
+  },
 };

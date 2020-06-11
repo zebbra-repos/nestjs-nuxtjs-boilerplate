@@ -1,11 +1,25 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2018",
     "baseUrl": ".",
     "experimentalDecorators": true,
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
+    "esModuleInterop": true,
+    "paths": {
+      "~/*": ["./client/*"],
+      "@/*": ["./client/*"]
+    },
+    "outDir": "./dist/server",
     "types": ["@types/node", "@nuxt/types"]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

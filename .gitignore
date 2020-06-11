@@ -1,11 +1,12 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
-/logs
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 
 # Runtime data
 pids
@@ -20,6 +21,7 @@ lib-cov
 coverage
 
 # nyc test coverage
+coverage
 .nyc_output
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
@@ -68,7 +70,7 @@ typings/
 # nuxt.js build output
 .nuxt
 
-# Nuxt generate
+# Nuxt generate / Nest build
 dist
 
 # vuepress build output
@@ -76,9 +78,6 @@ dist
 
 # Serverless directories
 .serverless
-
-# IDE / Editor
-.idea
 
 # Service worker
 sw.*
@@ -88,3 +87,19 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

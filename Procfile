@@ -1,1 +1,2 @@
-web: cd frontend && PORT=3000 yarn start:dev
+api: yarn start:backend:dev
+web: PORT=5000 yarn start:frontend:dev

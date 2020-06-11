@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "types": ["@types/node", "@nuxt/types"]
+  },
+  "exclude": ["node_modules"]
+}

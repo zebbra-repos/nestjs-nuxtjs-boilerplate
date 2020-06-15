@@ -1,7 +1,8 @@
-import colors from "vuetify/es5/util/colors";
+import { Configuration } from "@nuxt/types";
 
-export default {
+const config: Configuration = {
   mode: "universal",
+
   /*
    ** Headers of the page
    */
@@ -19,64 +20,65 @@ export default {
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
+
   /*
    ** Customize the progress-bar color
    */
   loading: { color: "#fff" },
+
   /*
    ** Global CSS
    */
   css: [],
+
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [],
+
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
+    // Doc: https://typescript.nuxtjs.org/guide/setup.html#installation
     "@nuxt/typescript-build",
     // Doc: https://github.com/nuxt-community/stylelint-module
     "@nuxtjs/stylelint-module",
+    // Doc: https://github.com/nuxt-community/vuetify-module
     "@nuxtjs/vuetify",
+    // Doc: https://composition-api.now.sh/
+    "nuxt-composition-api",
   ],
+
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/pwa"],
+  modules: [
+    // Doc: https://www.npmjs.com/package/nuxt-lazy-load/v/latest
+    "nuxt-lazy-load",
+    // Doc: https://pwa.nuxtjs.org/
+    ["@nuxtjs/pwa", { meta: false, icon: false, manifest: false }],
+  ],
+
   /*
    ** vuetify module configuration
-   ** https://github.com/nuxt-community/vuetify-module
+   ** See https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-        },
-      },
-    },
+    treeShake: true,
+    optionsPath: "~/vuetify.options.ts",
   },
+
   /*
-   ** Build configuration
+   ** Nuxt.js api configuration
+   ** See https://nuxtjs.org/api
    */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend() {},
-  },
   srcDir: "client",
   buildDir: "dist/client",
   server: {
-    port: 5000,
+    port: process.env.PORT || 5000,
   },
 };
+
+export default config;

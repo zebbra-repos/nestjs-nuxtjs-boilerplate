@@ -62,14 +62,14 @@
   </v-layout>
 </template>
 
-<script>
-import Logo from "~/components/Logo.vue";
-import VuetifyLogo from "~/components/VuetifyLogo.vue";
+<script lang="ts">
+import { defineComponent } from "nuxt-composition-api";
 
-export default {
+export default defineComponent({
+  name: "Index",
   components: {
-    Logo,
-    VuetifyLogo,
+    Logo: () => import("~/components/Logo.vue"),
+    VuetifyLogo: () => import("~/components/VuetifyLogo.vue"),
   },
-};
+});
 </script>

@@ -70,7 +70,7 @@ typings/
 # nuxt.js build output
 .nuxt
 
-# Nuxt generate / Nest build
+# Nuxt build or generate / Nest build
 dist
 
 # vuepress build output

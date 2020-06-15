@@ -16,10 +16,11 @@
     "esModuleInterop": true,
     "paths": {
       "~/*": ["./client/*"],
-      "@/*": ["./client/*"]
+      "@/*": ["./client/*"],
+      "*": ["types/*"]
     },
-    "outDir": "./dist/server",
-    "types": ["@types/node", "@nuxt/types"]
+    "outDir": "./dist",
+    "types": ["@types/node", "@nuxt/types", "@nuxtjs/vuetify"]
   },
   "exclude": ["node_modules", "dist"]
 }

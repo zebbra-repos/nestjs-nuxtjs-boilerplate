@@ -7,7 +7,15 @@
   </div>
 </template>
 
-<style>
+<script lang="ts">
+import { defineComponent } from "nuxt-composition-api";
+
+export default defineComponent({
+  name: "Logo",
+});
+</script>
+
+<style scoped>
 .VueToNuxtLogo {
   display: inline-block;
   animation: turn 2s linear forwards 1s;

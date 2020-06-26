@@ -1,4 +1,4 @@
-fullnameOverride: next-nuxt-boilerplate
+fullnameOverride: nest-nuxt-boilerplate
 
 ingress:
   enabled: true

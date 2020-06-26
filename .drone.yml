@@ -9,6 +9,7 @@ steps:
   - name: test
     image: node:14.2.0-slim
     commands:
+      - apt update && apt install python g++ build-essential -y
       - yarn install --pure-lockfile
       - yarn lint
     depends_on: [clone]

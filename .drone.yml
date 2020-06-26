@@ -13,3 +13,39 @@ steps:
       - yarn install --pure-lockfile
       - yarn lint
     depends_on: [clone]
+---
+type: docker
+kind: pipeline
+name: build
+
+trigger:
+  event: [push]
+  branch: [master]
+
+steps:
+  - name: builder
+    image: plugins/docker
+    settings:
+      target: builder
+      username: { from_secret: quay_username }
+      password: { from_secret: quay_password }
+      registry: quay.io
+      repo: quay.io/zebbra/nest-nuxt-boilerplate
+      tags: builder
+      cache_from:
+        - quay.io/zebbra/nest-nuxt-boilerplate:builder
+      custom_labels: [quay.expires-after=30d]
+      mtu: 1316
+
+  - name: release
+    image: plugins/docker
+    settings:
+      username: { from_secret: quay_username }
+      password: { from_secret: quay_password }
+      registry: quay.io
+      repo: quay.io/zebbra/nest-nuxt-boilerplate
+      tags: "latest,git-${DRONE_COMMIT_SHA:0:7}"
+      cache_from:
+        - quay.io/zebbra/nest-nuxt-boilerplate:builder
+        - quay.io/zebbra/nest-nuxt-boilerplate:latest
+      mtu: 1316

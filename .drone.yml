@@ -1,0 +1,14 @@
+type: docker
+kind: pipeline
+name: test
+
+trigger:
+  event: [push]
+
+steps:
+  - name: test
+    image: node:14.2.0-slim
+    commands:
+      - yarn install --pure-lockfile
+      - yarn lint
+    depends_on: [clone]

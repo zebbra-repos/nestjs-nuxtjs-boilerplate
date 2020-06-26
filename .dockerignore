@@ -1,0 +1,13 @@
+.git
+.drone.yml
+Dockerfile
+.DS_Store
+deploy/helm
+deploy/*.yaml
+
+*/yarn-error.log
+*/node_modules
+*/build
+*/coverage
+*/docs
+*/dist

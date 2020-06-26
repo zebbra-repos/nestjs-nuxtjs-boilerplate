@@ -1,6 +1,6 @@
 # NestJS NuxtJs Boilerplate
 
-[![Build Status](https://drone.zebbra.ch/api/badges/mbaertschi/nestjs-nuxtjs-boilerplate/status.svg)](https://drone.zebbra.ch/mbaertschi/nestjs-nuxtjs-boilerplate)
+[![Build Status](https://drone.zebbra.ch/api/badges/zebbra-repos/nestjs-nuxtjs-boilerplate/status.svg)](https://drone.zebbra.ch/zebbra-repos/nestjs-nuxtjs-boilerplate)
 
 > NestJS and NuxtJS starter boilerplate. Uses NestJS as custom NuxtJS server.
 

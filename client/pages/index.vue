@@ -2,8 +2,8 @@
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
       <div class="text-center">
-        <logo />
-        <vuetify-logo />
+        <lazy-logo />
+        <lazy-vuetify-logo />
       </div>
       <v-card>
         <v-card-title class="headline">
@@ -67,9 +67,5 @@ import { defineComponent } from "nuxt-composition-api";
 
 export default defineComponent({
   name: "Index",
-  components: {
-    Logo: () => import("~/components/Logo.vue"),
-    VuetifyLogo: () => import("~/components/VuetifyLogo.vue"),
-  },
 });
 </script>

@@ -20,7 +20,6 @@
 - [@nuxt/typescript-build](https://typescript.nuxtjs.org/guide/setup.html#installation) NuxtJS TypeScript Build Support
 - [@nuxt/typescript-runtime](https://typescript.nuxtjs.org/guide/runtime.html#installation) NuxtJS TypeScript Runtime Support
 - [nuxt-composition-api](https://composition-api.now.sh/) Use Vue 3 Composition API with Nuxt-specific features
-- [nuxt-lazy-load](https://www.npmjs.com/package/nuxt-lazy-load/v/latest) Enable NuxtJS component lazy loading
 - [vuex-module-decorators](https://github.com/championswimmer/vuex-module-decorators) TypeScript/ES7 Decorators to create Vuex modules declaratively
 
 #### Also interesting for NuxtJS
@@ -39,9 +38,36 @@
 
 - [@ntegral/nestjs-sentry](https://www.npmjs.com/package/@ntegral/nestjs-sentry) Sentry module for NestJS
 
-### Deployment
+## Production Setup
 
-> TBD
+> This project is managed with helm v3  
+> Replace `nest-nuxt-boilerplate` with your `awesome-project-name` in `/deploy`
+
+1. Create shared namespace
+
+   ```bash
+   kubectl create ns demo
+   ```
+
+1. Copy `deploy/secrets.example.yaml` to
+
+   - deploy/secrets.yaml
+
+1. Deploy secrets
+
+   ```bash
+   kubectl apply -n demo -f deploy/secrets.yaml
+   ```
+
+1. Deploy Helm chart
+
+   ```bash
+   cd deploy && helmfile apply
+   ```
+
+## Deployment
+
+Push to master branch will trigger new deployment on k8s.
 
 ## Build Setup
 

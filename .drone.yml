@@ -61,9 +61,6 @@ trigger:
 steps:
   - name: production
     image: pelotech/drone-helm3
-    depends_on:
-      - test
-      - build
     settings:
       kube_api_server: https://kubernetes.default
       kube_token: { from_secret: kubernetes_token }
@@ -74,3 +71,7 @@ steps:
       values_files: [deploy/values.yaml]
       reuse_values: false
       skip_tls_verify: true
+
+depends_on:
+  - test
+  - build

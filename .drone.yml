@@ -49,3 +49,28 @@ steps:
         - quay.io/zebbra/nest-nuxt-boilerplate:builder
         - quay.io/zebbra/nest-nuxt-boilerplate:latest
       mtu: 1316
+---
+type: docker
+kind: pipeline
+name: deploy
+
+trigger:
+  event: [push]
+  branch: [master]
+
+steps:
+  - name: production
+    image: pelotech/drone-helm3
+    depends_on:
+      - test
+      - build
+    settings:
+      kube_api_server: https://kubernetes.default
+      kube_token: { from_secret: kubernetes_token }
+      chart: ./deploy/nest-nuxt-boilerplate
+      release: nest-nuxt-boilerplate
+      namespace: demo
+      values: image.tag=git-${DRONE_COMMIT_SHA:0:7}
+      values_files: [deploy/values.yaml]
+      reuse_values: false
+      skip_tls_verify: true

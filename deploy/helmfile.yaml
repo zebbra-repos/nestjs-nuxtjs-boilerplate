@@ -1,0 +1,5 @@
+releases:
+  - name: nest-nuxt-boilerplate
+    namespace: demo
+    chart: nest-nuxt-boilerplate
+    values: [values.yaml]

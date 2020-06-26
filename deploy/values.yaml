@@ -1,0 +1,14 @@
+fullnameOverride: next-nuxt-boilerplate
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: nest-nuxt-boilerplate.demo.zebbra.ch
+      paths: [/]
+  tls:
+    - secretName: nest-nuxt-boilerplate-tls
+      hosts:
+        - nest-nuxt-boilerplate.demo.zebbra.ch

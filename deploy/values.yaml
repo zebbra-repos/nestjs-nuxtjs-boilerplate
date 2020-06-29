@@ -7,7 +7,7 @@ ingress:
     kubernetes.io/tls-acme: "true"
   hosts:
     - host: nest-nuxt-boilerplate.demo.zebbra.ch
-      paths: []
+      paths: [/]
   tls:
     - secretName: nest-nuxt-boilerplate-tls
       hosts:

@@ -34,7 +34,7 @@
 
 ### NestJS Backend
 
-> Plain NestJS installation
+- [nestjs-pino](https://github.com/iamolegga/nestjs-pino) Platform agnostic logger for NestJS based on Pino with request context in every log
 
 #### Also interesting for NestJS
 

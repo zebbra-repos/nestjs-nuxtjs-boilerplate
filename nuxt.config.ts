@@ -11,7 +11,7 @@ const config: Configuration = {
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: "server",
+  target: "static",
 
   /*
    ** Headers of the page
@@ -91,7 +91,9 @@ const config: Configuration = {
    ** See https://nuxtjs.org/api
    */
   srcDir: "client",
-  buildDir: "dist/client",
+  generate: {
+    dir: "dist/client",
+  },
   server: {
     port: process.env.PORT || 5000,
   },

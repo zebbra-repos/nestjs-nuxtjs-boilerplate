@@ -77,10 +77,7 @@ Push to master branch will trigger new deployment on k8s.
 # install dependencies
 $ yarn install
 
-# serve combined with hot reload at localhost:3000
-$ yarn start:dev
-
-# serve separated with hot reload at localhost:3000 (backend) and localhost:5000 (frontend)
+# serve with hot reload at localhost:3000 (backend) and localhost:5000 (frontend)
 $ overmind s
 
 # build for production and launch combinded server (NestJS server serves NuxtJS frontend)

@@ -1,5 +1,5 @@
 import { ConfigModule } from "@nestjs/config";
-import * as Joi from "@hapi/joi";
+import * as Joi from "joi";
 
 import authConfig from "config/auth.config";
 import databaseConfig from "config/database.config";
@@ -8,7 +8,7 @@ import development from "config/environments/development.config";
 import test from "config/environments/test.config";
 import production from "config/environments/production.config";
 
-const load: any[] = [authConfig, databaseConfig];
+const load: any[] = [authConfig, databaseConfig, common];
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 switch (NODE_ENV) {
@@ -22,8 +22,6 @@ switch (NODE_ENV) {
     load.push(development);
     break;
 }
-
-load.push(common);
 
 export const configModule = ConfigModule.forRoot({
   ignoreEnvFile: NODE_ENV === "production",

@@ -1,7 +1,7 @@
 import { Provider, HttpException } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 
-import { SentryReportingInterceptor } from "../interceptors/sentry-reporting.interceptor";
+import { SentryReportingInterceptor } from "./sentry.interceptor";
 
 export const SentryProvider: Provider = {
   provide: APP_INTERCEPTOR,

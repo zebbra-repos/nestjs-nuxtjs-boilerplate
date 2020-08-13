@@ -38,6 +38,14 @@ securityContext: {}
 
 env:
   PORT: "3000"
+  TYPEORM_LOGGING: true
+  TYPEORM_ENTITIES: dist/app/server/**/*.entity.js
+  TYPEORM_MIGRATIONS: db/migrate/*.ts
+  TYPEORM_MIGRATIONS_DIR: db/migrate
+  TYPEORM_SYNCHRONIZE: false
+  SENTRY_DISABLED: false
+  SENTRY_DEBUG: false
+  SENTRY_ENVRIONMENT: production
 
 service:
   type: ClusterIP

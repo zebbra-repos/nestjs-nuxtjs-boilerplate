@@ -1,0 +1,67 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""User DTO model"""
+type UserDto {
+  """User database ID"""
+  id: Int!
+
+  """User first name"""
+  firstName: String
+
+  """User last name"""
+  lastName: String
+
+  """User email"""
+  email: String!
+}
+
+"""Login User Response DTO model"""
+type LoginUserResponseDto {
+  """JWT expires in"""
+  expiresIn: Int!
+
+  """JSON web token"""
+  accessToken: String!
+}
+
+type Query {
+  """Get current user profile"""
+  profile: UserDto!
+
+  """Get user by ID"""
+  user(id: Int!): UserDto!
+}
+
+type Mutation {
+  """Register as a new user"""
+  register(createUserInput: CreateUserDto!): UserDto!
+
+  """Login as user"""
+  login(loginUserInput: LoginUserRequestDto!): LoginUserResponseDto!
+}
+
+"""Create User DTO model"""
+input CreateUserDto {
+  """User first name"""
+  firstName: String
+
+  """User last name"""
+  lastName: String
+
+  """User email"""
+  email: String!
+
+  """User password"""
+  password: String!
+}
+
+"""Login User DTO model"""
+input LoginUserRequestDto {
+  """User email"""
+  email: String!
+
+  """User password"""
+  password: String!
+}

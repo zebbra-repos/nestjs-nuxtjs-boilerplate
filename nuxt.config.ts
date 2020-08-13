@@ -90,9 +90,9 @@ const config: Configuration = {
    ** Nuxt.js api configuration
    ** See https://nuxtjs.org/api
    */
-  srcDir: "client",
+  srcDir: "app/client",
   generate: {
-    dir: "dist/client",
+    dir: "dist/app/client",
   },
   server: {
     port: process.env.PORT || 5000,

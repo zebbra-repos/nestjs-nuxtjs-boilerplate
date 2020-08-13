@@ -15,11 +15,10 @@
     "lib": ["esnext", "esnext.asynciterable", "dom"],
     "esModuleInterop": true,
     "paths": {
-      "~/*": ["./client/*"],
-      "@/*": ["./client/*"],
-      "*": ["types/*"]
+      "~/*": ["./app/client/*"],
+      "@/*": ["./app/client/*"]
     },
-    "outDir": "./dist",
+    "outDir": "dist",
     "types": ["@types/node", "@nuxt/types", "@nuxtjs/vuetify"]
   },
   "exclude": ["node_modules", "dist", ".nuxt"]

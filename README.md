@@ -9,8 +9,8 @@
 | Folder    | Description                                                                                                                                       |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/`       | Contains project configuration files as well as typescript and linting specifications which are applied to both (NestJS and NuxtJS) applications. |
-| `/client` | Contains the NuxtJS application directory as described [here](https://nuxtjs.org/guide/directory-structure).                                      |
-| `/server` | Contains the NestJS application directory as described [here](https://docs.nestjs.com/first-steps).                                               |
+| `app/client` | Contains the NuxtJS application directory as described [here](https://nuxtjs.org/guide/directory-structure).                                      |
+| `app/server` | Contains the NestJS application directory as described [here](https://docs.nestjs.com/first-steps).                                               |
 
 ## What's included
 

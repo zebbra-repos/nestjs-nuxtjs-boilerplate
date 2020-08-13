@@ -6,9 +6,9 @@
 
 ## Project structure
 
-| Folder    | Description                                                                                                                                       |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/`       | Contains project configuration files as well as typescript and linting specifications which are applied to both (NestJS and NuxtJS) applications. |
+| Folder       | Description                                                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`          | Contains project configuration files as well as typescript and linting specifications which are applied to both (NestJS and NuxtJS) applications. |
 | `app/client` | Contains the NuxtJS application directory as described [here](https://nuxtjs.org/guide/directory-structure).                                      |
 | `app/server` | Contains the NestJS application directory as described [here](https://docs.nestjs.com/first-steps).                                               |
 
@@ -35,20 +35,26 @@
 ### NestJS Backend
 
 - [nestjs-pino](https://github.com/iamolegga/nestjs-pino) Platform agnostic logger for NestJS based on Pino with request context in every log
+- [@nestjs/config](https://github.com/nestjs/config) Configuration module based on the dotenv package
+- [@nestjs/graphq](https://github.com/nestjs/graphql) GraphQL (TypeScript) module for Nest framework
+- [@nestjs/passport](https://github.com/nestjs/passport) Passport utilities module for Nest
+- [@nestjs/typeorm](https://github.com/nestjs/typeorm) Typeorm module for Nest
 
 #### Also interesting for NestJS
 
 - [@ntegral/nestjs-sentry](https://www.npmjs.com/package/@ntegral/nestjs-sentry) Sentry module for NestJS
 
-## Production Setup
+## Production Setup for zebbra k8s cluster
 
-> This project is managed with helm v3  
-> Replace `nest-nuxt-boilerplate` with your `awesome-project-name` in `/deploy`
+> This project is managed with helm v3
+
+- Replace `nest-nuxt-boilerplate` with your `awesome-project-name` in `/deploy`
+- Replace `your-namespace` with your own k8s namespace
 
 1. Create shared namespace
 
    ```bash
-   kubectl create ns demo
+   kubectl create ns your-namespace
    ```
 
 1. Copy `deploy/secrets.example.yaml` to
@@ -58,7 +64,7 @@
 1. Deploy secrets
 
    ```bash
-   kubectl apply -n demo -f deploy/secrets.yaml
+   kubectl apply -n your-namespace -f deploy/secrets.yaml
    ```
 
 1. Deploy Helm chart

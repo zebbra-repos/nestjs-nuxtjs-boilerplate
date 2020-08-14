@@ -31,8 +31,7 @@ steps:
       - yarn install --pure-lockfile
       - yarn lint
       - yarn db:migration:run
-      - yarn test:unit
-      - yarn test:e2e
+      - yarn test
     depends_on: [clone]
 ---
 type: docker

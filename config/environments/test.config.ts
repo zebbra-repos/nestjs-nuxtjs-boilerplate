@@ -5,7 +5,9 @@ export default () => ({
   },
   database: {
     type: "postgres",
-    url: "postgres://postgres@localhost:5432/nest-nuxt-boilerplate-test",
+    url:
+      process.env.TYPEORM_URL ||
+      "postgres://postgres@localhost:5432/nest-nuxt-boilerplate-test",
     entities: [process.env.TYPEORM_ENTITIES!],
     logging: false,
     synchronize: false,

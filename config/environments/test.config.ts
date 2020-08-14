@@ -8,7 +8,7 @@ export default () => ({
     url: "postgres://postgres@localhost:5432/nest-nuxt-boilerplate-test",
     entities: [process.env.TYPEORM_ENTITIES!],
     logging: false,
-    synchronize: true,
-    autoLoadEntities: false,
+    synchronize: false,
+    autoLoadEntities: true,
   },
 });

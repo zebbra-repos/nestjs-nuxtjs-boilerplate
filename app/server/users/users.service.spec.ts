@@ -6,7 +6,7 @@ import { Repository } from "typeorm";
 import {
   repositoryMockFactory,
   MockType,
-} from "../../../test/factories/repository-mock.factory";
+} from "../../../test/backend/factories/repository-mock.factory";
 import { User } from "./users.entity";
 import { UsersService } from "./users.service";
 

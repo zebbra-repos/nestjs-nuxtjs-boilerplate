@@ -4,13 +4,13 @@ import { Connection, EntityManager, QueryRunner } from "typeorm";
 import { factory, FactoryModule } from "typeorm-factories";
 import request from "supertest";
 
-import { configModule } from "../../app/server/app/config.module";
-import { graphQLModule } from "../../app/server/app/graphql.module";
-import { loggerModule } from "../../app/server/app/logger.module";
-import { typeormModule } from "../../app/server/app/typeorm.module";
-import { AuthModule } from "../../app/server/auth/auth.module";
-import { UsersModule } from "../../app/server/users/users.module";
-import { User } from "../../app/server/users/users.entity";
+import { configModule } from "../../../app/server/app/config.module";
+import { graphQLModule } from "../../../app/server/app/graphql.module";
+import { loggerModule } from "../../../app/server/app/logger.module";
+import { typeormModule } from "../../../app/server/app/typeorm.module";
+import { AuthModule } from "../../../app/server/auth/auth.module";
+import { UsersModule } from "../../../app/server/users/users.module";
+import { User } from "../../../app/server/users/users.entity";
 import { createToken } from "../utils/helpers";
 
 describe("UserResolver (e2e)", () => {

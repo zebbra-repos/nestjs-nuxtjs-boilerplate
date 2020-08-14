@@ -5,6 +5,6 @@ module.exports = {
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
   },
-  coverageDirectory: "../../coverage",
+  coverageDirectory: "../../coverage/backend",
   testEnvironment: "node",
 };

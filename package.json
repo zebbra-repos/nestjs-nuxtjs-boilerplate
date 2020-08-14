@@ -25,9 +25,9 @@
     "start:server:debug": "nest start --debug --watch",
     "start:client:dev": "nuxt-ts",
     "test": "npm-run-all -s test:unit test:e2e",
-    "test:unit": "jest",
-    "test:unit:cov": "jest --coverage",
-    "test:e2e": "jest --config ./test/backend/jest-e2e.js"
+    "test:unit": "jest --runInBand",
+    "test:unit:cov": "jest --runInBand --coverage",
+    "test:e2e": "jest --config ./test/backend/jest-e2e.js --runInBand"
   },
   "dependencies": {
     "@nestjs/common": "^7.4.2",

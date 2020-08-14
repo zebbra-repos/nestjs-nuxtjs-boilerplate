@@ -46,7 +46,7 @@ describe("UserResolver (e2e)", () => {
     await queryRunner.startTransaction();
     user = await factory(User).make();
     token = await createToken(app, user);
-  });
+  }, 1000 * 10);
 
   afterAll(async () => {
     await queryRunner.rollbackTransaction();

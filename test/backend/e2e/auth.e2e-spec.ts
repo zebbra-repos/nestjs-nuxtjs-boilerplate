@@ -38,7 +38,7 @@ describe("AuthResolver (e2e)", () => {
     queryRunner = (manager.queryRunner as any) = dbConnection.createQueryRunner(
       "master",
     );
-  });
+  }, 1000 * 10);
 
   afterAll(async () => {
     await app.close();

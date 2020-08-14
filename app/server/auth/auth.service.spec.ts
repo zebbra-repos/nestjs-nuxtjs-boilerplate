@@ -48,7 +48,7 @@ describe("AuthService", () => {
     user = await factory(User).make();
     password = user.password;
     user.password = await hash(user.password, 10);
-  });
+  }, 1000 * 10);
 
   describe("validateUser", () => {
     it("to return the validated user", async () => {

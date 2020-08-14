@@ -31,7 +31,7 @@ describe("UsersService", () => {
     usersService = moduleRef.get<UsersService>(UsersService);
     repository = moduleRef.get(getRepositoryToken(User));
     user = await factory(User).make();
-  });
+  }, 1000 * 10);
 
   describe("findAll", () => {
     it("to return list of users", async () => {

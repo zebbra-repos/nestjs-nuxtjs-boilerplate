@@ -12,6 +12,7 @@ services:
     environment:
       POSTGRES_USER: nest-nuxt-boilerplate
       POSTGRES_PASSWORD: secret
+      POSTGRES_DB: nest-nuxt-boilerplate-test
 
 steps:
   - name: test
@@ -21,9 +22,9 @@ steps:
       DATABASE_URL: postgresql://nest-nuxt-boilerplate:secret@postgres:5432/nest-nuxt-boilerplate-test
     commands:
       - apt update && apt install python g++ build-essential -y
-      - psql -U postgres -d nest-nuxt-boilerplate-test
       - yarn install --pure-lockfile
       - yarn lint
+      - yarn db:migrate:run
       - yarn test:unit
       - yarn test:e2e
     depends_on: [clone]

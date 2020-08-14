@@ -23,7 +23,7 @@ steps:
       TYPEORM_ENTITIES: dist/app/server/**/*.entity.js
       TYPEORM_MIGRATIONS: db/migrate/*.ts
       TYPEORM_MIGRATIONS_DIR: db/migrate
-      TYPEORM_URL: postgresql://nest-nuxt-boilerplate:secret@postgres:5432/nest-nuxt-boilerplate-test
+      TYPEORM_URL: postgres://nest-nuxt-boilerplate:secret@postgres:5432/nest-nuxt-boilerplate-test
       TYPEORM_SYNCHRONIZE: "false"
     commands:
       - apt update && apt install python g++ build-essential -y

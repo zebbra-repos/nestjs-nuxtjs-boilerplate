@@ -19,11 +19,17 @@ steps:
     image: node:14.2.0-slim
     environment:
       NODE_ENV: test
-      DATABASE_URL: postgresql://nest-nuxt-boilerplate:secret@postgres:5432/nest-nuxt-boilerplate-test
+      TYPEORM_LOGGING: "true"
+      TYPEORM_ENTITIES: dist/app/server/**/*.entity.js
+      TYPEORM_MIGRATIONS: db/migrate/*.ts
+      TYPEORM_MIGRATIONS_DIR: db/migrate
+      TYPEORM_URL: postgresql://nest-nuxt-boilerplate:secret@postgres:5432/nest-nuxt-boilerplate-test
+      TYPEORM_SYNCHRONIZE: "false"
     commands:
       - apt update && apt install python g++ build-essential -y
       - yarn install --pure-lockfile
       - yarn lint
+      - yarn build
       - yarn db:migration:run
       - yarn test:unit
       - yarn test:e2e

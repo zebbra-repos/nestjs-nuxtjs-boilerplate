@@ -1,13 +1,13 @@
 import { ConfigModule } from "@nestjs/config";
 import * as Joi from "joi";
 
-import authConfig from "config/auth.config";
-import databaseConfig from "config/database.config";
-import sentryConfig from "config/sentry.config";
-import common from "config/environments/common.config";
-import development from "config/environments/development.config";
-import test from "config/environments/test.config";
-import production from "config/environments/production.config";
+import authConfig from "../../../config/auth.config";
+import databaseConfig from "../../../config/database.config";
+import sentryConfig from "../../../config/sentry.config";
+import common from "../../../config/environments/common.config";
+import development from "../../../config/environments/development.config";
+import test from "../../../config/environments/test.config";
+import production from "../../../config/environments/production.config";
 
 const load: any[] = [authConfig, databaseConfig, sentryConfig, common];
 

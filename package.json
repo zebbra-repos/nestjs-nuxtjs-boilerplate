@@ -34,7 +34,7 @@
     "@nestjs/passport": "^7.1.0",
     "@nestjs/platform-express": "^7.4.2",
     "@nestjs/typeorm": "^7.1.0",
-    "@ntegral/nestjs-sentry": "^1.0.3",
+    "@ntegral/nestjs-sentry": "^1.0.4",
     "@nuxt/typescript-runtime": "^1.0.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/sentry": "^4.3.4",

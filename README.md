@@ -89,3 +89,12 @@ $ yarn start:prod
 ```
 
 For detailed explanation on how things work, check out [NestJS docs](https://docs.nestjs.com/) or [NuxtJS docs](https://nuxtjs.org).
+
+## DB Migrations
+
+```bash
+TYPEORM_URL=postgres://postgres@localhost:5432/nest-nuxt-boilerplate-development yarn db:migration:run
+TYPEORM_URL=postgres://postgres@localhost:5432/nest-nuxt-boilerplate-test yarn db:migration:run
+TYPEORM_URL=postgres://postgres@localhost:5432/nest-nuxt-boilerplate-development yarn db:migration:rollback
+TYPEORM_URL=postgres://postgres@localhost:5432/nest-nuxt-boilerplate-test yarn db:migration:rollback
+```

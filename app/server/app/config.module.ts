@@ -30,19 +30,26 @@ export const configModule = ConfigModule.forRoot({
   isGlobal: true,
   expandVariables: true,
   validationSchema: Joi.object({
+    // NODE
     NODE_ENV: Joi.string()
       .valid("development", "test", "production")
       .default("development"),
     PORT: Joi.number().valid(3000, 3001).default(3000),
+
+    // LOGGING
     LOG_LEVEL: Joi.string()
       .valid("trace", "debug", "info", "warn", "error")
       .default("debug"),
+
+    // JWT
     JWT_SECRET: Joi.string().required(),
-    TYPEORM_URL: Joi.string().required(),
+    JWT_EXPIRES_IND: Joi.number().default(3600),
+
+    // TYPEORM
+    TYPEORM_URL: Joi.string(),
     TYPEORM_LOGGING: Joi.boolean().default(true),
     TYPEORM_SYNCHRONIZE: Joi.boolean().default(false),
     TYPEORM_ENTITIES: Joi.string().required(),
-    TYPEORM_ENTITIES_DIR: Joi.string(),
     TYPEORM_MIGRATIONS: Joi.string().required(),
     TYPEORM_MIGRATIONS_DIR: Joi.string().required(),
   }),

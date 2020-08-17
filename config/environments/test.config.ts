@@ -4,6 +4,7 @@ export default () => ({
     level: "error",
   },
   database: {
+    autoLoadEntities: true,
     type: "postgres",
     url:
       process.env.TYPEORM_URL ||
@@ -11,6 +12,5 @@ export default () => ({
     entities: [process.env.TYPEORM_ENTITIES!],
     logging: false,
     synchronize: false,
-    autoLoadEntities: true,
   },
 });

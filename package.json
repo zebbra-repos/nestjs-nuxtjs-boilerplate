@@ -24,9 +24,10 @@
     "start:server:dev": "nest start --watch",
     "start:server:debug": "nest start --debug --watch",
     "start:client:dev": "nuxt-ts",
-    "test": "npm-run-all -p test:unit test:e2e",
-    "test:unit": "test jest",
-    "test:unit:cov": "test jest --runInBand --coverage",
+    "test": "npm-run-all -p test:unit test:e2e test:client",
+    "test:unit": "jest",
+    "test:unit:cov": "jest --runInBand --coverage",
+    "test:client": "jest --config ./test/client/jest-client.js",
     "test:e2e": "jest --config ./test/backend/jest-e2e.js"
   },
   "dependencies": {
@@ -82,7 +83,10 @@
     "@types/passport-jwt": "^3.0.3",
     "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.10",
+    "@vue/test-utils": "^1.0.4",
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^26.3.0",
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
@@ -105,6 +109,7 @@
     "typeorm-factories": "^1.0.1",
     "typescript": "^3.9.7",
     "vue": "^2.6.11",
+    "vue-jest": "^3.0.6",
     "vue-template-compiler": "^2.6.11",
     "vuex": "^3.5.1",
     "webpack": "^4.44.1"

@@ -60,12 +60,15 @@
     </v-navigation-drawer>
     <v-footer :fixed="fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
+      <v-spacer></v-spacer>
+      <span>Version: {{ version }}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "nuxt-composition-api";
+import { globalStore } from "~/store";
 
 export default defineComponent({
   name: "DefaultLayout",
@@ -90,6 +93,7 @@ export default defineComponent({
       right: true,
       rightDrawer: false,
       title: "Vuetify.js",
+      version: globalStore.version,
     };
   },
 });

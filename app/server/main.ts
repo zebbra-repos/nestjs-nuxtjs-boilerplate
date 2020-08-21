@@ -3,8 +3,8 @@ import { NestFactory } from "@nestjs/core";
 import { ValidationPipe } from "@nestjs/common";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { Logger } from "nestjs-pino";
-
 import { ConfigService } from "@nestjs/config";
+
 import { AppModule } from "./app.module";
 
 async function bootstrap() {

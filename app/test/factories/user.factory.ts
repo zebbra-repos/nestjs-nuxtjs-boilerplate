@@ -1,7 +1,7 @@
 import * as Faker from "faker";
 import { define } from "typeorm-factories";
 
-import { User } from "../../../app/server/users/users.entity";
+import { User } from "../../server/users/users.entity";
 
 define(User, (faker: typeof Faker) => {
   const user = new User();

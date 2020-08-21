@@ -1,7 +1,7 @@
 import { INestApplication } from "@nestjs/common";
 import request from "supertest";
 
-import { User } from "../../../app/server/users/users.entity";
+import { User } from "../../server/users/users.entity";
 
 export function register(app: INestApplication, user: User) {
   return request(app.getHttpServer()).post("/graphql").send({

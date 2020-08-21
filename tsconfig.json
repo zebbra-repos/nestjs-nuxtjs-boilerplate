@@ -4,6 +4,7 @@
     "target": "es2018",
     "baseUrl": ".",
     "experimentalDecorators": true,
+    "allowJs": true,
     "removeComments": true,
     "sourceMap": true,
     "strict": true,

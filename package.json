@@ -24,11 +24,13 @@
     "start:server:dev": "nest start --watch",
     "start:server:debug": "nest start --debug --watch",
     "start:client:dev": "nuxt-ts",
-    "test": "npm-run-all -p test:unit test:e2e test:client",
-    "test:unit": "jest",
-    "test:unit:cov": "jest --runInBand --coverage",
-    "test:client": "jest --config ./test/client/jest-client.js",
-    "test:e2e": "jest --config ./test/backend/jest-e2e.js"
+    "test": "jest",
+    "test:unit": "jest --config ./app/server/jest-unit.config.js",
+    "test:unit:cov": "jest --config ./app/server/jest-unit.config.js --runInBand --coverage",
+    "test:e2e": "jest --config ./app/test/jest-e2e.config.js",
+    "test:e2e:cov": "jest --config ./app/test/jest-e2e.config.js --runInBand --coverage",
+    "test:client": "jest --config ./app/client/jest-client.config.js",
+    "test:client:cov": "jest --config ./app/client/jest-client.config.js --runInBand --coverage"
   },
   "dependencies": {
     "@nestjs/common": "^7.4.2",
@@ -66,7 +68,7 @@
     "vuex-module-decorators": "^0.17.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-0",
+    "@babel/core": "^7.11.4",
     "@nestjs/cli": "^7.4.1",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.4.2",
@@ -108,10 +110,8 @@
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typeorm-factories": "^1.0.1",
-    "typescript": "^3.9.7",
-    "vue": "^2.6.12",
+    "typescript": "^4.0.2",
     "vue-jest": "^3.0.6",
-    "vue-template-compiler": "^2.6.12",
     "vuex": "^3.5.1",
     "webpack": "^4.44.1"
   },

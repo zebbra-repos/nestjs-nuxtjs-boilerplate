@@ -6,9 +6,9 @@ import { Repository } from "typeorm";
 import {
   repositoryMockFactory,
   MockType,
-} from "../../../test/backend/factories/repository-mock.factory";
-import { User } from "./users.entity";
-import { UsersService } from "./users.service";
+} from "../../../test/factories/repository-mock.factory";
+import { User } from "../users.entity";
+import { UsersService } from "../users.service";
 
 describe("UsersService", () => {
   let usersService: UsersService;

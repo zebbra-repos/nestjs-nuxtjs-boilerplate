@@ -1,8 +1,8 @@
 import { Mutation, Resolver, Args } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 
-import { UserDto, CreateUserDto } from "../users/users.dto";
 import { CurrentUser } from "../common/decorators/current-user.decorator";
+import { UserDto, CreateUserDto } from "../users/users.dto";
 import { User } from "../users/users.entity";
 import { AuthService } from "./auth.service";
 import { LocalAuthGuard } from "./local-auth.guard";

@@ -1,8 +1,8 @@
 import { Query, Resolver, Args, Int } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 
-import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { CurrentUser } from "../common/decorators/current-user.decorator";
+import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { User } from "./users.entity";
 import { UsersService } from "./users.service";
 import { UserDto } from "./users.dto";

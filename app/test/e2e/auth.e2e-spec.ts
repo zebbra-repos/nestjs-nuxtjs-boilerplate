@@ -3,12 +3,12 @@ import { INestApplication, ValidationPipe } from "@nestjs/common";
 import { Connection, EntityManager, QueryRunner } from "typeorm";
 import { factory, FactoryModule } from "typeorm-factories";
 
-import { AuthModule } from "../../../app/server/auth/auth.module";
-import { configModule } from "../../../app/server/core/config.module";
-import { graphQLModule } from "../../../app/server/core/graphql.module";
-import { loggerModule } from "../../../app/server/core/logger.module";
-import { typeormModule } from "../../../app/server/core/typeorm.module";
-import { User } from "../../../app/server/users/users.entity";
+import { AuthModule } from "../../server/auth/auth.module";
+import { configModule } from "../../server/core/config.module";
+import { graphQLModule } from "../../server/core/graphql.module";
+import { loggerModule } from "../../server/core/logger.module";
+import { typeormModule } from "../../server/core/typeorm.module";
+import { User } from "../../server/users/users.entity";
 import { register, login } from "../utils/helpers";
 
 describe("AuthResolver (e2e)", () => {

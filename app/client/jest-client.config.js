@@ -1,7 +1,8 @@
 module.exports = {
+  testRegex: "(/__tests__/*|(\\.|/)spec)\\.(js|ts)$",
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/../../app/client/$1",
-    "^~/(.*)$": "<rootDir>/../../app/client/$1",
+    "^@/(.*)$": "<rootDir>/$1",
+    "^~/(.*)$": "<rootDir>/$1",
     "^vue$": "vue/dist/vue.common.js",
     "nuxt-composition-api": "nuxt-composition-api/lib/cjs/entrypoint.js",
   },
@@ -11,10 +12,6 @@ module.exports = {
     "^.+\\.js$": "babel-jest",
     ".*\\.(vue)$": "vue-jest",
   },
-  collectCoverage: true,
-  collectCoverageFrom: [
-    "<rootDir>/../../app/client/components/**/*.vue",
-    "<rootDir>/../../app/client/pages/**/*.vue",
-  ],
+  collectCoverageFrom: ["<rootDir>/**/*.vue"],
   coverageDirectory: "<rootDir>/../../coverage/client",
 };

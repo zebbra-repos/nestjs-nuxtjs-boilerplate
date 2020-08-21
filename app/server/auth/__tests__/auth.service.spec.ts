@@ -9,11 +9,11 @@ import { hash } from "bcrypt";
 import {
   MockType,
   repositoryMockFactory,
-} from "../../../test/backend/factories/repository-mock.factory";
-import { configModule } from "../core/config.module";
-import { User } from "../users/users.entity";
-import { UsersService } from "../users/users.service";
-import { AuthService } from "./auth.service";
+} from "../../../test/factories/repository-mock.factory";
+import { configModule } from "../../core/config.module";
+import { User } from "../../users/users.entity";
+import { UsersService } from "../../users/users.service";
+import { AuthService } from "../auth.service";
 
 describe("AuthService", () => {
   let authService: AuthService;

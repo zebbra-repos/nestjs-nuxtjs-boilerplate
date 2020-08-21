@@ -17,7 +17,7 @@ export class OrmconfigCommand {
   async create() {
     const ormconfig = this.configService.get<TypeOrmModuleOptions>("database");
     const migrationSettings = {
-      migrations: ["db/migrate/*.ts"],
+      migrations: ["dist/db/migrate/*.js"],
       cli: {
         migrationsDir: "db/migrate",
       },
@@ -26,7 +26,6 @@ export class OrmconfigCommand {
       ...ormconfig,
       ...migrationSettings,
     };
-    console.log(settings);
     await fs.writeFile("ormconfig.json", JSON.stringify(settings, null, 2));
   }
 }

@@ -40,6 +40,7 @@
     "@nestjs/jwt": "^7.1.0",
     "@nestjs/passport": "^7.1.0",
     "@nestjs/platform-express": "^7.4.2",
+    "@nestjs/terminus": "^7.0.1",
     "@nestjs/typeorm": "^7.1.0",
     "@ntegral/nestjs-sentry": "^1.0.4",
     "@nuxt/typescript-runtime": "^1.0.0",

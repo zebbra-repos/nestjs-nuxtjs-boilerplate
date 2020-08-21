@@ -39,6 +39,7 @@
 - [@nestjs/graphq](https://github.com/nestjs/graphql) GraphQL (TypeScript) module for Nest framework
 - [@nestjs/passport](https://github.com/nestjs/passport) Passport utilities module for Nest
 - [@nestjs/typeorm](https://github.com/nestjs/typeorm) Typeorm module for Nest
+- [@nestjs/terminus](https://www.npmjs.com/package/@nestjs/terminus) Integrated healthchecks for Nest
 - [@ntegral/nestjs-sentry](https://www.npmjs.com/package/@ntegral/nestjs-sentry) Sentry module for NestJS
 
 ## Production Setup for zebbra k8s cluster

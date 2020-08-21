@@ -5,7 +5,7 @@ metadata:
   labels:
 {{ include "nest-nuxt-boilerplate.labels" . | indent 4 }}
   annotations:
-    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook": post-install,pre-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation
 spec:
   activeDeadlineSeconds: 60
@@ -13,21 +13,19 @@ spec:
     metadata:
       name: {{ include "nest-nuxt-boilerplate.fullname" . }}-db-migrate
     spec:
-    {{- with .Values.imagePullSecrets }}
+      restartPolicy: Never
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
-      restartPolicy: Never
+      {{- end }}
       containers:
         - name: db-migrate
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: TYPEORM_ENTITIES
-              value: {{ .Values.config.TYPEORM_ENTITIES | quote }}
-            - name: TYPEORM_MIGRATIONS
-              value: {{ .Values.config.TYPEORM_MIGRATIONS | quote }}
-            - name: TYPEORM_URL
-              value: {{ .Values.secrets.TYPEORM_URL | quote }}
+          envFrom:
+            - secretRef:
+                name: {{ include "nest-nuxt-boilerplate.fullname" . }}
+            - configMapRef:
+                name: {{ include "nest-nuxt-boilerplate.fullname" . }}
 
-          command: ["yarn", "typeorm", "migration:run"]
+          command: ["yarn", "db:migrate"]

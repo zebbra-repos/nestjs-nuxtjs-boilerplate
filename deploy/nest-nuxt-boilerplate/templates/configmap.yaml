@@ -4,4 +4,5 @@ metadata:
   name: {{ template "nest-nuxt-boilerplate.fullname" . }}
   labels:
     {{- include "nest-nuxt-boilerplate.labels" . | nindent 4 }}
-data: {}
+data: 
+  SENTRY_ENVRIONMENT: production

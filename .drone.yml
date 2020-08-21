@@ -20,6 +20,7 @@ steps:
     environment:
       NODE_ENV: test
       TYPEORM_URL: postgres://nest-nuxt-boilerplate:secret@postgres:5432/nest-nuxt-boilerplate-test
+      TYPEORM_MIGRATIONS: "db/migrate/*.ts"
       JWT_SECRET: secret
     commands:
       - apt update && apt install python g++ build-essential -y

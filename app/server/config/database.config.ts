@@ -9,6 +9,10 @@ export default registerAs(
       logging: true,
       synchronize: false,
       entities: ["dist/app/server/**/*.entity.js"],
+      migrations: ["dist/db/migrate/*.js"],
+      cli: {
+        migrationsDir: "db/migrate",
+      },
     };
 
     switch (process.env.NODE_ENV) {

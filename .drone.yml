@@ -25,10 +25,10 @@ steps:
       - apt update && apt install python g++ build-essential -y
       - yarn install --pure-lockfile
       - yarn lint
-      - NODE_ENV=test yarn db:migrate
-      - yarn test
+      - yarn db:migrate
       - ls -ltra
       - ls -ltra db/migrate
+      - yarn test
     depends_on: [clone]
 ---
 type: docker

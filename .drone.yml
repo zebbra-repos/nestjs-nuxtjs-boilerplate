@@ -75,17 +75,17 @@ trigger:
   branch: [master]
 
 steps:
-  - name: production
-    image: pelotech/drone-helm3
+  - name: helm
+    image: quay.io/zebbra/drone-helm
+    environment:
+      API_SERVER: https://kubernetes.default
+      KUBERNETES_TOKEN: { from_secret: kubernetes_token }
     settings:
-      kube_api_server: https://kubernetes.default
-      kube_token: { from_secret: kubernetes_token }
       chart: ./deploy/nest-nuxt-boilerplate
       release: nest-nuxt-boilerplate
       namespace: demo
       values: image.tag=git-${DRONE_COMMIT_SHA:0:7}
       values_files: [deploy/values.yaml]
-      reuse_values: false
       skip_tls_verify: true
 
 depends_on:

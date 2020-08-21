@@ -4,7 +4,7 @@ import { Connection, EntityManager, QueryRunner } from "typeorm";
 import { factory, FactoryModule } from "typeorm-factories";
 import request from "supertest";
 
-import { configModule } from "../../server/core/config.module";
+import { configModule } from "../../server/config/config.module";
 import { graphQLModule } from "../../server/core/graphql.module";
 import { loggerModule } from "../../server/core/logger.module";
 import { typeormModule } from "../../server/core/typeorm.module";

@@ -10,7 +10,7 @@ import {
   MockType,
   repositoryMockFactory,
 } from "../../../test/factories/repository-mock.factory";
-import { configModule } from "../../core/config.module";
+import { configModule } from "../../config/config.module";
 import { User } from "../../users/users.entity";
 import { UsersService } from "../../users/users.service";
 import { AuthService } from "../auth.service";

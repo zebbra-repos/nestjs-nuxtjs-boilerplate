@@ -6,3 +6,4 @@ metadata:
     {{- include "nest-nuxt-boilerplate.labels" . | nindent 4 }}
 data: 
   SENTRY_ENVRIONMENT: production
+  TYPEORM_MIGRATIONS: "dist/db/migrate/*.js"

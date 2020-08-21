@@ -28,4 +28,4 @@ spec:
             - configMapRef:
                 name: {{ include "nest-nuxt-boilerplate.fullname" . }}
 
-          command: ["yarn", "db:migrate"]
+          command: [""./node_modules/typeorm/cli.js" "migration:run"]

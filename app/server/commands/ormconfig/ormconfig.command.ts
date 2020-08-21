@@ -15,13 +15,17 @@ export class OrmconfigCommand {
     autoExit: true,
   })
   async create() {
-    await fs.writeFile(
-      "ormconfig.json",
-      JSON.stringify(
-        this.configService.get<TypeOrmModuleOptions>("database"),
-        null,
-        2,
-      ),
-    );
+    const ormconfig = this.configService.get<TypeOrmModuleOptions>("database");
+    const migrationSettings = {
+      migrations: ["db/migrate/*.ts"],
+      cli: {
+        migrationsDir: "db/migrate",
+      },
+    };
+    const settings = {
+      ...ormconfig,
+      ...migrationSettings,
+    };
+    await fs.writeFile("ormconfig.json", JSON.stringify(settings, null, 2));
   }
 }

@@ -43,7 +43,7 @@ export const configModule = ConfigModule.forRoot({
 
     // JWT
     JWT_SECRET: Joi.string().required(),
-    JWT_EXPIRES_IND: Joi.number().default(3600),
+    JWT_EXPIRES_IN: Joi.number().default(3600),
 
     // TYPEORM
     TYPEORM_URL: Joi.string(),

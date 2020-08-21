@@ -27,6 +27,8 @@ steps:
       - yarn lint
       - NODE_ENV=test yarn db:migrate
       - yarn test
+      - ls -ltra
+      - ls -ltra db/migrate
     depends_on: [clone]
 ---
 type: docker

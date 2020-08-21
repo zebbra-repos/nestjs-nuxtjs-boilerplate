@@ -4,6 +4,7 @@
     "target": "es2018",
     "baseUrl": ".",
     "experimentalDecorators": true,
+    "allowJs": true,
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
@@ -15,12 +16,11 @@
     "lib": ["esnext", "esnext.asynciterable", "dom"],
     "esModuleInterop": true,
     "paths": {
-      "~/*": ["./client/*"],
-      "@/*": ["./client/*"],
-      "*": ["types/*"]
+      "~/*": ["./app/client/*"],
+      "@/*": ["./app/client/*"]
     },
-    "outDir": "./dist",
-    "types": ["@types/node", "@nuxt/types", "@nuxtjs/vuetify"]
+    "outDir": "dist",
+    "types": ["@types/node", "@nuxt/types", "@nuxtjs/vuetify", "jest"]
   },
   "exclude": ["node_modules", "dist", ".nuxt"]
 }

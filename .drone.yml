@@ -5,13 +5,29 @@ name: test
 trigger:
   event: [push]
 
+services:
+  - name: postgres
+    image: postgres:12
+    ports: [5432]
+    environment:
+      POSTGRES_USER: nest-nuxt-boilerplate
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: nest-nuxt-boilerplate-test
+
 steps:
   - name: test
     image: node:14.2.0-slim
+    environment:
+      NODE_ENV: test
+      TYPEORM_URL: postgres://nest-nuxt-boilerplate:secret@postgres:5432/nest-nuxt-boilerplate-test
+      TYPEORM_MIGRATIONS: "db/migrate/*.ts"
+      JWT_SECRET: secret
     commands:
       - apt update && apt install python g++ build-essential -y
       - yarn install --pure-lockfile
       - yarn lint
+      - yarn db:migrate
+      - yarn test
     depends_on: [clone]
 ---
 type: docker

@@ -36,9 +36,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-env:
-  PORT: "3000"
-
 service:
   type: ClusterIP
   port: 80

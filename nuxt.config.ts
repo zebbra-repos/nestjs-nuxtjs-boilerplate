@@ -74,7 +74,19 @@ const config: Configuration = {
   modules: [
     // Doc: https://pwa.nuxtjs.org/
     ["@nuxtjs/pwa", { meta: false, icon: false, manifest: false }],
+
+    // Doc: https://github.com/nuxt-community/sentry-module
+    "@nuxtjs/sentry",
   ],
+
+  /*
+   ** sentry module configuration
+   ** See https://github.com/nuxt-community/sentry-module
+   */
+  sentry: {
+    lazy: true,
+    disabled: process.env.SENTRY_DISABLED || false,
+  },
 
   /*
    ** vuetify module configuration
@@ -90,9 +102,9 @@ const config: Configuration = {
    ** Nuxt.js api configuration
    ** See https://nuxtjs.org/api
    */
-  srcDir: "client",
+  srcDir: "app/client",
   generate: {
-    dir: "dist/client",
+    dir: "dist/app/client",
   },
   server: {
     port: process.env.PORT || 5000,

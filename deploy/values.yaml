@@ -1,5 +1,7 @@
 fullnameOverride: nest-nuxt-boilerplate
 
+replicaCount: 1
+
 ingress:
   enabled: true
   annotations:

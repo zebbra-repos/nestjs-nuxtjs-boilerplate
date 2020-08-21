@@ -26,6 +26,7 @@ export class OrmconfigCommand {
       ...ormconfig,
       ...migrationSettings,
     };
+    console.log(settings);
     await fs.writeFile("ormconfig.json", JSON.stringify(settings, null, 2));
   }
 }

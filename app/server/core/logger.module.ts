@@ -1,5 +1,6 @@
 import { LoggerModule } from "nestjs-pino";
 import { ConfigService } from "@nestjs/config";
+import { RequestMethod } from "@nestjs/common";
 
 export const loggerModule = LoggerModule.forRootAsync({
   inject: [ConfigService],
@@ -13,6 +14,7 @@ export const loggerModule = LoggerModule.forRootAsync({
           ignore: "pid,hostname,context",
         },
       },
+      exclude: [{ method: RequestMethod.ALL, path: "health" }],
     };
   },
 });

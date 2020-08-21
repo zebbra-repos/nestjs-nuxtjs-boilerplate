@@ -94,8 +94,9 @@ For detailed explanation on how things work, check out [NestJS docs](https://doc
 ## DB Migrations
 
 ```bash
-TYPEORM_URL=postgres://postgres@localhost:5432/nest-nuxt-boilerplate-development yarn db:migration:run
-TYPEORM_URL=postgres://postgres@localhost:5432/nest-nuxt-boilerplate-test yarn db:migration:run
-TYPEORM_URL=postgres://postgres@localhost:5432/nest-nuxt-boilerplate-development yarn db:migration:rollback
-TYPEORM_URL=postgres://postgres@localhost:5432/nest-nuxt-boilerplate-test yarn db:migration:rollback
+yarn db:migration:generate <migration_name>
+yarn db:migrate
+yarn db:rollback
 ```
+
+> To run migrations against test database use `NODE_ENV=test yarn db:migrate`

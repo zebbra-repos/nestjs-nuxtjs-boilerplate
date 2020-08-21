@@ -19,18 +19,13 @@ steps:
     image: node:14.2.0-slim
     environment:
       NODE_ENV: test
-      TYPEORM_LOGGING: "true"
-      TYPEORM_ENTITIES: dist/app/server/**/*.entity.js
-      TYPEORM_MIGRATIONS: db/migrate/*.ts
-      TYPEORM_MIGRATIONS_DIR: db/migrate
       TYPEORM_URL: postgres://nest-nuxt-boilerplate:secret@postgres:5432/nest-nuxt-boilerplate-test
-      TYPEORM_SYNCHRONIZE: "false"
       JWT_SECRET: secret
     commands:
       - apt update && apt install python g++ build-essential -y
       - yarn install --pure-lockfile
       - yarn lint
-      - yarn db:migration:run
+      - NODE_ENV=test yarn db:migrate
       - yarn test
     depends_on: [clone]
 ---

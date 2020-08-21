@@ -6,5 +6,5 @@ export default registerAs("sentry", () => ({
       ? false
       : process.env.SENTRY_DSN || false,
   debug: process.env.SENTRY_DEBUG === "true",
-  environment: process.env.SENTRY_ENVIRONMENT || "development",
+  environment: process.env.SENTRY_ENVIRONMENT,
 }));

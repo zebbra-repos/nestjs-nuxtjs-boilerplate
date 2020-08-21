@@ -16,13 +16,21 @@ switch (NODE_ENV) {
   case "test":
     load.push(test);
     break;
+  case "development":
+    load.push(development);
+    break;
   case "production":
     load.push(production);
     break;
   default:
-    load.push(development);
     break;
 }
+
+/**
+ * Required env variables
+ *
+ * JWT_SECRET
+ */
 
 export const configModule = ConfigModule.forRoot({
   ignoreEnvFile: NODE_ENV === "production",
@@ -30,27 +38,32 @@ export const configModule = ConfigModule.forRoot({
   isGlobal: true,
   expandVariables: true,
   validationSchema: Joi.object({
-    // NODE
+    // COMMON
     NODE_ENV: Joi.string()
       .valid("development", "test", "production")
       .default("development"),
     PORT: Joi.number().valid(3000, 3001).default(3000),
-
-    // LOGGING
     LOG_LEVEL: Joi.string()
       .valid("trace", "debug", "info", "warn", "error")
       .default("debug"),
 
-    // JWT
+    // AUTH
     JWT_SECRET: Joi.string().required(),
     JWT_EXPIRES_IN: Joi.number().default(3600),
 
-    // TYPEORM
+    // DATABASE
+    TYPEORM_CONNECTION: Joi.string().default("postgres"),
     TYPEORM_URL: Joi.string(),
     TYPEORM_LOGGING: Joi.boolean().default(true),
     TYPEORM_SYNCHRONIZE: Joi.boolean().default(false),
-    TYPEORM_ENTITIES: Joi.string().required(),
-    TYPEORM_MIGRATIONS: Joi.string().required(),
-    TYPEORM_MIGRATIONS_DIR: Joi.string().required(),
+    TYPEORM_ENTITIES: Joi.string().default("dist/app/server/**/*.entity.js"),
+    TYPEORM_MIGRATIONS: Joi.string().default("db/migrate/*.ts"),
+    TYPEORM_MIGRATIONS_DIR: Joi.string().default("db/migrate"),
+
+    // SENTRY
+    SENTRY_DSN: Joi.string(),
+    SENTRY_DISABLED: Joi.boolean().default(false),
+    SENTRY_DEBUG: Joi.boolean().default(false),
+    SENTRY_ENVIRONMENT: Joi.string().default("development"),
   }),
 });

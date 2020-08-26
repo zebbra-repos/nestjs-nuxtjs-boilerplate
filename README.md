@@ -77,7 +77,7 @@ NODE_ENV=test yarn db:migrate
 - [@nestjs/terminus](https://www.npmjs.com/package/@nestjs/terminus) Integrated healthchecks for Nest
 - [@ntegral/nestjs-sentry](https://www.npmjs.com/package/@ntegral/nestjs-sentry) Sentry module for NestJS
 
-## Production Setup for zebbra k8s cluster
+## Production Setup for k8s cluster
 
 > This project is managed with helm v3
 
@@ -128,7 +128,7 @@ For detailed explanation on how things work, check out [NestJS docs](https://doc
 
 ## DB Migrations
 
-zebbra k8s deployment includes db-migrate-job which will automatically run migrations on each deplyoment. Locally you have to use the following commands to interact with typeorm cli.
+k8s deployment includes db-migrate-job which will automatically run migrations on each deplyoment. Locally you have to use the following commands to interact with typeorm cli.
 
 ```bash
 yarn db:migration:generate <migration_name>

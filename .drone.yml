@@ -76,11 +76,12 @@ trigger:
 
 steps:
   - name: helm
-    image: quay.io/zebbra/drone-helm
+    image: pelotech/drone-helm3
     environment:
-      API_SERVER: https://kubernetes.default
-      KUBERNETES_TOKEN: { from_secret: kubernetes_token }
+      KUBE_API_SERVER: https://kubernetes.default
+      KUBE_TOKEN: { from_secret: kubernetes_token }
     settings:
+      mode: upgrade
       chart: ./deploy/nest-nuxt-boilerplate
       release: nest-nuxt-boilerplate
       namespace: demo

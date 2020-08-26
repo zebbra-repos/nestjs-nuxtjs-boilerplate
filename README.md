@@ -4,7 +4,42 @@
 
 > NestJS and NuxtJS starter boilerplate
 
-## Project structure
+## Requirements
+
+- Node.js 14.4.0
+- PostgreSQL
+
+## Development
+
+For development the following additional dependencies are required:
+
+- Homebrew (for Mac OS X)
+- overmind
+- yarn
+
+### Setup
+
+Make sure you have the latest version of `nodenv` (Node.js version manager) by following instruction:
+
+```bash
+brew upgrade nodenv
+```
+
+Create `development` and `test` databases:
+
+```bash
+CREATE DATABASE nest-nuxt-boilerplate-development
+CREATE DATABASE nest-nuxt-boilerplate-test
+```
+
+Run migrations:
+
+```bash
+yarn db:migrate
+NODE_ENV=test yarn db:migrate
+```
+
+### Project structure
 
 | Folder       | Description                                                                                                                                       |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,9 +47,9 @@
 | `app/client` | Contains the NuxtJS application directory as described [here](https://nuxtjs.org/guide/directory-structure).                                      |
 | `app/server` | Contains the NestJS application directory as described [here](https://docs.nestjs.com/first-steps).                                               |
 
-## What's included
+### What's included
 
-### NuxtJS Frontend
+#### NuxtJS Frontend
 
 - [@nuxtjs/pwa](https://pwa.nuxtjs.org) Supercharge Nuxt with a heavily tested, updated and stable PWA solution
 - [@nuxtjs/stylelint-module](https://github.com/nuxt-community/stylelint-module) Stylelint module for NuxtJS
@@ -25,14 +60,14 @@
 - [vuex-module-decorators](https://github.com/championswimmer/vuex-module-decorators) TypeScript/ES7 Decorators to create Vuex modules declaratively
 - [@nuxtjs/sentry](https://github.com/nuxt-community/sentry-module#readme) Sentry module for NuxtJS
 
-#### Also interesting for NuxtJS
+**Also interesting for NuxtJS**
 
 - [@nuxtjs/style-resources](https://github.com/nuxt-community/style-resources-module#readme) Handling scss, sass, and stylus files
 - [nuxt-webfontloader](https://github.com/Developmint/nuxt-webfontloader#readme) Efficient web font loading
 - [@aceforth/nuxt-optimized-images](https://aceforth.com/docs/nuxt-optimized-images/) Automatically optimizes images used in NuxtJS projects (JPEG, PNG, SVG, WebP and GIF)
 - [@vue/apollo-composable](https://v4.apollo.vuejs.org/guide-composable/) Integrate GraphQL in your Vue.js apps the composable way
 
-### NestJS Backend
+#### NestJS Backend
 
 - [nestjs-pino](https://github.com/iamolegga/nestjs-pino) Platform agnostic logger for NestJS based on Pino with request context in every log
 - [@nestjs/config](https://github.com/nestjs/config) Configuration module based on the dotenv package
@@ -92,6 +127,8 @@ $ yarn start:prod
 For detailed explanation on how things work, check out [NestJS docs](https://docs.nestjs.com/) or [NuxtJS docs](https://nuxtjs.org).
 
 ## DB Migrations
+
+zebbra k8s deployment includes db-migrate-job which will automatically run migrations on each deplyoment. Locally you have to use the following commands to interact with typeorm cli.
 
 ```bash
 yarn db:migration:generate <migration_name>

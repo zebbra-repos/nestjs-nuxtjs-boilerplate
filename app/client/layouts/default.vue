@@ -50,9 +50,7 @@
       <v-list>
         <v-list-item @click.native="right = !right">
           <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
+            <v-icon light> mdi-repeat </v-icon>
           </v-list-item-action>
           <v-list-item-title>Switch drawer (click me)</v-list-item-title>
         </v-list-item>
@@ -67,12 +65,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "nuxt-composition-api";
+import { defineComponent } from "@nuxtjs/composition-api";
+import { useResult } from "@vue/apollo-composable";
+import { useGetVersionQuery } from "~/apollo/generated-operations";
 import { globalStore } from "~/store";
 
 export default defineComponent({
   name: "DefaultLayout",
   setup() {
+    const applicationVersion = useResult(
+      useGetVersionQuery().result,
+      globalStore.version,
+      (data) => data.version,
+    );
+
     return {
       clipped: false,
       drawer: false,
@@ -93,7 +99,7 @@ export default defineComponent({
       right: true,
       rightDrawer: false,
       title: "Vuetify.js",
-      version: globalStore.version,
+      version: applicationVersion,
     };
   },
 });

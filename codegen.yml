@@ -1,0 +1,13 @@
+overwrite: true
+schema: "app/server/schema.gql"
+documents: "app/client/apollo/*.graphql"
+generates:
+  app/client/apollo/generated-operations.ts:
+    plugins:
+      - typescript
+      - typescript-operations:
+          immutableTypes: true
+      - typescript-vue-apollo
+hooks:
+  afterAllFileWrite:
+    - prettier --write

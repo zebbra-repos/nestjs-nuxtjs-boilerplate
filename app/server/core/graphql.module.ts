@@ -8,10 +8,10 @@ export const graphQLModule = GraphQLModule.forRootAsync({
 
     switch (process.env.NODE_ENV) {
       case "test":
-        autoSchemaFile = `${process.cwd()}/app/server/schema.gql`;
+        autoSchemaFile = true;
         break;
       case "development":
-        autoSchemaFile = true;
+        autoSchemaFile = `${process.cwd()}/app/server/schema.gql`;
         break;
       case "production":
         autoSchemaFile = `${process.cwd()}/dist/app/server/schema.gql`;

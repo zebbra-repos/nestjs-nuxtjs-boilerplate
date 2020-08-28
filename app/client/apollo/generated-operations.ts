@@ -87,6 +87,32 @@ export type LoginUserRequestDto = {
   password: Scalars["String"];
 };
 
+export type RegisterUserMutationVariables = Exact<{
+  firstName?: Maybe<Scalars["String"]>;
+  lastName?: Maybe<Scalars["String"]>;
+  email: Scalars["String"];
+  password: Scalars["String"];
+}>;
+
+export type RegisterUserMutation = { readonly __typename?: "Mutation" } & {
+  readonly register: { readonly __typename?: "UserDto" } & Pick<
+    UserDto,
+    "id" | "firstName" | "lastName" | "email"
+  >;
+};
+
+export type LoginUserMutationVariables = Exact<{
+  email: Scalars["String"];
+  password: Scalars["String"];
+}>;
+
+export type LoginUserMutation = { readonly __typename?: "Mutation" } & {
+  readonly login: { readonly __typename?: "LoginUserResponseDto" } & Pick<
+    LoginUserResponseDto,
+    "accessToken" | "expiresIn"
+  >;
+};
+
 export type GetVersionQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetVersionQuery = { readonly __typename?: "Query" } & Pick<
@@ -94,6 +120,129 @@ export type GetVersionQuery = { readonly __typename?: "Query" } & Pick<
   "version"
 >;
 
+export type GetProfileQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetProfileQuery = { readonly __typename?: "Query" } & {
+  readonly profile: { readonly __typename?: "UserDto" } & Pick<
+    UserDto,
+    "id" | "firstName" | "lastName" | "email"
+  >;
+};
+
+export const RegisterUserDocument = gql`
+  mutation registerUser(
+    $firstName: String
+    $lastName: String
+    $email: String!
+    $password: String!
+  ) {
+    register(
+      createUserInput: {
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        password: $password
+      }
+    ) {
+      id
+      firstName
+      lastName
+      email
+    }
+  }
+`;
+
+/**
+ * __useRegisterUserMutation__
+ *
+ * To run a mutation, you first call `useRegisterUserMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useRegisterUserMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useRegisterUserMutation({
+ *   variables: {
+ *      firstName: // value for 'firstName'
+ *      lastName: // value for 'lastName'
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useRegisterUserMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        RegisterUserMutation,
+        RegisterUserMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          RegisterUserMutation,
+          RegisterUserMutationVariables
+        >
+      >,
+) {
+  return VueApolloComposable.useMutation<
+    RegisterUserMutation,
+    RegisterUserMutationVariables
+  >(RegisterUserDocument, options);
+}
+export type RegisterUserMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  RegisterUserMutation,
+  RegisterUserMutationVariables
+>;
+export const LoginUserDocument = gql`
+  mutation loginUser($email: String!, $password: String!) {
+    login(loginUserInput: { email: $email, password: $password }) {
+      accessToken
+      expiresIn
+    }
+  }
+`;
+
+/**
+ * __useLoginUserMutation__
+ *
+ * To run a mutation, you first call `useLoginUserMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useLoginUserMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useLoginUserMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useLoginUserMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        LoginUserMutation,
+        LoginUserMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          LoginUserMutation,
+          LoginUserMutationVariables
+        >
+      >,
+) {
+  return VueApolloComposable.useMutation<
+    LoginUserMutation,
+    LoginUserMutationVariables
+  >(LoginUserDocument, options);
+}
+export type LoginUserMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  LoginUserMutation,
+  LoginUserMutationVariables
+>;
 export const GetVersionDocument = gql`
   query getVersion {
     version
@@ -143,4 +292,59 @@ export function useGetVersionQuery(
 export type GetVersionQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   GetVersionQuery,
   GetVersionQueryVariables
+>;
+export const GetProfileDocument = gql`
+  query getProfile {
+    profile {
+      id
+      firstName
+      lastName
+      email
+    }
+  }
+`;
+
+/**
+ * __useGetProfileQuery__
+ *
+ * To run a query within a Vue component, call `useGetProfileQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProfileQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetProfileQuery(
+ *   {
+ *   }
+ * );
+ */
+export function useGetProfileQuery(
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        GetProfileQuery,
+        GetProfileQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          GetProfileQuery,
+          GetProfileQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          GetProfileQuery,
+          GetProfileQueryVariables
+        >
+      > = {},
+) {
+  return VueApolloComposable.useQuery<GetProfileQuery, undefined>(
+    GetProfileDocument,
+    undefined,
+    options,
+  );
+}
+export type GetProfileQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  GetProfileQuery,
+  GetProfileQueryVariables
 >;

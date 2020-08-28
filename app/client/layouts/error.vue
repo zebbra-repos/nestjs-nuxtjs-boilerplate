@@ -1,13 +1,9 @@
-<template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
-  </v-app>
+<template lang="pug">
+  v-app
+    my-notification
+    h1(v-if='error.statusCode === 404') {{ pageNotFound }}
+    h1(v-else='') {{ otherError }}
+    nuxt-link(to='/') Home page 
 </template>
 
 <script lang="ts">
@@ -38,7 +34,7 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
   font-size: 20px;
 }

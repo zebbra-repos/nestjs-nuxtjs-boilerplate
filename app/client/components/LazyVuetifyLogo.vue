@@ -1,5 +1,5 @@
-<template>
-  <img class="VuetifyLogo" alt="Vuetify Logo" src="/vuetify-logo.svg" />
+<template lang="pug">
+  img.VuetifyLogo(alt='Vuetify Logo' src='/vuetify-logo.svg')
 </template>
 
 <script lang="ts">
@@ -10,7 +10,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .VuetifyLogo {
   height: 180px;
   width: 180px;

@@ -1,9 +1,10 @@
 import { join } from "path";
 import { NestFactory } from "@nestjs/core";
-import { ValidationPipe } from "@nestjs/common";
+import { ValidationPipe, UnprocessableEntityException } from "@nestjs/common";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { Logger } from "nestjs-pino";
 import { ConfigService } from "@nestjs/config";
+import { ValidationError } from "class-validator";
 
 import { AppModule } from "./app.module";
 
@@ -24,6 +25,8 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
+      exceptionFactory: (validationErrors: ValidationError[] = []) =>
+        new UnprocessableEntityException(validationErrors),
     }),
   );
 

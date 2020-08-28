@@ -42,6 +42,11 @@ trigger:
 steps:
   - name: builder
     image: plugins/docker
+    environment:
+      NODE_ENV: production
+      SENTRY_ENVRIONMENT: production
+      ENV HTTP_GRAPHQL_ENDPOINT: https://nest-nuxt-boilerplate.demo.zebbra.ch/graphql
+      ENV WS_GRAPHQL_ENDPOINT: ws://nest-nuxt-boilerplate.demo.zebbra.ch/graphql
     settings:
       target: builder
       username: { from_secret: quay_username }

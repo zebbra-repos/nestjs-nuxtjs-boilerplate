@@ -121,6 +121,12 @@ const config: NuxtConfig = {
     port: process.env.PORT || 5000,
   },
   telemetry: false,
+  publicRuntimeConfig: {
+    httpGraphQLEndpoint:
+      process.env.HTTP_GRAPHQL_ENDPOINT || "http://localhost:3000/graphql",
+    wsGraphQLEndpoint:
+      process.env.WS_GRAPHQL_ENDPOINT || "ws://localhost:3000/graphql",
+  },
 };
 
 export default config;

@@ -27,6 +27,7 @@ steps:
       - yarn install --pure-lockfile
       - yarn lint
       - yarn db:migrate
+      - yarn generate:types
       - yarn test
     depends_on: [clone]
 ---

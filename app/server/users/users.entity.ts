@@ -7,6 +7,7 @@ import {
   BeforeInsert,
 } from "typeorm";
 import { IsEmail, MinLength, IsString, IsOptional } from "class-validator";
+import { Transform } from "class-transformer";
 import { Field, Int, ObjectType, InputType } from "@nestjs/graphql";
 import { hash, compare } from "bcrypt";
 
@@ -24,12 +25,14 @@ export class User {
   @Column({ name: "first_name", nullable: true })
   @IsOptional()
   @MinLength(3)
+  @Transform((v) => (v === "" ? null : v))
   firstName?: string;
 
   @Field({ nullable: true, description: "User last name" })
   @Column({ name: "last_name", nullable: true })
   @IsOptional()
   @MinLength(3)
+  @Transform((v) => (v === "" ? null : v))
   lastName?: string;
 
   @Field({ description: "User email" })

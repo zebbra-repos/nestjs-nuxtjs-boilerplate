@@ -1,6 +1,6 @@
-import { Configuration } from "@nuxt/types";
+import { NuxtConfig } from "@nuxt/types";
 
-const config: Configuration = {
+const config: NuxtConfig = {
   /*
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
@@ -46,7 +46,7 @@ const config: Configuration = {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ["~/plugins/apollo/provider"],
 
   /*
    ** Auto import components
@@ -65,7 +65,7 @@ const config: Configuration = {
     // Doc: https://github.com/nuxt-community/vuetify-module
     "@nuxtjs/vuetify",
     // Doc: https://composition-api.now.sh/
-    "nuxt-composition-api",
+    "@nuxtjs/composition-api",
   ],
 
   /*
@@ -74,10 +74,21 @@ const config: Configuration = {
   modules: [
     // Doc: https://pwa.nuxtjs.org/
     ["@nuxtjs/pwa", { meta: false, icon: false, manifest: false }],
-
     // Doc: https://github.com/nuxt-community/sentry-module
     "@nuxtjs/sentry",
+    // Doc: https://github.com/nuxt-community/apollo-module
+    "@nuxtjs/apollo",
   ],
+
+  /*
+   ** apollo module configuration
+   ** See https://github.com/nuxt-community/apollo-module
+   */
+  apollo: {
+    clientConfigs: {
+      default: "~/apollo/config/default",
+    },
+  },
 
   /*
    ** sentry module configuration

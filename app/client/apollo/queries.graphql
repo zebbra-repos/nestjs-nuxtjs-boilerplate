@@ -1,0 +1,12 @@
+query getVersion {
+  version
+}
+
+query getProfile {
+  profile {
+    id
+    firstName
+    lastName
+    email
+  }
+}

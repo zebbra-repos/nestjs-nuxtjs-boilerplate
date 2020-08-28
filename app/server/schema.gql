@@ -32,6 +32,9 @@ type Query {
 
   """Get user by ID"""
   user(id: Int!): UserDto!
+
+  """Get application version"""
+  version: String!
 }
 
 type Mutation {

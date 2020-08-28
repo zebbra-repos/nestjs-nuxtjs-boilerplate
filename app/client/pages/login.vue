@@ -1,0 +1,98 @@
+<template lang="pug">
+  v-card.elevation-12(:loading='loading')
+    v-toolbar(color='accent' flat)
+      v-toolbar-title Login
+      v-spacer
+      v-btn(text color='primary' nuxt to='/register') Register
+    v-card-text
+      v-alert(v-if='error' type='error' dense) {{ error }}
+      v-alert(v-if='globalError' type='error' dense) {{ globalError }}
+      v-form(v-model='valid')
+        v-text-field(v-model='input.email' :rules='rules.email' :error-messages='messages.email' @keydown.enter='valid && login()' label='E-mail' prepend-icon='mdi-account')
+        v-text-field(v-model='input.password' :rules='rules.password' :error-messages='messages.password' :counter='32' @keydown.enter='valid && login()' label='Password' prepend-icon='mdi-lock' type='password')
+    v-card-actions
+      v-spacer
+      v-btn(text color='primary' :disabled='!valid' @click='login') Login
+</template>
+
+<script lang="ts">
+import {
+  defineComponent,
+  reactive,
+  useContext,
+  ref,
+} from "@nuxtjs/composition-api";
+import { baseRules, emailRules } from "~/utils/rules";
+import { useLoginUserMutation } from "~/apollo/generated-operations";
+import errorHandler from "~/utils/error/form-error-handler";
+import { notificationStore } from "~/store";
+
+export default defineComponent({
+  name: "Login",
+  layout: "session",
+  setup() {
+    const {
+      app: { $apolloHelpers },
+      redirect,
+    } = useContext();
+
+    const input = reactive({
+      email: "",
+      password: "",
+    });
+
+    const rules = {
+      email: [baseRules.required(), emailRules.emailFormat()],
+      password: [
+        baseRules.required(),
+        baseRules.minLength(8),
+        baseRules.maxLength(32),
+      ],
+    };
+
+    const messages = reactive({
+      email: "",
+      password: "",
+    });
+
+    const { mutate: login, error, loading, onDone } = useLoginUserMutation(
+      () => ({
+        errorPolicy: "all",
+        fetchPolicy: "no-cache",
+        variables: {
+          email: input.email,
+          password: input.password,
+        },
+      }),
+    );
+
+    const globalError = ref("");
+    onDone((data) => {
+      if (data?.errors) {
+        errorHandler(data.errors, messages, globalError);
+      } else {
+        $apolloHelpers.onLogin(data?.data?.login.accessToken);
+
+        notificationStore.show({
+          color: "success",
+          message: "Login successfull",
+          timeout: 3000,
+        });
+
+        redirect("/profile");
+      }
+    });
+
+    return {
+      valid: false,
+      input,
+      rules,
+      messages,
+      login,
+      error,
+      globalError,
+      loading,
+    };
+  },
+});
+</script>

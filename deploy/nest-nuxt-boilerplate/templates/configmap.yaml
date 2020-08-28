@@ -5,7 +5,4 @@ metadata:
   labels:
     {{- include "nest-nuxt-boilerplate.labels" . | nindent 4 }}
 data:
-  SENTRY_ENVRIONMENT: production
   TYPEORM_MIGRATIONS: "dist/db/migrate/*.js"
-  HTTP_GRAPHQL_ENDPOINT: https://nest-nuxt-boilerplate.demo.zebbra.ch/graphql
-  WS_GRAPHQL_ENDPOINT: ws://nest-nuxt-boilerplate.demo.zebbra.ch/graphql

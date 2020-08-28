@@ -1,7 +1,5 @@
 import { NuxtConfig } from "@nuxt/types";
 
-console.log(process.env);
-
 const config: NuxtConfig = {
   /*
    ** Nuxt rendering mode

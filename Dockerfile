@@ -16,6 +16,12 @@ WORKDIR /src
 ADD package.json yarn.lock /src/
 RUN yarn install
 
+# Set environment variables
+ENV SENTRY_DSN=https://171db837437c4cd7b4e7de734fb63cf3@sentry.zebbra.ch/155
+ENV SENTRY_ENVRIONMENT=production
+ENV HTTP_GRAPHQL_ENDPOINT=https://nest-nuxt-boilerplate.demo.zebbra.ch/graphql
+ENV WS_GRAPHQL_ENDPOINT=ws://nest-nuxt-boilerplate.demo.zebbra.ch/graphql
+
 # Build application
 ADD . /src
 RUN yarn build

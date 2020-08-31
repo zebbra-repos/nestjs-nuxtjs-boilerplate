@@ -11,19 +11,14 @@ class AppSettingsDto {
 
   @Field({ description: "Sentry environment" })
   sentryEnvironment!: string;
+
+  @Field({ description: "Application version" })
+  version!: string;
 }
 
 @Resolver("App")
 export class AppResolver {
   constructor(private readonly configService: ConfigService) {}
-
-  @Query(() => String, {
-    name: "version",
-    description: "Get application version",
-  })
-  getVersion() {
-    return pjson.version;
-  }
 
   @Query(() => AppSettingsDto, {
     name: "settings",
@@ -35,6 +30,7 @@ export class AppResolver {
     return {
       sentryDsn: sentry.dsn,
       sentryEnvironment: sentry.environment,
+      version: pjson.version,
     };
   }
 }

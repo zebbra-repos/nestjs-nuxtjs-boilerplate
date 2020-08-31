@@ -44,11 +44,7 @@ export default defineComponent({
 
     const rules = {
       email: [baseRules.required(), emailRules.emailFormat()],
-      password: [
-        baseRules.required(),
-        baseRules.minLength(8),
-        baseRules.maxLength(32),
-      ],
+      password: [baseRules.required()],
     };
 
     const messages = reactive({

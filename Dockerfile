@@ -16,10 +16,6 @@ WORKDIR /src
 ADD package.json yarn.lock /src/
 RUN yarn install
 
-# Set environment variables
-ENV HTTP_GRAPHQL_ENDPOINT=https://nest-nuxt-boilerplate.demo.zebbra.ch/graphql
-ENV WS_GRAPHQL_ENDPOINT=wss://nest-nuxt-boilerplate.demo.zebbra.ch/graphql
-
 # Build application
 ADD . /src
 RUN yarn build

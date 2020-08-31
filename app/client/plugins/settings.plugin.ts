@@ -13,12 +13,16 @@ import {
   useAppSettingsQuery,
   AppSettingsDto,
 } from "~/apollo/generated-operations";
+import { globalStore } from "~/store";
 
 export default defineNuxtPlugin(() => {
   onGlobalSetup(() => {
     const { onResult } = useAppSettingsQuery();
 
-    onResult(({ data: { settings } }) => {
+    onResult(({ data }) => {
+      const settings: AppSettingsDto = data.settings;
+      globalStore.setVersion(settings.version);
+
       if (settings.sentryDsn !== "false") {
         configureSentry(settings);
       }

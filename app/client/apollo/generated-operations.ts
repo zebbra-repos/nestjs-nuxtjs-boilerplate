@@ -44,6 +44,8 @@ export type AppSettingsDto = {
   sentryDsn: Scalars["String"];
   /** Sentry environment */
   sentryEnvironment: Scalars["String"];
+  /** Application version */
+  version: Scalars["String"];
 };
 
 export type Query = {
@@ -52,8 +54,6 @@ export type Query = {
   profile: UserDto;
   /** Get user by ID */
   user: UserDto;
-  /** Get application version */
-  version: Scalars["String"];
   /** Get application settings for frontend */
   settings: AppSettingsDto;
 };
@@ -124,13 +124,6 @@ export type LoginUserMutation = { readonly __typename?: "Mutation" } & {
   >;
 };
 
-export type GetVersionQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetVersionQuery = { readonly __typename?: "Query" } & Pick<
-  Query,
-  "version"
->;
-
 export type GetProfileQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetProfileQuery = { readonly __typename?: "Query" } & {
@@ -145,7 +138,7 @@ export type AppSettingsQueryVariables = Exact<{ [key: string]: never }>;
 export type AppSettingsQuery = { readonly __typename?: "Query" } & {
   readonly settings: { readonly __typename?: "AppSettingsDto" } & Pick<
     AppSettingsDto,
-    "sentryDsn" | "sentryEnvironment"
+    "sentryDsn" | "sentryEnvironment" | "version"
   >;
 };
 
@@ -263,56 +256,6 @@ export type LoginUserMutationCompositionFunctionResult = VueApolloComposable.Use
   LoginUserMutation,
   LoginUserMutationVariables
 >;
-export const GetVersionDocument = gql`
-  query getVersion {
-    version
-  }
-`;
-
-/**
- * __useGetVersionQuery__
- *
- * To run a query within a Vue component, call `useGetVersionQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetVersionQuery` returns an object from Apollo Client that contains result, loading and error properties
- * you can use to render your UI.
- *
- * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
- *
- * @example
- * const { result, loading, error } = useGetVersionQuery(
- *   {
- *   }
- * );
- */
-export function useGetVersionQuery(
-  options:
-    | VueApolloComposable.UseQueryOptions<
-        GetVersionQuery,
-        GetVersionQueryVariables
-      >
-    | VueCompositionApi.Ref<
-        VueApolloComposable.UseQueryOptions<
-          GetVersionQuery,
-          GetVersionQueryVariables
-        >
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseQueryOptions<
-          GetVersionQuery,
-          GetVersionQueryVariables
-        >
-      > = {},
-) {
-  return VueApolloComposable.useQuery<GetVersionQuery, undefined>(
-    GetVersionDocument,
-    undefined,
-    options,
-  );
-}
-export type GetVersionQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  GetVersionQuery,
-  GetVersionQueryVariables
->;
 export const GetProfileDocument = gql`
   query getProfile {
     profile {
@@ -373,6 +316,7 @@ export const AppSettingsDocument = gql`
     settings {
       sentryDsn
       sentryEnvironment
+      version
     }
   }
 `;

@@ -1,4 +1,4 @@
-import { Module, VuexModule } from "vuex-module-decorators";
+import { Module, VuexModule, Mutation } from "vuex-module-decorators";
 
 @Module({
   name: "Global",
@@ -7,4 +7,9 @@ import { Module, VuexModule } from "vuex-module-decorators";
 })
 export default class Global extends VuexModule {
   public version: string = "1.0";
+
+  @Mutation
+  setVersion(version: string) {
+    this.version = version;
+  }
 }

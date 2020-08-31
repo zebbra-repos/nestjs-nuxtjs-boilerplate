@@ -1,7 +1,3 @@
-query getVersion {
-  version
-}
-
 query getProfile {
   profile {
     id
@@ -15,5 +11,6 @@ query appSettings {
   settings {
     sentryDsn
     sentryEnvironment
+    version
   }
 }

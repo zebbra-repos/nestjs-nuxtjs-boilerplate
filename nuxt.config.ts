@@ -45,7 +45,7 @@ const config: NuxtConfig = {
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
-   ** Make sure to include apollo/povider first as other
+   ** Make sure to include apollo.plugin first as other
    ** plugins may relay on it
    */
   plugins: [
@@ -54,7 +54,7 @@ const config: NuxtConfig = {
       mode: "all",
     },
     {
-      src: "~/plugins/sentry.plugin",
+      src: "~/plugins/settings.plugin",
       mode: "client",
     },
   ],
@@ -123,6 +123,7 @@ const config: NuxtConfig = {
   },
   telemetry: false,
   publicRuntimeConfig: {
+    sameOriginForGQL: process.env.NODE_ENV === "production",
     httpGraphQLEndpoint:
       process.env.HTTP_GRAPHQL_ENDPOINT || "http://localhost:3000/graphql",
     wsGraphQLEndpoint:

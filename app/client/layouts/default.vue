@@ -29,20 +29,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api";
-import { useResult } from "@vue/apollo-composable";
-import { useGetVersionQuery } from "~/apollo/generated-operations";
+import { defineComponent, computed } from "@nuxtjs/composition-api";
 import { globalStore } from "~/store";
 
 export default defineComponent({
   name: "DefaultLayout",
   setup() {
-    const applicationVersion = useResult(
-      useGetVersionQuery().result,
-      globalStore.version,
-      (data) => data.version,
-    );
-
     return {
       clipped: false,
       drawer: false,
@@ -66,7 +58,7 @@ export default defineComponent({
       ],
       miniVariant: false,
       title: "Vuetify.js",
-      version: applicationVersion,
+      version: computed(() => globalStore.version),
     };
   },
 });

@@ -33,6 +33,9 @@ type AppSettingsDto {
 
   """Sentry environment"""
   sentryEnvironment: String!
+
+  """Application version"""
+  version: String!
 }
 
 type Query {
@@ -41,9 +44,6 @@ type Query {
 
   """Get user by ID"""
   user(id: Int!): UserDto!
-
-  """Get application version"""
-  version: String!
 
   """Get application settings for frontend"""
   settings: AppSettingsDto!

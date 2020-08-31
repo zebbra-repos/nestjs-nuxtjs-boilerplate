@@ -37,6 +37,15 @@ export type LoginUserResponseDto = {
   accessToken: Scalars["String"];
 };
 
+/** Application settings for frontend */
+export type AppSettingsDto = {
+  __typename?: "AppSettingsDto";
+  /** Sentry dsn */
+  sentryDsn: Scalars["String"];
+  /** Sentry environment */
+  sentryEnvironment: Scalars["String"];
+};
+
 export type Query = {
   __typename?: "Query";
   /** Get current user profile */
@@ -45,6 +54,8 @@ export type Query = {
   user: UserDto;
   /** Get application version */
   version: Scalars["String"];
+  /** Get application settings for frontend */
+  settings: AppSettingsDto;
 };
 
 export type QueryUserArgs = {
@@ -126,6 +137,15 @@ export type GetProfileQuery = { readonly __typename?: "Query" } & {
   readonly profile: { readonly __typename?: "UserDto" } & Pick<
     UserDto,
     "id" | "firstName" | "lastName" | "email"
+  >;
+};
+
+export type AppSettingsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AppSettingsQuery = { readonly __typename?: "Query" } & {
+  readonly settings: { readonly __typename?: "AppSettingsDto" } & Pick<
+    AppSettingsDto,
+    "sentryDsn" | "sentryEnvironment"
   >;
 };
 
@@ -347,4 +367,57 @@ export function useGetProfileQuery(
 export type GetProfileQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   GetProfileQuery,
   GetProfileQueryVariables
+>;
+export const AppSettingsDocument = gql`
+  query appSettings {
+    settings {
+      sentryDsn
+      sentryEnvironment
+    }
+  }
+`;
+
+/**
+ * __useAppSettingsQuery__
+ *
+ * To run a query within a Vue component, call `useAppSettingsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAppSettingsQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useAppSettingsQuery(
+ *   {
+ *   }
+ * );
+ */
+export function useAppSettingsQuery(
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        AppSettingsQuery,
+        AppSettingsQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          AppSettingsQuery,
+          AppSettingsQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          AppSettingsQuery,
+          AppSettingsQueryVariables
+        >
+      > = {},
+) {
+  return VueApolloComposable.useQuery<AppSettingsQuery, undefined>(
+    AppSettingsDocument,
+    undefined,
+    options,
+  );
+}
+export type AppSettingsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  AppSettingsQuery,
+  AppSettingsQueryVariables
 >;

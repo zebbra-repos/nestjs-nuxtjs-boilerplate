@@ -26,6 +26,15 @@ type LoginUserResponseDto {
   accessToken: String!
 }
 
+"""Application settings for frontend"""
+type AppSettingsDto {
+  """Sentry dsn"""
+  sentryDsn: String!
+
+  """Sentry environment"""
+  sentryEnvironment: String!
+}
+
 type Query {
   """Get current user profile"""
   profile: UserDto!
@@ -35,6 +44,9 @@ type Query {
 
   """Get application version"""
   version: String!
+
+  """Get application settings for frontend"""
+  settings: AppSettingsDto!
 }
 
 type Mutation {

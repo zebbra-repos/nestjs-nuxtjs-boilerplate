@@ -45,8 +45,19 @@ const config: NuxtConfig = {
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
+   ** Make sure to include apollo/povider first as other
+   ** plugins may relay on it
    */
-  plugins: ["~/plugins/apollo/provider"],
+  plugins: [
+    {
+      src: "~/plugins/apollo.plugin",
+      mode: "all",
+    },
+    {
+      src: "~/plugins/sentry.plugin",
+      mode: "client",
+    },
+  ],
 
   /*
    ** Auto import components
@@ -74,8 +85,6 @@ const config: NuxtConfig = {
   modules: [
     // Doc: https://pwa.nuxtjs.org/
     ["@nuxtjs/pwa", { meta: false, icon: false, manifest: false }],
-    // Doc: https://github.com/nuxt-community/sentry-module
-    "@nuxtjs/sentry",
     // Doc: https://github.com/nuxt-community/apollo-module
     "@nuxtjs/apollo",
   ],
@@ -88,15 +97,6 @@ const config: NuxtConfig = {
     clientConfigs: {
       default: "~/apollo/config/default",
     },
-  },
-
-  /*
-   ** sentry module configuration
-   ** See https://github.com/nuxt-community/sentry-module
-   */
-  sentry: {
-    lazy: true,
-    disabled: process.env.SENTRY_DISABLED || false,
   },
 
   /*
@@ -116,6 +116,7 @@ const config: NuxtConfig = {
   srcDir: "app/client",
   generate: {
     dir: "dist/app/client",
+    exclude: [/^\/profile/],
   },
   server: {
     port: process.env.PORT || 5000,

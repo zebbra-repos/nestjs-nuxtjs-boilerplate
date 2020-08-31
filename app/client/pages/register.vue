@@ -10,9 +10,10 @@
       v-form(v-model='valid')
         v-text-field(v-model='input.firstName' :rules='rules.name' :error-messages='messages.firstName' :counter='32' validate-on-blur label='First Name')
         v-text-field(v-model='input.lastName' :rules='rules.name' :error-messages='messages.lastName' :counter='32' validate-on-blur label='Last Name')
-        v-text-field(v-model='input.email' :rules='rules.email' :error-messages='messages.email' label='E-mail' required)
+        v-text-field(v-model='input.email' :rules='rules.email' :error-messages='messages.email' validate-on-blur label='E-mail' required)
         v-text-field(v-model='input.password' :rules='rules.password' :error-messages='messages.password' :counter='32' validate-on-blur label='Password' type='password' required)
     v-card-actions
+      v-btn(text nuxt to="/") Home
       v-spacer
       v-btn(text color='primary' :disabled='!valid' @click='register') Register
 </template>

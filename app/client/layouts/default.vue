@@ -18,10 +18,7 @@
         v-icon mdi-minus
       v-toolbar-title(v-text='title')
       v-spacer
-      v-btn(v-if='isLoggedIn' icon @click.stop='logout')
-        v-icon mdi-logout
-      v-btn(v-else icon nuxt to='login')
-        v-icon mdi-login
+      my-session
     v-main
       v-container
         nuxt
@@ -32,36 +29,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext, ref } from "@nuxtjs/composition-api";
+import { defineComponent } from "@nuxtjs/composition-api";
 import { useResult } from "@vue/apollo-composable";
 import { useGetVersionQuery } from "~/apollo/generated-operations";
-import { globalStore, notificationStore } from "~/store";
+import { globalStore } from "~/store";
 
 export default defineComponent({
   name: "DefaultLayout",
   setup() {
-    const { app } = useContext();
-    const isLoggedIn = ref(!!app.$apolloHelpers.getToken());
-
     const applicationVersion = useResult(
       useGetVersionQuery().result,
       globalStore.version,
       (data) => data.version,
     );
 
-    const logout = async () => {
-      await app.$apolloHelpers.onLogout();
-      isLoggedIn.value = false;
-      notificationStore.show({
-        color: "info",
-        message: "Logged out",
-        timeout: 3000,
-      });
-    };
-
     return {
-      isLoggedIn,
-      logout,
       clipped: false,
       drawer: false,
       fixed: false,

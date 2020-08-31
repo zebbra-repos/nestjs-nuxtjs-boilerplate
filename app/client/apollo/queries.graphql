@@ -10,3 +10,10 @@ query getProfile {
     email
   }
 }
+
+query appSettings {
+  settings {
+    sentryDsn
+    sentryEnvironment
+  }
+}

@@ -51,9 +51,7 @@ export default function errorHandler(redirect: Context["redirect"]) {
     }
 
     if (!handled) {
-      if (process.env.NODE_ENV === "production") {
-        logErrorMessages(error);
-      }
+      logErrorMessages(error);
     }
   });
 }

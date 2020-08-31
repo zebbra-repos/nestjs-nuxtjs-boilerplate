@@ -9,8 +9,9 @@
       v-alert(v-if='globalError' type='error' dense) {{ globalError }}
       v-form(v-model='valid')
         v-text-field(v-model='input.email' :rules='rules.email' :error-messages='messages.email' @keydown.enter='valid && login()' validate-on-blur label='E-mail' prepend-icon='mdi-account')
-        v-text-field(v-model='input.password' :rules='rules.password' :error-messages='messages.password' :counter='32' @keydown.enter='valid && login()' validate-on-blur label='Password' prepend-icon='mdi-lock' type='password')
+        v-text-field(v-model='input.password' :rules='rules.password' :error-messages='messages.password' :counter='32' @keydown.enter='valid && login()' label='Password' prepend-icon='mdi-lock' type='password')
     v-card-actions
+      v-btn(text nuxt to="/") Home
       v-spacer
       v-btn(text color='primary' :disabled='!valid' @click='login') Login
 </template>

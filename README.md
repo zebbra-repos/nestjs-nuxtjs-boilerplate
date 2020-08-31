@@ -58,7 +58,7 @@ NODE_ENV=test yarn db:migrate
 - [@nuxt/typescript-runtime](https://typescript.nuxtjs.org/guide/runtime.html#installation) NuxtJS TypeScript Runtime Support
 - [@nuxtjs/composition-api](https://composition-api.now.sh/) Use Vue 3 Composition API with Nuxt-specific features
 - [vuex-module-decorators](https://github.com/championswimmer/vuex-module-decorators) TypeScript/ES7 Decorators to create Vuex modules declaratively
-- [@nuxtjs/sentry](https://github.com/nuxt-community/sentry-module#readme) Sentry module for NuxtJS
+- [@sentry/browser](https://www.npmjs.com/package/@sentry/browser) Sentry integration for browser
 - [@nuxtjs/apollo](https://github.com/nuxt-community/apollo-module) Nuxt.js module to use vue-apollo
 - [@vue/apollo-composable](https://v4.apollo.vuejs.org/guide/) This library integrates apollo in your Vue components with declarative queries
 

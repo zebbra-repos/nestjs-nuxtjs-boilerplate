@@ -3,7 +3,7 @@
     v-flex(xs12 sm8 md6)
       .text-center
         lazy-logo
-          lazy-vuetify-logo
+        lazy-vuetify-logo
       v-card
         v-card-title.headline Welcome to the Vuetify + Nuxt.js template
         v-card-text

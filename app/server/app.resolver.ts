@@ -1,20 +1,9 @@
-import { Query, Resolver, ObjectType, Field } from "@nestjs/graphql";
+import { Query, Resolver } from "@nestjs/graphql";
 import { ConfigService } from "@nestjs/config";
 import { SentryModuleOptions } from "@ntegral/nestjs-sentry";
 
 import pjson from "../../package.json";
-
-@ObjectType({ description: "Application settings for frontend" })
-class AppSettingsDto {
-  @Field({ description: "Sentry dsn" })
-  sentryDsn!: string;
-
-  @Field({ description: "Sentry environment" })
-  sentryEnvironment!: string;
-
-  @Field({ description: "Application version" })
-  version!: string;
-}
+import { AppSettingsDto } from "./app.dto";
 
 @Resolver("App")
 export class AppResolver {

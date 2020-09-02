@@ -16,6 +16,7 @@
     "lib": ["esnext", "esnext.asynciterable", "dom"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "paths": {
       "~/*": ["./app/client/*"],
       "@/*": ["./app/client/*"]
@@ -25,6 +26,7 @@
       "@types/node",
       "@nuxt/types",
       "@nuxtjs/vuetify",
+      "@nuxtjs/apollo",
       "@vue/apollo-composable",
       "jest"
     ]

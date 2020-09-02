@@ -13,6 +13,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
   const configService = app.get(ConfigService);
 
+  // security setup
   app.use(helmet());
   app.enableCors({
     origin: configService.get<string>("accessControlAllowOrigin"),

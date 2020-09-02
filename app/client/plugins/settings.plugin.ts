@@ -15,12 +15,18 @@ import {
 } from "~/apollo/generated-operations";
 import { globalStore } from "~/store";
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin(({ error }) => {
   onGlobalSetup(() => {
     const { onResult } = useAppSettingsQuery();
 
-    onResult(({ data }) => {
-      const settings: AppSettingsDto = data.settings;
+    onResult((response) => {
+      if (response.error) {
+        error(response.error);
+      } else if (!response.data) {
+        throw new Error("Could no load settings");
+      }
+
+      const settings: AppSettingsDto = response.data.settings;
       globalStore.setVersion(settings.version);
 
       if (settings.sentryDsn !== "false") {

@@ -34,6 +34,7 @@ export default defineComponent({
   setup() {
     const {
       app: { $apolloHelpers },
+      error,
       redirect,
     } = useContext();
 
@@ -52,23 +53,28 @@ export default defineComponent({
       password: "",
     });
 
-    const { mutate: login, error, loading, onDone } = useLoginUserMutation(
-      () => ({
-        errorPolicy: "all",
-        fetchPolicy: "no-cache",
-        variables: {
-          email: input.email,
-          password: input.password,
-        },
-      }),
-    );
+    const {
+      mutate: login,
+      error: mutationError,
+      loading,
+      onDone,
+    } = useLoginUserMutation(() => ({
+      errorPolicy: "all",
+      fetchPolicy: "no-cache",
+      variables: {
+        email: input.email,
+        password: input.password,
+      },
+    }));
 
     const globalError = ref("");
     onDone((data) => {
       if (data?.errors) {
         errorHandler(data.errors, messages, globalError);
+      } else if (!data?.data?.login.accessToken) {
+        error(new Error("Missing access token"));
       } else {
-        $apolloHelpers.onLogin(data?.data?.login.accessToken);
+        $apolloHelpers.onLogin(data.data.login.accessToken);
 
         notificationStore.show({
           color: "success",
@@ -86,7 +92,7 @@ export default defineComponent({
       rules,
       messages,
       login,
-      error,
+      error: mutationError,
       globalError,
       loading,
     };

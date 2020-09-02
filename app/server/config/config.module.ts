@@ -46,6 +46,7 @@ export const configModule = ConfigModule.forRoot({
     LOG_LEVEL: Joi.string()
       .valid("trace", "debug", "info", "warn", "error")
       .default("debug"),
+    ACCESS_CONTROL_ALLOW_ORIGIN: Joi.string().default("http://localhost:5000"),
 
     // AUTH
     JWT_SECRET: Joi.string().required(),

@@ -10,18 +10,19 @@ import helmet from "helmet";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    cors: true,
-  });
-  app.use(helmet());
-
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
   const configService = app.get(ConfigService);
+
+  app.use(helmet());
+  app.enableCors({
+    origin: configService.get<string>("accessControlAllowOrigin"),
+  });
 
   // use pino logger as application logger
   const logger = app.get(Logger);
   app.useLogger(logger);
 
-  // render static nextjs application in production
+  // render static nuxtjs application in production
   if (configService.get<boolean>("production")) {
     app.useStaticAssets(join(__dirname, "..", "client"));
   }

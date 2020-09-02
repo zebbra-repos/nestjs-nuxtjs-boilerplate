@@ -8,7 +8,6 @@ import {
   ReportingObserver,
   RewriteFrames,
 } from "@sentry/integrations";
-
 import {
   useAppSettingsQuery,
   AppSettingsDto,
@@ -17,20 +16,22 @@ import { globalStore } from "~/store";
 
 export default defineNuxtPlugin(({ error }) => {
   onGlobalSetup(() => {
-    const { onResult } = useAppSettingsQuery();
+    const { onError, onResult } = useAppSettingsQuery();
 
-    onResult((response) => {
-      if (response.error) {
-        error(response.error);
-      } else if (!response.data) {
-        throw new Error("Could no load settings");
+    onResult((res) => {
+      const settings = res?.data?.settings!;
+
+      if (settings) {
+        globalStore.setVersion(settings.version);
+        if (settings.sentryDsn !== "false") {
+          configureSentry(settings);
+        }
       }
+    });
 
-      const settings: AppSettingsDto = response.data.settings;
-      globalStore.setVersion(settings.version);
-
-      if (settings.sentryDsn !== "false") {
-        configureSentry(settings);
+    onError((err) => {
+      if (err) {
+        error(err);
       }
     });
   });

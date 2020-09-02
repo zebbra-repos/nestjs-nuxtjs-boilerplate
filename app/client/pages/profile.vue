@@ -1,10 +1,12 @@
 <template lang="pug">
   v-layout
-    v-flex.text-center
+    v-flex
       v-card
         v-card-title(v-if='loading') Loading Profile 
-        v-card-title(v-else-if='error') {{ error }} 
-        v-card-title(v-else='') {{ profile }} 
+        v-card-title(v-else-if='error') {{ error }}
+        span(v-else)
+          v-card-title {{ profile.firstName }} {{ profile.lastName }}
+          v-card-text {{ profile.email }}
 </template>
 
 <script lang="ts">

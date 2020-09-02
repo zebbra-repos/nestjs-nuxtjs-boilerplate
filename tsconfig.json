@@ -21,7 +21,13 @@
       "@/*": ["./app/client/*"]
     },
     "outDir": "dist",
-    "types": ["@types/node", "@nuxt/types", "@nuxtjs/vuetify", "jest"]
+    "types": [
+      "@types/node",
+      "@nuxt/types",
+      "@nuxtjs/vuetify",
+      "@vue/apollo-composable",
+      "jest"
+    ]
   },
   "exclude": ["node_modules", "dist", ".nuxt"]
 }

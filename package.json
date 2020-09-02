@@ -103,6 +103,7 @@
     "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.10",
     "@vue/test-utils": "^1.0.5",
+    "apollo-client": "^2.6.10",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^26.3.0",

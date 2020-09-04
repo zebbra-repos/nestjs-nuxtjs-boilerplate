@@ -68,13 +68,13 @@ export default defineComponent({
     }));
 
     const globalError = ref("");
-    onDone((data) => {
+    onDone(async (data) => {
       if (data?.errors) {
         errorHandler(data.errors, messages, globalError);
       } else if (!data?.data?.login.accessToken) {
         error(new Error("Missing access token"));
       } else {
-        $apolloHelpers.onLogin(data.data.login.accessToken);
+        await $apolloHelpers.onLogin(data.data.login.accessToken);
 
         notificationStore.show({
           color: "success",

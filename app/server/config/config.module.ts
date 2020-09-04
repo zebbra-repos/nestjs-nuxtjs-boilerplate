@@ -50,7 +50,7 @@ export const configModule = ConfigModule.forRoot({
 
     // AUTH
     JWT_SECRET: Joi.string().required(),
-    JWT_EXPIRES_IN: Joi.number().default(3600),
+    JWT_EXPIRES_IN: Joi.number().default(1000 * 60 * 60),
 
     // DATABASE
     TYPEORM_CONNECTION: Joi.string().default("postgres"),

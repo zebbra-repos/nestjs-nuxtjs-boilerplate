@@ -14,7 +14,25 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   // security setup
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          baseUri: ["'self'"],
+          blockAllMixedContent: [],
+          fontSrc: ["'self'", "https:", "data:"],
+          frameAncestors: ["'self'"],
+          imgSrc: ["'self'", "data:"],
+          objectSrc: ["'none'"],
+          scriptSrc: ["'self'", "cdn.jsdelivr.net"],
+          scriptSrcAttr: ["'none'"],
+          styleSrc: ["'self'", "https: 'unsafe-inline'"],
+          upgradeInsecureRequests: [],
+        },
+      },
+    }),
+  );
   app.enableCors({
     origin: configService.get<string>("accessControlAllowOrigin"),
   });

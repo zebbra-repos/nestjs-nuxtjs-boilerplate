@@ -89,7 +89,7 @@ describe("AuthResolver (e2e)", () => {
     it("to be successful", () => {
       return login(app, user)
         .expect(({ body }) => {
-          expect(body.data.login.expiresIn).toBe(3600);
+          expect(body.data.login.expiresIn).toBe(1000 * 60 * 60);
           expect(body.data.login.accessToken).toBeDefined();
         })
         .expect(200);

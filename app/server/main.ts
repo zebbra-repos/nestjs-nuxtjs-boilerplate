@@ -1,4 +1,3 @@
-import { join } from "path";
 import { NestFactory } from "@nestjs/core";
 import { ValidationPipe, UnprocessableEntityException } from "@nestjs/common";
 import { NestExpressApplication } from "@nestjs/platform-express";
@@ -40,11 +39,6 @@ async function bootstrap() {
   // use pino logger as application logger
   const logger = app.get(Logger);
   app.useLogger(logger);
-
-  // render static nuxtjs application in production
-  if (configService.get<boolean>("production")) {
-    app.useStaticAssets(join(__dirname, "..", "client"));
-  }
 
   // use class-validator
   app.useGlobalPipes(

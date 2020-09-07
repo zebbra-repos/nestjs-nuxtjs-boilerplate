@@ -6,7 +6,7 @@ import { notificationStore } from "~/store";
 import { ErrorNames } from "~/utils/enums/error-names.enum";
 import { CustomValidationError } from "~/types";
 
-export default function errorHandler(redirect: Context["redirect"]) {
+export default function errorLink(redirect: Context["redirect"]) {
   return onError((error) => {
     let handled = false;
 

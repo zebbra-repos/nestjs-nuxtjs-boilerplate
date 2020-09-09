@@ -62,6 +62,9 @@
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
+    "connect-typeorm": "^1.1.4",
+    "csurf": "^1.11.0",
+    "express-session": "^1.17.1",
     "graphql": "^15.3.0",
     "helmet": "^4.1.0",
     "joi": "^17.2.1",
@@ -77,6 +80,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
     "typeorm": "^0.2.25",
+    "typeorm-static": "^1.1.1",
     "vuex-module-decorators": "^0.17.0"
   },
   "devDependencies": {
@@ -96,7 +100,9 @@
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@types/bcrypt": "^3.0.0",
+    "@types/csurf": "^1.9.36",
     "@types/express": "^4.17.8",
+    "@types/express-session": "^1.17.0",
     "@types/faker": "^5.1.0",
     "@types/jest": "^26.0.13",
     "@types/node": "^14.6.4",

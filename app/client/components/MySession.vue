@@ -19,17 +19,20 @@ import { notificationStore } from "~/store";
 export default defineComponent({
   name: "Session",
   setup() {
-    const { app } = useContext();
+    const { app, redirect } = useContext();
     const isLoggedIn = ref(!!app.$apolloHelpers.getToken());
 
-    const logout = async () => {
-      await app.$apolloHelpers.onLogout();
-      isLoggedIn.value = false;
-      notificationStore.show({
-        color: "info",
-        message: "Logged out",
-        timeout: 3000,
-      });
+    const logout = () => {
+      redirect("/");
+      setTimeout(async () => {
+        await app.$apolloHelpers.onLogout();
+        isLoggedIn.value = false;
+        notificationStore.show({
+          color: "info",
+          message: "Logged out",
+          timeout: 3000,
+        });
+      }, 200);
     };
 
     return {

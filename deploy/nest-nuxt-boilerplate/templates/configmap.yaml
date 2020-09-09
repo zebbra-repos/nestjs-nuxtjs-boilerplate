@@ -7,4 +7,4 @@ metadata:
 data:
   ACCESS_CONTROL_ALLOW_ORIGIN: "https://nest-nuxt-boilerplate.demo.zebbra.ch"
   TYPEORM_MIGRATIONS: "dist/db/migrate/*.js"
-  SENTRY_ENVRIONMENT: production
+  SENTRY_ENVIRONMENT: production

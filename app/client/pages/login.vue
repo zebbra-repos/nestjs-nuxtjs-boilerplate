@@ -82,7 +82,9 @@ export default defineComponent({
           timeout: 3000,
         });
 
-        redirect("/profile");
+        setTimeout(() => {
+          redirect("/profile");
+        }, 200);
       }
     });
 

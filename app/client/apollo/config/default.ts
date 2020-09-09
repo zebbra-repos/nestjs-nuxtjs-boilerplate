@@ -1,7 +1,10 @@
 import { Context } from "@nuxt/types";
-import errorLink from "~/apollo/links/error";
+import { ApolloLink } from "apollo-link";
 
-export default function ({ redirect, $config, isStatic }: Context) {
+import errorLink from "~/apollo/links/error";
+import httpLink from "~/apollo/links/http";
+
+export default function ({ redirect, $config, isStatic, error }: Context) {
   let httpEndpoint = $config.httpGraphQLEndpoint;
   let wsEndpoint = $config.wsGraphQLEndpoint;
 
@@ -11,7 +14,8 @@ export default function ({ redirect, $config, isStatic }: Context) {
   }
 
   return {
-    link: errorLink(redirect),
+    defaultHttpLink: false,
+    link: ApolloLink.from([errorLink(redirect, error), httpLink(httpEndpoint)]),
     httpEndpoint,
     wsEndpoint,
   };

@@ -4,10 +4,10 @@ import { Connection, EntityManager, QueryRunner } from "typeorm";
 import { factory, FactoryModule } from "typeorm-factories";
 
 import { AuthModule } from "../../server/auth/auth.module";
-import { configModule } from "../../server/config/config.module";
-import { graphQLModule } from "../../server/core/graphql.module";
-import { loggerModule } from "../../server/core/logger.module";
-import { typeormModule } from "../../server/core/typeorm.module";
+import { ConfigModule } from "../../server/core/config/config.module";
+import { GraphQLModule } from "../../server/core/graphql/graphql.module";
+import { LoggerModule } from "../../server/core/logger/logger.module";
+import { TypeOrmModule } from "../../server/core/type-orm/type-orm.module";
 import { User } from "../../server/users/users.entity";
 import { register, login } from "../utils/helpers";
 
@@ -19,10 +19,10 @@ describe("AuthResolver (e2e)", () => {
   beforeAll(async () => {
     moduleFixture = await Test.createTestingModule({
       imports: [
-        configModule,
-        graphQLModule,
-        loggerModule,
-        typeormModule,
+        ConfigModule,
+        GraphQLModule,
+        LoggerModule,
+        TypeOrmModule,
         AuthModule,
         FactoryModule,
       ],

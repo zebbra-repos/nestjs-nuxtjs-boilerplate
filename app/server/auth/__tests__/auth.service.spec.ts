@@ -10,7 +10,7 @@ import {
   MockType,
   repositoryMockFactory,
 } from "../../../test/factories/repository-mock.factory";
-import { configModule } from "../../config/config.module";
+import { ConfigModule } from "../../core/config/config.module";
 import { User } from "../../users/users.entity";
 import { UsersService } from "../../users/users.service";
 import { AuthService } from "../auth.service";
@@ -24,7 +24,7 @@ describe("AuthService", () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
-        configModule,
+        ConfigModule,
         JwtModule.registerAsync({
           inject: [ConfigService],
           useFactory: (configService: ConfigService) =>

@@ -1,11 +1,12 @@
 import { Module } from "@nestjs/common";
-import { ServeStaticModule } from "@nestjs/serve-static";
+import { ServeStaticModule as ServeStatic } from "@nestjs/serve-static";
 import { APP_FILTER } from "@nestjs/core";
-import { FileNotFoundFilter } from "./file-not-found.filter";
+
+import { FileNotFoundFilter } from "../../common/filters/file-not-found.filter";
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
+    ServeStatic.forRoot({
       rootPath: "dist/app/client",
       exclude: ["/graphql"],
     }),
@@ -17,4 +18,4 @@ import { FileNotFoundFilter } from "./file-not-found.filter";
     },
   ],
 })
-export class ServceStaticNuxtModule {}
+export class ServceStaticModule {}

@@ -1,12 +1,15 @@
 import { onError } from "apollo-link-error";
 import { logErrorMessages } from "@vue/apollo-util";
-import { Context } from "@nuxt/types";
+import { Context, NuxtError } from "@nuxt/types";
 import { ValidationError } from "class-validator";
 import { notificationStore } from "~/store";
 import { ErrorNames } from "~/utils/enums/error-names.enum";
 import { CustomValidationError } from "~/types";
 
-export default function errorLink(redirect: Context["redirect"]) {
+export default function errorLink(
+  redirect: Context["redirect"],
+  nuxtError: (params: NuxtError) => void,
+) {
   return onError((error) => {
     let handled = false;
 
@@ -48,6 +51,14 @@ export default function errorLink(redirect: Context["redirect"]) {
           });
         }
       }
+    }
+
+    if (error.networkError) {
+      nuxtError({
+        message: error.networkError.message,
+        path: error.networkError.name,
+        statusCode: 500,
+      });
     }
 
     if (!handled) {

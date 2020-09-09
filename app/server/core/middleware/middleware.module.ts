@@ -39,7 +39,7 @@ export class MiddlewareModule {
         contentSecurityPolicy: {
           directives: {
             defaultSrc: ["'self'"],
-            connectSrc: ["*.zebbra.ch"],
+            connectSrc: ["'self'", "*.zebbra.ch"],
             baseUri: ["'self'"],
             blockAllMixedContent: [],
             fontSrc: ["'self'", "https:", "data:"],

@@ -39,6 +39,7 @@ export class MiddlewareModule {
         contentSecurityPolicy: {
           directives: {
             defaultSrc: ["'self'"],
+            connectSrc: ["*.zebbra.ch"],
             baseUri: ["'self'"],
             blockAllMixedContent: [],
             fontSrc: ["'self'", "https:", "data:"],
@@ -75,7 +76,6 @@ export class MiddlewareModule {
         saveUninitialized: false,
         unset: "keep",
         cookie: {
-          secure: this.configService.get<boolean>("production"),
           sameSite: true,
         },
       }),

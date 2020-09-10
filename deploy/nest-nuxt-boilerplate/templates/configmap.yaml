@@ -8,5 +8,5 @@ data:
   ACCESS_CONTROL_ALLOW_ORIGIN: "https://nest-nuxt-boilerplate.demo.zebbra.ch"
   TYPEORM_MIGRATIONS: "dist/db/migrate/*.js"
   SENTRY_ENVIRONMENT: production
-  HTTP_GRAPHQL_ENDPOINT: http://localhost:3000/graphql
-  WS_GRAPHQL_ENDPOINT: ws://localhost:3000/graphql
+  HTTP_GRAPHQL_ENDPOINT: https://nest-nuxt-boilerplate.demo.zebbra.ch
+  WS_GRAPHQL_ENDPOINT: wss://nest-nuxt-boilerplate.demo.zebbra.ch

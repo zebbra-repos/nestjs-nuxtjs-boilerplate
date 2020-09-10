@@ -11,7 +11,7 @@ const config: NuxtConfig = {
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: "static",
+  target: "server",
 
   /*
    ** Headers of the page
@@ -56,6 +56,10 @@ const config: NuxtConfig = {
     {
       src: "~/plugins/settings.plugin",
       mode: "client",
+    },
+    {
+      src: "~/plugins/sentry.plugin",
+      mode: "all",
     },
   ],
 
@@ -114,20 +118,23 @@ const config: NuxtConfig = {
    ** See https://nuxtjs.org/api
    */
   srcDir: "app/client",
-  generate: {
-    dir: "dist/app/client",
-    exclude: [/^\/profile/],
-  },
+  buildDir: "dist/app/client",
   server: {
     port: process.env.PORT || 5000,
   },
   telemetry: false,
   publicRuntimeConfig: {
-    sameOriginForGQL: process.env.NODE_ENV === "production",
-    httpGraphQLEndpoint:
-      process.env.HTTP_GRAPHQL_ENDPOINT || "http://localhost:3000/graphql",
-    wsGraphQLEndpoint:
-      process.env.WS_GRAPHQL_ENDPOINT || "ws://localhost:3000/graphql",
+    apollo: {
+      httpGraphQLEndpoint:
+        process.env.HTTP_GRAPHQL_ENDPOINT || "http://localhost:3000/graphql",
+      wsGraphQLEndpoint:
+        process.env.WS_GRAPHQL_ENDPOINT || "ws://localhost:3000/graphql",
+    },
+    sentry: {
+      dsn: process.env.SENTRY_DSN,
+      environment: process.env.SENTRY_ENVIRONMENT,
+      logErrors: process.env.NODE_ENV !== "production",
+    },
   },
 };
 

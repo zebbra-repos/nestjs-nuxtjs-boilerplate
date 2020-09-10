@@ -6,7 +6,7 @@ import { SentryModule } from "./sentry/sentry.module";
 import { GraphQLModule } from "./graphql/graphql.module";
 import { LoggerModule } from "./logger/logger.module";
 import { TypeOrmModule } from "./type-orm/type-orm.module";
-import { MiddlewareModule } from "./middleware/middleware.module";
+// import { MiddlewareModule } from "./middleware/middleware.module";
 import { HealthController } from "./health/health.controller";
 import { NuxtController } from "./nuxt/nuxt.controller";
 
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
     LoggerModule,
     SentryModule,
     TypeOrmModule,
-    MiddlewareModule,
+    // MiddlewareModule,
     TerminusModule,
   ],
   controllers,

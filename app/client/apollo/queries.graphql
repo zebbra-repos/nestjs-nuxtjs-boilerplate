@@ -9,8 +9,6 @@ query getProfile {
 
 query appSettings {
   settings {
-    sentryDsn
-    sentryEnvironment
     version
   }
 }

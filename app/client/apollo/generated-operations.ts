@@ -40,10 +40,6 @@ export type LoginUserResponseDto = {
 /** Application settings for frontend */
 export type AppSettingsDto = {
   __typename?: "AppSettingsDto";
-  /** Sentry dsn */
-  sentryDsn: Scalars["String"];
-  /** Sentry environment */
-  sentryEnvironment: Scalars["String"];
   /** Application version */
   version: Scalars["String"];
 };
@@ -138,7 +134,7 @@ export type AppSettingsQueryVariables = Exact<{ [key: string]: never }>;
 export type AppSettingsQuery = { readonly __typename?: "Query" } & {
   readonly settings: { readonly __typename?: "AppSettingsDto" } & Pick<
     AppSettingsDto,
-    "sentryDsn" | "sentryEnvironment" | "version"
+    "version"
   >;
 };
 
@@ -314,8 +310,6 @@ export type GetProfileQueryCompositionFunctionResult = VueApolloComposable.UseQu
 export const AppSettingsDocument = gql`
   query appSettings {
     settings {
-      sentryDsn
-      sentryEnvironment
       version
     }
   }

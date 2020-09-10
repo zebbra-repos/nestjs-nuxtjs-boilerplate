@@ -8,7 +8,7 @@ import ExpressSession from "express-session";
 import helmet from "helmet";
 import cors from "cors";
 import csurf from "csurf";
-import { Request } from "express";
+import { Request, Express } from "express";
 
 import { MiddlewareInterceptor } from "../../common/interceptors/middleware.interceptor";
 import { Session } from "./session.entity";
@@ -29,24 +29,31 @@ export class MiddlewareModule {
     private readonly adapterHost: HttpAdapterHost,
     private readonly configService: ConfigService,
   ) {
-    const app = this.adapterHost.httpAdapter.getInstance();
+    const app = this.adapterHost.httpAdapter.getInstance<Express>();
 
     // https://docs.nestjs.com/techniques/security
 
     // helmet
     app.use(
       helmet({
+        permittedCrossDomainPolicies: {
+          permittedPolicies: "none",
+        },
         contentSecurityPolicy: {
           directives: {
             defaultSrc: ["'self'"],
-            connectSrc: ["'self'", "*.zebbra.ch"],
+            connectSrc: ["'self'", "*.zebbra.ch"], // sentry is running on .zebbra.ch domain
             baseUri: ["'self'"],
             blockAllMixedContent: [],
             fontSrc: ["'self'", "https:", "data:"],
             frameAncestors: ["'self'"],
             imgSrc: ["'self'", "data:"],
             objectSrc: ["'none'"],
-            scriptSrc: ["'self'", "cdn.jsdelivr.net"],
+            scriptSrc: [
+              "'self'",
+              "cdn.jsdelivr.net", // workbook.js from nuxtjs,
+              "https: 'unsafe-inline'",
+            ],
             scriptSrcAttr: ["'none'"],
             styleSrc: ["'self'", "https: 'unsafe-inline'"],
             upgradeInsecureRequests: [],

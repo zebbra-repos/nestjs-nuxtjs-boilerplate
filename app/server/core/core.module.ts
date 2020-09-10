@@ -6,9 +6,15 @@ import { SentryModule } from "./sentry/sentry.module";
 import { GraphQLModule } from "./graphql/graphql.module";
 import { LoggerModule } from "./logger/logger.module";
 import { TypeOrmModule } from "./type-orm/type-orm.module";
-import { ServceStaticModule } from "./serve-static/serve-static.module";
 import { MiddlewareModule } from "./middleware/middleware.module";
 import { HealthController } from "./health/health.controller";
+import { NuxtController } from "./nuxt/nuxt.controller";
+
+const controllers: any[] = [HealthController];
+
+if (process.env.NODE_ENV === "production") {
+  controllers.push(NuxtController);
+}
 
 @Module({
   imports: [
@@ -18,9 +24,8 @@ import { HealthController } from "./health/health.controller";
     SentryModule,
     TypeOrmModule,
     MiddlewareModule,
-    ServceStaticModule,
     TerminusModule,
   ],
-  controllers: [HealthController],
+  controllers,
 })
 export class CoreModule {}

@@ -10,6 +10,7 @@
   "scripts": {
     "deps": "yarn upgrade-interactive --latest",
     "prebuild": "rimraf dist .nuxt && yarn generate:types",
+    "postbuild": "yarn copy:nuxt:static",
     "build": "npm-run-all -p build:**",
     "build:server": "nest build",
     "build:client": "nuxt-ts build",
@@ -33,7 +34,8 @@
     "test:e2e:cov": "jest --config ./app/test/jest-e2e.config.js --runInBand --coverage",
     "test:client": "jest --config ./app/client/jest-client.config.js",
     "test:client:cov": "jest --config ./app/client/jest-client.config.js --runInBand --coverage",
-    "generate:types": "graphql-codegen --config codegen.yml"
+    "generate:types": "graphql-codegen --config codegen.yml",
+    "copy:nuxt:static": "cp -r ./app/client/static ./dist/app/client/dist"
   },
   "dependencies": {
     "@nestjs/common": "^7.4.4",

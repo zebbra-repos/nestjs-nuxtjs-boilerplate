@@ -24,10 +24,6 @@ async function bootstrap() {
     }),
   );
 
-  if (configService.get<boolean>("production")) {
-    app.useStaticAssets("dist/app/static");
-  }
-
   await app.listen(configService.get<number>("port")!);
   logger.log(
     `Nest application is running on: ${await app.getUrl()}`,

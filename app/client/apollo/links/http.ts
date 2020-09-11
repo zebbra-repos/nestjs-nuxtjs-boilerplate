@@ -4,6 +4,6 @@ export default function httpLink(uri: string) {
   return createHttpLink({
     uri,
     useGETForQueries: true,
-    credentials: "include",
+    // credentials: "include",
   });
 }

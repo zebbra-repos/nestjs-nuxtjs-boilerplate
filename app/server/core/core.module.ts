@@ -10,12 +10,6 @@ import { TypeOrmModule } from "./type-orm/type-orm.module";
 import { HealthController } from "./health/health.controller";
 import { NuxtController } from "./nuxt/nuxt.controller";
 
-const controllers: any[] = [HealthController];
-
-if (process.env.NODE_ENV === "production") {
-  controllers.push(NuxtController);
-}
-
 @Module({
   imports: [
     ConfigModule,
@@ -26,6 +20,6 @@ if (process.env.NODE_ENV === "production") {
     // MiddlewareModule,
     TerminusModule,
   ],
-  controllers,
+  controllers: [HealthController, NuxtController],
 })
 export class CoreModule {}

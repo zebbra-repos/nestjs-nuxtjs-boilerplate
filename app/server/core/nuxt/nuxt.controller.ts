@@ -1,36 +1,64 @@
 import { Controller, Get, Req, Res, Next } from "@nestjs/common";
 import { Request, Response, NextFunction } from "express";
+import { PinoLogger } from "nestjs-pino";
 import { ConfigService } from "@nestjs/config";
 
 // @ts-ignore
 import { Nuxt } from "nuxt";
-import NuxtConfig from "../../../../nuxt.config";
 
+import configFile from "../../../../nuxt.config";
 const { showBanner } = require("@nuxt/cli/dist/cli-banner");
-NuxtConfig.dev = false;
+
+const OVERRIDES = {
+  dry: { dev: false, server: false },
+  dev: { dev: true, _build: true },
+  build: { dev: false, server: false, _build: true },
+  start: { dev: false, _start: true },
+};
 
 @Controller()
 export class NuxtController {
-  nuxt!: Nuxt;
+  private nuxt!: Nuxt;
+  private production!: boolean;
 
-  constructor(private readonly configService: ConfigService) {
-    if (configService.get<boolean>("production")) {
-      this.nuxt = new Nuxt(NuxtConfig);
-      this.nuxt.ready().then(() => showBanner(this.nuxt));
+  constructor(
+    private readonly logger: PinoLogger,
+    private readonly configService: ConfigService,
+  ) {
+    logger.setContext(NuxtController.name);
+
+    this.production = configService.get<boolean>("production")!;
+
+    if (this.production) {
+      this.init();
     }
   }
 
-  @Get("*") async root(
+  async init() {
+    Object.assign(configFile, OVERRIDES.start);
+
+    this.logger.info(configFile);
+
+    try {
+      this.nuxt = new Nuxt(configFile);
+      await this.nuxt.ready();
+      showBanner(this.nuxt);
+    } catch (error) {
+      this.logger.fatal(error);
+    }
+  }
+
+  @Get("*") root(
     @Req() req: Request,
     @Res() res: Response,
     @Next() next: NextFunction,
   ) {
-    if (req.path.startsWith("/graphql")) {
+    if (!this.production || req.path.startsWith("/graphql")) {
       return next();
     } else if (this.nuxt) {
-      await this.nuxt.render(req, res);
+      return this.nuxt.render(req, res);
     } else {
-      res.send("Nuxt is disabled.");
+      return res.send("Nuxt is disabled.");
     }
   }
 }

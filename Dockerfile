@@ -20,6 +20,9 @@ RUN yarn install
 ADD . /src
 RUN yarn build
 
+# We only want the dist folder, remove the rest
+RUN find ./dist/app/client -mindepth 1 ! -regex '^./dist/app/client/dist.*' -delete
+
 ##########################################################################
 #### RUNTIME CONTAINER
 ##########################################################################

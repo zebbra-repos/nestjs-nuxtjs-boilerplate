@@ -119,6 +119,14 @@ const config: NuxtConfig = {
    */
   srcDir: "app/client",
   buildDir: "dist/app/client",
+  dir: {
+    // Static serve dir is resolved to path.resolve(srcDir, dir.static)
+    // See https://github.com/nuxt/nuxt.js/blob/dev/packages/server/src/server.js
+    static:
+      process.env.NODE_ENV === "production"
+        ? "../../dist/app/client/dist/static"
+        : "static",
+  },
   server: {
     port: process.env.PORT || 5000,
   },

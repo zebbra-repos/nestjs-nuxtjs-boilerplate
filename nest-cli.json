@@ -1,4 +1,11 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "app/server"
+  "sourceRoot": "app/server",
+  "compilerOptions": {
+    "assets": [
+      "../client/static/**/*.ico",
+      "../client/static/**/*.png",
+      "../client/static/**/*.svg"
+    ]
+  }
 }

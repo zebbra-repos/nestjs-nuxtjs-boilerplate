@@ -37,8 +37,6 @@ export class NuxtController {
   async init() {
     Object.assign(configFile, OVERRIDES.start);
 
-    this.logger.info(configFile);
-
     try {
       this.nuxt = new Nuxt(configFile);
       await this.nuxt.ready();

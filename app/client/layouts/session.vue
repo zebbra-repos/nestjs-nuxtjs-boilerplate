@@ -7,3 +7,11 @@
           v-col(cols='12' sm='8' md='4')
             nuxt
 </template>
+
+<script lang="ts">
+import { defineComponent } from "@nuxtjs/composition-api";
+
+export default defineComponent({
+  name: "SessionLayout",
+});
+</script>

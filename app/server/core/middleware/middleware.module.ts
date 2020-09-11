@@ -8,7 +8,7 @@ import ExpressSession from "express-session";
 import helmet from "helmet";
 import cors from "cors";
 import csurf from "csurf";
-import { Request, Express } from "express";
+import { Express } from "express";
 
 import { MiddlewareInterceptor } from "../../common/interceptors/middleware.interceptor";
 import { Session } from "./session.entity";
@@ -72,6 +72,7 @@ export class MiddlewareModule {
 
     // csurf
     app.use(
+      /\/graphql/,
       ExpressSession({
         secret: this.configService.get<string>("csrfSecret")!,
         name: "connect.sid",
@@ -87,10 +88,6 @@ export class MiddlewareModule {
         },
       }),
     );
-    app.use(
-      csurf({
-        value: (req: Request) => req.session?.token,
-      }),
-    );
+    app.use(/\/graphql/, csurf());
   }
 }

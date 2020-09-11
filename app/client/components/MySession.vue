@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, useContext, ref } from "@nuxtjs/composition-api";
-import { notificationStore } from "~/store";
+import { notificationStore, sessionStore } from "~/store";
 
 export default defineComponent({
   name: "Session",
@@ -26,6 +26,7 @@ export default defineComponent({
       redirect("/");
       setTimeout(async () => {
         await app.$apolloHelpers.onLogout();
+        sessionStore.updateCsrfToken();
         isLoggedIn.value = false;
         notificationStore.show({
           color: "info",

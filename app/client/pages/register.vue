@@ -25,15 +25,19 @@ import {
   useContext,
   ref,
 } from "@nuxtjs/composition-api";
+
 import { useRegisterUserMutation } from "~/apollo/generated-operations";
 import errorHandler from "~/utils/error/form-error-handler";
 import { notificationStore } from "~/store";
 import { baseRules, emailRules } from "~/utils/rules";
+import useCsrf from "~/composable/useCsrf";
 
 export default defineComponent({
   name: "Register",
   layout: "session",
   setup() {
+    useCsrf();
+
     const { redirect } = useContext();
     const input = reactive({
       firstName: "",

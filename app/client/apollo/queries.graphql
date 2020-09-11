@@ -12,3 +12,9 @@ query appSettings {
     version
   }
 }
+
+query csrfToken {
+  csrf {
+    token
+  }
+}

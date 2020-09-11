@@ -44,6 +44,13 @@ export type AppSettingsDto = {
   version: Scalars["String"];
 };
 
+/** Csrf token */
+export type CsrfTokenDto = {
+  __typename?: "CsrfTokenDto";
+  /** Token */
+  token: Scalars["String"];
+};
+
 export type Query = {
   __typename?: "Query";
   /** Get current user profile */
@@ -52,6 +59,8 @@ export type Query = {
   user: UserDto;
   /** Get application settings for frontend */
   settings: AppSettingsDto;
+  /** Fetch a new csrf token */
+  csrf: CsrfTokenDto;
 };
 
 export type QueryUserArgs = {
@@ -135,6 +144,15 @@ export type AppSettingsQuery = { readonly __typename?: "Query" } & {
   readonly settings: { readonly __typename?: "AppSettingsDto" } & Pick<
     AppSettingsDto,
     "version"
+  >;
+};
+
+export type CsrfTokenQueryVariables = Exact<{ [key: string]: never }>;
+
+export type CsrfTokenQuery = { readonly __typename?: "Query" } & {
+  readonly csrf: { readonly __typename?: "CsrfTokenDto" } & Pick<
+    CsrfTokenDto,
+    "token"
   >;
 };
 
@@ -358,4 +376,56 @@ export function useAppSettingsQuery(
 export type AppSettingsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   AppSettingsQuery,
   AppSettingsQueryVariables
+>;
+export const CsrfTokenDocument = gql`
+  query csrfToken {
+    csrf {
+      token
+    }
+  }
+`;
+
+/**
+ * __useCsrfTokenQuery__
+ *
+ * To run a query within a Vue component, call `useCsrfTokenQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCsrfTokenQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useCsrfTokenQuery(
+ *   {
+ *   }
+ * );
+ */
+export function useCsrfTokenQuery(
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        CsrfTokenQuery,
+        CsrfTokenQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          CsrfTokenQuery,
+          CsrfTokenQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          CsrfTokenQuery,
+          CsrfTokenQueryVariables
+        >
+      > = {},
+) {
+  return VueApolloComposable.useQuery<CsrfTokenQuery, undefined>(
+    CsrfTokenDocument,
+    undefined,
+    options,
+  );
+}
+export type CsrfTokenQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  CsrfTokenQuery,
+  CsrfTokenQueryVariables
 >;

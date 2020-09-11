@@ -23,6 +23,8 @@ import {
   useContext,
   ref,
 } from "@nuxtjs/composition-api";
+
+import useCsrf from "~/composable/useCsrf";
 import { baseRules, emailRules } from "~/utils/rules";
 import { useLoginUserMutation } from "~/apollo/generated-operations";
 import errorHandler from "~/utils/error/form-error-handler";
@@ -32,6 +34,8 @@ export default defineComponent({
   name: "Login",
   layout: "session",
   setup() {
+    useCsrf();
+
     const {
       app: { $apolloHelpers },
       error,

@@ -1,6 +1,7 @@
 # NestJS NuxtJs Boilerplate
 
 [![Build Status](https://drone.zebbra.ch/api/badges/zebbra-repos/nestjs-nuxtjs-boilerplate/status.svg)](https://drone.zebbra.ch/zebbra-repos/nestjs-nuxtjs-boilerplate)
+[![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 
 > NestJS and NuxtJS starter boilerplate
 

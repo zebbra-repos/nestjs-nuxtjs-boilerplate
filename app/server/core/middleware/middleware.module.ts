@@ -42,7 +42,7 @@ export class MiddlewareModule {
         contentSecurityPolicy: {
           directives: {
             defaultSrc: ["'self'"],
-            connectSrc: ["'self'", "*.zebbra.ch"], // sentry is running on .zebbra.ch domain
+            connectSrc: ["'self'", "*.zebbra.ch*"], // sentry is running on .zebbra.ch domain
             baseUri: ["'self'"],
             blockAllMixedContent: [],
             fontSrc: ["'self'", "https:", "data:"],

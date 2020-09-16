@@ -37,18 +37,18 @@ export type LoginUserResponseDto = {
   accessToken: Scalars["String"];
 };
 
-/** Application settings for frontend */
-export type AppSettingsDto = {
-  __typename?: "AppSettingsDto";
-  /** Application version */
-  version: Scalars["String"];
-};
-
 /** Csrf token */
 export type CsrfTokenDto = {
   __typename?: "CsrfTokenDto";
   /** Token */
   token: Scalars["String"];
+};
+
+/** Application settings for frontend */
+export type SettingsDto = {
+  __typename?: "SettingsDto";
+  /** Application version */
+  version: Scalars["String"];
 };
 
 export type Query = {
@@ -57,10 +57,10 @@ export type Query = {
   profile: UserDto;
   /** Get user by ID */
   user: UserDto;
-  /** Get application settings for frontend */
-  settings: AppSettingsDto;
   /** Fetch a new csrf token */
   csrf: CsrfTokenDto;
+  /** Get application settings for frontend */
+  settings: SettingsDto;
 };
 
 export type QueryUserArgs = {
@@ -141,8 +141,8 @@ export type GetProfileQuery = { readonly __typename?: "Query" } & {
 export type AppSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type AppSettingsQuery = { readonly __typename?: "Query" } & {
-  readonly settings: { readonly __typename?: "AppSettingsDto" } & Pick<
-    AppSettingsDto,
+  readonly settings: { readonly __typename?: "SettingsDto" } & Pick<
+    SettingsDto,
     "version"
   >;
 };

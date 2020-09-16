@@ -1,4 +1,4 @@
-import { GraphQLModule as GraphQL } from "@nestjs/graphql";
+import { GraphQLModule as GraphQL, GqlModuleOptions } from "@nestjs/graphql";
 import { ConfigService } from "@nestjs/config";
 
 export const GraphQLModule = GraphQL.forRootAsync({
@@ -20,12 +20,18 @@ export const GraphQLModule = GraphQL.forRootAsync({
         break;
     }
 
-    return {
+    const config: GqlModuleOptions = {
       autoSchemaFile,
       installSubscriptionHandlers: true,
       debug: true,
       playground: configService.get<boolean>("production") === false,
       context: ({ req }) => ({ req }),
+      cors: {
+        origin: configService.get<string>("accessControlAllowOrigin"),
+        credentials: !configService.get<boolean>("production"),
+      },
     };
+
+    return config;
   },
 });

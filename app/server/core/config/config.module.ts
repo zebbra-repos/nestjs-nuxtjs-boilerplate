@@ -50,7 +50,7 @@ export const ConfigModule = Config.forRoot({
 
     // AUTH
     JWT_SECRET: Joi.string().required(),
-    JWT_EXPIRES_IN: Joi.number().default(1000 * 60 * 60),
+    JWT_EXPIRES_IN: Joi.number().default(60 * 60), // in seconds!
 
     // CSRF
     CSRF_SECRET: Joi.string().required(),

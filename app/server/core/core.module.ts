@@ -9,6 +9,7 @@ import { TypeOrmModule } from "./type-orm/type-orm.module";
 import { MiddlewareModule } from "./middleware/middleware.module";
 import { HealthController } from "./health/health.controller";
 import { NuxtController } from "./nuxt/nuxt.controller";
+import { SettingsResolver } from "./settings/settings.resolver";
 
 @Module({
   imports: [
@@ -21,5 +22,6 @@ import { NuxtController } from "./nuxt/nuxt.controller";
     TerminusModule,
   ],
   controllers: [HealthController, NuxtController],
+  providers: [SettingsResolver],
 })
 export class CoreModule {}

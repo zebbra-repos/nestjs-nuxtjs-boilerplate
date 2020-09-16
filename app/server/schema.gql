@@ -26,16 +26,16 @@ type LoginUserResponseDto {
   accessToken: String!
 }
 
-"""Application settings for frontend"""
-type AppSettingsDto {
-  """Application version"""
-  version: String!
-}
-
 """Csrf token"""
 type CsrfTokenDto {
   """Token"""
   token: String!
+}
+
+"""Application settings for frontend"""
+type SettingsDto {
+  """Application version"""
+  version: String!
 }
 
 type Query {
@@ -45,11 +45,11 @@ type Query {
   """Get user by ID"""
   user(id: Int!): UserDto!
 
-  """Get application settings for frontend"""
-  settings: AppSettingsDto!
-
   """Fetch a new csrf token"""
   csrf: CsrfTokenDto!
+
+  """Get application settings for frontend"""
+  settings: SettingsDto!
 }
 
 type Mutation {

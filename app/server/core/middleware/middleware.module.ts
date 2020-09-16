@@ -12,10 +12,12 @@ import { Express } from "express";
 
 import { MiddlewareInterceptor } from "../../common/interceptors/middleware.interceptor";
 import { Session } from "./session.entity";
+import { MiddlewareResolver } from "./middleware.resolver";
 
 @Module({
   imports: [TypeOrmModule.forFeature([Session])],
   providers: [
+    MiddlewareResolver,
     {
       provide: APP_INTERCEPTOR,
       useClass: MiddlewareInterceptor,
@@ -66,7 +68,7 @@ export class MiddlewareModule {
     app.use(
       cors({
         origin: this.configService.get<string>("accessControlAllowOrigin"),
-        credentials: true,
+        credentials: !this.configService.get<boolean>("production"),
       }),
     );
 
@@ -88,6 +90,11 @@ export class MiddlewareModule {
         },
       }),
     );
-    app.use(/\/graphql/, csurf());
+    app.use(
+      /\/graphql/,
+      csurf({
+        ignoreMethods: ["GET", "OPTIONS", "HEAD"],
+      }),
+    );
   }
 }

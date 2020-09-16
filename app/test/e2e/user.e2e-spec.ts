@@ -1,4 +1,4 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { INestApplication, ValidationPipe } from "@nestjs/common";
 import { Connection, EntityManager, QueryRunner } from "typeorm";
 import { factory, FactoryModule } from "typeorm-factories";
@@ -15,13 +15,12 @@ import { createToken } from "../utils/helpers";
 
 describe("UserResolver (e2e)", () => {
   let app: INestApplication;
-  let moduleFixture: TestingModule;
   let queryRunner: QueryRunner;
   let user: User;
   let token: String;
 
   beforeAll(async () => {
-    moduleFixture = await Test.createTestingModule({
+    const moduleRef = await Test.createTestingModule({
       imports: [
         ConfigModule,
         GraphQLModule,
@@ -33,12 +32,12 @@ describe("UserResolver (e2e)", () => {
       ],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
+    app = moduleRef.createNestApplication();
     app.useGlobalPipes(new ValidationPipe());
     await app.init();
 
-    const dbConnection = moduleFixture.get(Connection);
-    const manager = moduleFixture.get(EntityManager);
+    const dbConnection = moduleRef.get(Connection);
+    const manager = moduleRef.get(EntityManager);
 
     queryRunner = (manager.queryRunner as any) = dbConnection.createQueryRunner(
       "master",

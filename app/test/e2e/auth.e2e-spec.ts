@@ -1,4 +1,4 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 import { INestApplication, ValidationPipe } from "@nestjs/common";
 import { Connection, EntityManager, QueryRunner } from "typeorm";
 import { factory, FactoryModule } from "typeorm-factories";
@@ -13,11 +13,10 @@ import { register, login } from "../utils/helpers";
 
 describe("AuthResolver (e2e)", () => {
   let app: INestApplication;
-  let moduleFixture: TestingModule;
   let queryRunner: QueryRunner;
 
   beforeAll(async () => {
-    moduleFixture = await Test.createTestingModule({
+    const moduleRef = await Test.createTestingModule({
       imports: [
         ConfigModule,
         GraphQLModule,
@@ -28,12 +27,12 @@ describe("AuthResolver (e2e)", () => {
       ],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
+    app = moduleRef.createNestApplication();
     app.useGlobalPipes(new ValidationPipe());
     await app.init();
 
-    const dbConnection = moduleFixture.get(Connection);
-    const manager = moduleFixture.get(EntityManager);
+    const dbConnection = moduleRef.get(Connection);
+    const manager = moduleRef.get(EntityManager);
 
     queryRunner = (manager.queryRunner as any) = dbConnection.createQueryRunner(
       "master",
@@ -89,7 +88,7 @@ describe("AuthResolver (e2e)", () => {
     it("to be successful", () => {
       return login(app, user)
         .expect(({ body }) => {
-          expect(body.data.login.expiresIn).toBe(1000 * 60 * 60);
+          expect(body.data.login.expiresIn).toBe(60 * 60);
           expect(body.data.login.accessToken).toBeDefined();
         })
         .expect(200);

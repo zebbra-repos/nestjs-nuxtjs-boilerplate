@@ -33,6 +33,11 @@ describe("UsersService", () => {
     user = await factory(User).make();
   }, 1000 * 10);
 
+  it("should be defined", () => {
+    expect(usersService).toBeDefined();
+    expect(repository).toBeDefined();
+  });
+
   describe("findAll", () => {
     it("to return list of users", async () => {
       repository.find.mockReturnValueOnce([user]);

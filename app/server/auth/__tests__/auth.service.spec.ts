@@ -50,6 +50,11 @@ describe("AuthService", () => {
     user.password = await hash(user.password, 10);
   }, 1000 * 10);
 
+  it("should be defined", () => {
+    expect(authService).toBeDefined();
+    expect(repository).toBeDefined();
+  });
+
   describe("validateUser", () => {
     it("to return the validated user", async () => {
       repository.findOne.mockReturnValueOnce(user);
@@ -70,6 +75,44 @@ describe("AuthService", () => {
       expect(await authService.validateUser(user.email, invalidPassword)).toBe(
         null,
       );
+    });
+  });
+
+  describe("validateUserToken", () => {
+    it("to return the validated user", async () => {
+      const userWithId = Object.assign({}, user, { id: 1 });
+      repository.findOneOrFail.mockReturnValueOnce(userWithId);
+      expect(await authService.validateUserToken(userWithId)).toEqual(
+        userWithId,
+      );
+      expect(repository.findOneOrFail).toBeCalledWith(userWithId.id);
+    });
+  });
+
+  describe("register", () => {
+    it("saves and returns a new user", async () => {
+      const userWithId = Object.assign({}, user, { id: 1 });
+
+      repository.findOne.mockReturnValueOnce(false);
+      repository.create.mockReturnValueOnce(userWithId);
+      repository.save.mockReturnValueOnce(userWithId);
+
+      expect(await authService.register(user)).toEqual(userWithId);
+
+      expect(repository.findOne).toBeCalledWith({
+        where: { email: user.email },
+      });
+      expect(repository.create).toBeCalledWith(user);
+      expect(repository.save).toBeCalledWith(userWithId);
+    });
+
+    it("fails if email is already taken", async () => {
+      repository.findOne.mockReturnValueOnce(user);
+      await expect(authService.register(user)).rejects.toThrow();
+
+      expect(repository.findOne).toBeCalledWith({
+        where: { email: user.email },
+      });
     });
   });
 });

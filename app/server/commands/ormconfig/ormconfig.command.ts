@@ -10,7 +10,7 @@ export class OrmconfigCommand {
 
   // autoExit defaults to `true`, but you can use `autoExit: false` if you need more control
   @Command({
-    command: "create",
+    command: "create:ormconfig",
     describe: "create the ormconfig.json file on the fly",
     autoExit: true,
   })

@@ -26,6 +26,10 @@ export const GraphQLModule = GraphQL.forRootAsync({
       debug: true,
       playground: configService.get<boolean>("production") === false,
       context: ({ req }) => ({ req }),
+      cors: {
+        origin: configService.get<string>("accessControlAllowOrigin"),
+        credentials: !configService.get<boolean>("production"),
+      },
     };
 
     return config;

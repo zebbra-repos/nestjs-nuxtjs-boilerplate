@@ -2,9 +2,8 @@
   v-layout
     v-flex
       v-card
-        v-card-title(v-if='loading') Loading Profile 
-        v-card-title(v-else-if='error') {{ error }}
-        span(v-else)
+        v-card-title(v-if='loading') Loading Profile
+        span(v-else-if='profile')
           v-card-title {{ profile.firstName }} {{ profile.lastName }}
           v-card-text {{ profile.email }}
 </template>

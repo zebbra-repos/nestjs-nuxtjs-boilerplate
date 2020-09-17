@@ -1,45 +1,51 @@
 import { onError } from "apollo-link-error";
 import { logErrorMessages } from "@vue/apollo-util";
-import { Context, NuxtError } from "@nuxt/types";
+import { Context } from "@nuxt/types";
 import { ValidationError } from "class-validator";
-import { notificationStore } from "~/store";
+import { Observable } from "apollo-link";
+
+import { notificationStore, sessionStore } from "~/store";
 import { ErrorNames } from "~/utils/enums/error-names.enum";
 import { CustomValidationError } from "~/types";
+import { CsrfTokenDocument } from "~/apollo/generated-operations";
 
-export default function errorLink(
-  redirect: Context["redirect"],
-  nuxtError: (params: NuxtError) => void,
-) {
-  return onError((error) => {
+export default function errorLink(ctx: Context) {
+  const { redirect, error: nuxtError, app } = ctx;
+
+  return onError(({ graphQLErrors, networkError, operation, forward }) => {
     let handled = false;
 
-    if (error.graphQLErrors) {
-      const unauthorized = error.graphQLErrors.find(
-        ({ message }) => message === "Unauthorized",
+    if (graphQLErrors) {
+      const unauthorized = graphQLErrors.find(
+        ({ extensions }) => extensions && extensions.exception.status === 401,
       );
 
-      const path = unauthorized && unauthorized.path && unauthorized.path[0];
-      if (unauthorized && path !== "login") {
-        notificationStore.show({
-          color: "error",
-          message: "Please login",
-          timeout: 3000,
-        });
-        return redirect("/login");
+      if (unauthorized) {
+        handled = true;
+
+        const path = unauthorized.path && unauthorized.path[0];
+        if (path !== "login") {
+          notificationStore.show({
+            color: "error",
+            message: "Please login",
+            timeout: 3000,
+          });
+          return redirect("/login");
+        }
       }
 
-      const validationError = error.graphQLErrors.find(
-        ({ message }) => message === "Unprocessable Entity Exception",
+      const validation = graphQLErrors.find(
+        ({ extensions }) => extensions && extensions.exception.status === 422,
       );
 
-      if (validationError) {
-        if (validationError.extensions?.exception?.response?.message) {
-          handled = true;
-          const errors =
-            validationError.extensions?.exception?.response?.message;
+      if (validation) {
+        handled = true;
 
-          validationError.name = ErrorNames.VALIDATION;
-          validationError.message = errors.map((error: ValidationError) => {
+        if (validation.extensions?.exception?.response?.message) {
+          const errors = validation.extensions?.exception?.response?.message;
+
+          validation.name = ErrorNames.VALIDATION;
+          validation.message = errors.map((error: ValidationError) => {
             const validationError: CustomValidationError = {
               property: error.property,
               value: error.value,
@@ -53,16 +59,55 @@ export default function errorLink(
       }
     }
 
-    if (error.networkError) {
+    if (networkError) {
+      const error = networkError as any;
+
+      if (
+        error.result &&
+        error.statusCode === 400 &&
+        error.result.message === ErrorNames.CSRF
+      ) {
+        handled = true;
+
+        return new Observable((observer) => {
+          const refresh = async () => {
+            try {
+              const response = await app.apolloProvider.defaultClient.query({
+                query: CsrfTokenDocument,
+              });
+
+              sessionStore.updateCsrfToken(response.data.csrf.token);
+
+              const subscriber = {
+                next: observer.next.bind(observer),
+                error: observer.error.bind(observer),
+                complete: observer.complete.bind(observer),
+              };
+
+              return forward(operation).subscribe(subscriber);
+            } catch (error) {
+              return observer.error(error);
+            }
+          };
+
+          refresh();
+        });
+      }
+
       nuxtError({
-        message: error.networkError.message,
-        path: error.networkError.name,
+        message: networkError.message,
+        path: networkError.name,
         statusCode: 500,
       });
     }
 
     if (!handled) {
-      logErrorMessages(error);
+      if (graphQLErrors) {
+        logErrorMessages(graphQLErrors);
+      }
+      if (networkError) {
+        logErrorMessages(networkError);
+      }
     }
   });
 }

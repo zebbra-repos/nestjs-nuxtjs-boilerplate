@@ -17,9 +17,7 @@ export class AuthResolver {
     description: "Register as a new user",
   })
   async registerUser(@Args("createUserInput") createUserInput: CreateUserDto) {
-    return (
-      await this.authService.register(createUserInput)
-    ).toResponseObject();
+    return await this.authService.register(createUserInput);
   }
 
   @Mutation(() => LoginUserResponseDto, {

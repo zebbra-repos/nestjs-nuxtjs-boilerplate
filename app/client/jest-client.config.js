@@ -1,4 +1,7 @@
 module.exports = {
+  bail: true,
+  verbose: true,
+  displayName: "CLIENT",
   testRegex: "(/__tests__/*|(\\.|/)spec)\\.(js|ts)$",
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",

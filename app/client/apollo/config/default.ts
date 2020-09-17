@@ -4,11 +4,13 @@ import { ApolloLink } from "apollo-link";
 import errorLink from "~/apollo/links/error";
 import httpLink from "~/apollo/links/http";
 
-export default function ({ redirect, $config, error, isDev }: Context) {
+export default function (ctx: Context) {
+  const { $config, isDev } = ctx;
+
   return {
     defaultHttpLink: false,
     link: ApolloLink.from([
-      errorLink(redirect, error),
+      errorLink(ctx),
       httpLink($config.apollo.httpGraphQLEndpoint, isDev),
     ]),
     httpEndpoint: $config.apollo.httpGraphQLEndpoint,

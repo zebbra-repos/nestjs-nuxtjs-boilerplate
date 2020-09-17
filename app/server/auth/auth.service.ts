@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
+import { classToPlain } from "class-transformer";
 
 import { UsersService } from "../users/users.service";
 import { CreateUserDto, UserDto } from "../users/users.dto";
@@ -33,7 +34,7 @@ export class AuthService {
   login(user: User) {
     return {
       expiresIn: this.configService.get<number>("auth.signOptions.expiresIn")!,
-      accessToken: this.jwtService.sign(user.toResponseObject()),
+      accessToken: this.jwtService.sign(classToPlain(user)),
     };
   }
 }

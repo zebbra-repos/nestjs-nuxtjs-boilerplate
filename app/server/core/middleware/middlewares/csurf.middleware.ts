@@ -1,4 +1,8 @@
-import { Injectable, NestMiddleware } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  NestMiddleware,
+} from "@nestjs/common";
 import { NextFunction, Request, Response } from "express";
 
 import csurf from "csurf";
@@ -15,10 +19,21 @@ export class CsurfMiddleware implements NestMiddleware {
   }
 
   public use(req: Request, res: Response, next: NextFunction) {
+    const errorHandler = (err: any) => {
+      if (err) {
+        if (err.code === "EBADCSRFTOKEN")
+          throw new BadRequestException("Invalid csrf token");
+
+        throw err;
+      }
+
+      next();
+    };
+
     if (CsurfMiddleware.options) {
-      return csurf(CsurfMiddleware.options)(req, res, next);
+      return csurf(CsurfMiddleware.options)(req, res, errorHandler);
     } else {
-      return csurf()(req, res, next);
+      return csurf()(req, res, errorHandler);
     }
   }
 }

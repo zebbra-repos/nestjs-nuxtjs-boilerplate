@@ -98,7 +98,7 @@ describe("AuthResolver (e2e)", () => {
       const user = await factory(User).make();
       return login(app, user)
         .expect(({ body }) => {
-          expect(body.errors[0].message).toBe("Unauthorized");
+          expect(body.errors[0].message).toBe("Invalid email or password");
         })
         .expect(200);
     });
@@ -109,7 +109,7 @@ describe("AuthResolver (e2e)", () => {
         password: user.password + "1234",
       } as User)
         .expect(({ body }) => {
-          expect(body.errors[0].message).toBe("Unauthorized");
+          expect(body.errors[0].message).toBe("Invalid email or password");
         })
         .expect(200);
     });

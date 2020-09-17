@@ -1,4 +1,10 @@
 module.exports = {
+  bail: true,
+  verbose: true,
+  displayName: {
+    name: "E2E",
+    color: "blue",
+  },
   testRegex: ".e2e-spec.ts$",
   rootDir: "../",
   moduleFileExtensions: ["js", "json", "ts"],

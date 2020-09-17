@@ -17,7 +17,7 @@ export class UsersResolver {
   })
   @UseGuards(JwtAuthGuard)
   getProfile(@CurrentUser() user: User) {
-    return user.toResponseObject();
+    return user;
   }
 
   @Query(() => UserDto, {
@@ -26,6 +26,6 @@ export class UsersResolver {
   })
   @UseGuards(JwtAuthGuard)
   async getUser(@Args("id", { type: () => Int }) id: number) {
-    return (await this.usersService.findById(id)).toResponseObject();
+    return await this.usersService.findById(id);
   }
 }

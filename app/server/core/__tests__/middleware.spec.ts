@@ -7,7 +7,7 @@ import { MiddlewareResolver } from "../middleware/middleware.resolver";
 
 const tokens = new Tokens();
 
-describe("SettingsResolver", () => {
+describe("MiddlewareResolver", () => {
   let middlewareResolver: MiddlewareResolver;
 
   beforeAll(async () => {

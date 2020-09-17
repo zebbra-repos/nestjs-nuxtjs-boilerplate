@@ -4,7 +4,9 @@ import {
   InputType,
   PartialType,
   OmitType,
+  Field,
 } from "@nestjs/graphql";
+import { IsString, MinLength } from "class-validator";
 
 import { User } from "./users.entity";
 
@@ -18,9 +20,14 @@ export class UserDto extends PickType(
 @InputType({ description: "Create User DTO model" })
 export class CreateUserDto extends PickType(
   User,
-  ["firstName", "lastName", "email", "password"] as const,
+  ["firstName", "lastName", "email"] as const,
   InputType,
-) {}
+) {
+  @Field({ description: "User password" })
+  @IsString()
+  @MinLength(8)
+  password!: string;
+}
 
 @InputType({ description: "Update User DTO model" })
 export class UpdateUserDto extends PartialType(

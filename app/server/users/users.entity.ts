@@ -7,11 +7,9 @@ import {
   BeforeInsert,
 } from "typeorm";
 import { IsEmail, MinLength, IsString, IsOptional } from "class-validator";
-import { Transform } from "class-transformer";
+import { Transform, Exclude } from "class-transformer";
 import { Field, Int, ObjectType, InputType } from "@nestjs/graphql";
 import { hash, compare } from "bcrypt";
-
-import { UserDto } from "./users.dto";
 
 @InputType("UserInput", { description: "User model" })
 @ObjectType("UserType", { description: "User model" })
@@ -44,14 +42,17 @@ export class User {
   @Column()
   @IsString()
   @MinLength(8)
+  @Exclude()
   password!: string;
 
   @Field({ description: "User creation date" })
   @CreateDateColumn({ name: "created_at" })
+  @Exclude()
   createdAt!: Date;
 
   @Field({ description: "User updated date" })
   @UpdateDateColumn({ name: "updated_at" })
+  @Exclude()
   updatedAt!: Date;
 
   @BeforeInsert()
@@ -61,17 +62,5 @@ export class User {
 
   async comparePassword(attempt: string) {
     return await compare(attempt, this.password);
-  }
-
-  toResponseObject(): UserDto {
-    const { id, firstName, lastName, email } = this;
-    const responseObject: UserDto = {
-      id,
-      firstName,
-      lastName,
-      email,
-    };
-
-    return responseObject;
   }
 }

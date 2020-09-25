@@ -11,7 +11,7 @@ module.exports = {
   disallowMultipleLineBreaks: true,
   disallowStringConcatenation: true,
   disallowTrailingSpaces: true,
-  maximumLineLength: 80,
+  maximumLineLength: 100,
   requireClassLiteralsBeforeAttributes: true,
   requireIdLiteralsBeforeAttributes: true,
   requireLowerCaseAttributes: true,

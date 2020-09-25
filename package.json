@@ -148,7 +148,8 @@
   },
   "lint-staged": {
     "*.{js,ts,vue}": "eslint",
-    "*.{css,vue}": "stylelint"
+    "*.{css,vue}": "stylelint",
+    "*.{vue}": "pug-lint-vue"
   },
   "husky": {
     "hooks": {

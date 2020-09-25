@@ -1,0 +1,106 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""User DTO model"""
+type UserDto {
+  """User database ID"""
+  id: Int!
+
+  """User first name"""
+  firstName: String
+
+  """User last name"""
+  lastName: String
+
+  """User email"""
+  email: String!
+}
+
+"""Sign In Response DTO model"""
+type SignInResponseDto {
+  """JWT expires in"""
+  expiresIn: Int!
+
+  """JSON web token"""
+  accessToken: String!
+}
+
+"""Message Response DTO model"""
+type MessageResponseDto {
+  """Custom information message"""
+  message: String!
+}
+
+"""Csrf token"""
+type CsrfTokenDto {
+  """Token"""
+  token: String!
+}
+
+"""Application settings for frontend"""
+type SettingsDto {
+  """Application version"""
+  version: String!
+}
+
+type Query {
+  """Get current user profile"""
+  profile: UserDto!
+
+  """Get user by ID"""
+  user(id: Int!): UserDto!
+
+  """Fetch a new csrf token"""
+  csrf: CsrfTokenDto!
+
+  """Get application settings for frontend"""
+  settings: SettingsDto!
+}
+
+type Mutation {
+  """Register as a new user"""
+  signUp(data: CreateUserDto!): MessageResponseDto!
+
+  """Login as user"""
+  signIn(data: SignInRequestDto!): SignInResponseDto!
+
+  """Request user password reset instructions"""
+  resetPasswordRequest(data: EmailRequestDto!): MessageResponseDto!
+
+  """Request account confirmation instructions"""
+  confirmAccountRequest(data: EmailRequestDto!): MessageResponseDto!
+
+  """Request account unlock instructions"""
+  unlockAccountRequest(data: EmailRequestDto!): MessageResponseDto!
+}
+
+"""Create User DTO model"""
+input CreateUserDto {
+  """User first name"""
+  firstName: String
+
+  """User last name"""
+  lastName: String
+
+  """User email"""
+  email: String!
+
+  """User password"""
+  password: String!
+}
+
+"""Sign In Request DTO model"""
+input SignInRequestDto {
+  """User email"""
+  email: String!
+
+  """User password"""
+  password: String!
+}
+
+"""Email Request DTO model"""
+input EmailRequestDto {
+  """User email"""
+  email: String!
+}

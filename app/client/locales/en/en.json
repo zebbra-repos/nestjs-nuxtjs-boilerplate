@@ -1,0 +1,45 @@
+{
+  "devise": {
+    "confirmations": {
+      "new": {
+        "submit": "Resend instructions"
+      }
+    },
+    "passwords": {
+      "new": {
+        "submit": "Reset password"
+      }
+    },
+    "sessions": {
+      "sign-out": "Sign out"
+    },
+    "shared": {
+      "links": {
+        "other-options": "Other options"
+      }
+    },
+    "unlocks": {
+      "new": {
+        "submit": "Resend instructions"
+      }
+    }
+  },
+  "errors": {
+    "home": "Home page",
+    "not-found": "404 Not Found",
+    "other": "An error occurred"
+  },
+  "navigation": {
+    "items": {
+      "welcome": "Welcome",
+      "inspire": "Inspire",
+      "profile": "Profile"
+    }
+  },
+  "notification": {
+    "close": "Close"
+  },
+  "profile": {
+    "loading": "Loading profile..."
+  }
+}

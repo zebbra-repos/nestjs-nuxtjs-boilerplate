@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app
     my-notification
-    h1(v-if='error.statusCode === 404') {{ pageNotFound }}
-    h1(v-else='') {{ otherError }}
-    nuxt-link(to='/') Home page 
+    h1(v-if='error.statusCode === 404') {{ $t('errors.not-found') }}
+    h1(v-else='') {{ $t('errors.other') }}
+    nuxt-link(to='/') {{ $t('errors.home') }}
 </template>
 
 <script lang="ts">
@@ -17,12 +17,6 @@ export default Vue.extend({
       type: Object,
       default: null,
     },
-  },
-  data() {
-    return {
-      pageNotFound: "404 Not Found",
-      otherError: "An error occurred",
-    };
   },
   head(this: any) {
     const title =

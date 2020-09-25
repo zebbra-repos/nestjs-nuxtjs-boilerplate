@@ -1,9 +1,9 @@
 import { useContext } from "@nuxtjs/composition-api";
 import { useCsrfTokenQuery } from "~/apollo/generated-operations";
-import { sessionStore } from "~/store";
+import { csrfStore } from "~/store";
 
 export default function () {
-  const token = sessionStore.csrfToken;
+  const token = csrfStore.csrfToken;
   const { error } = useContext();
 
   if (!token) {
@@ -16,8 +16,8 @@ export default function () {
     });
 
     onResult((data) => {
-      if (data?.data.csrf.token) {
-        sessionStore.updateCsrfToken(data?.data.csrf.token);
+      if (data?.data && data?.data.csrf && data.data?.csrf.token) {
+        csrfStore.updateCsrfToken(data?.data.csrf.token);
       } else {
         error({
           message: "Could not fetch csrf token",

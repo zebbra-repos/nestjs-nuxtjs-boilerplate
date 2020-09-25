@@ -1,15 +1,23 @@
 import { defineNuxtMiddleware } from "@nuxtjs/composition-api";
-import { notificationStore } from "~/store";
+import { useLogout } from "~/composable/useSession";
+import { sessionStore } from "~/store";
 
-export default defineNuxtMiddleware(({ app, redirect }) => {
+export default defineNuxtMiddleware(async ({ app, redirect }) => {
   const token = app.$apolloHelpers.getToken();
 
   if (!token) {
-    notificationStore.show({
-      color: "error",
-      message: "Please login",
-      timeout: 3000,
-    });
-    redirect(401, "/login");
+    return await useLogout(
+      app,
+      redirect,
+      app.i18n.t("devise.failure.unauthenticated") as string,
+    );
+  }
+
+  if (sessionStore.expired) {
+    return await useLogout(
+      app,
+      redirect,
+      app.i18n.t("devise.failure.timeout") as string,
+    );
   }
 });

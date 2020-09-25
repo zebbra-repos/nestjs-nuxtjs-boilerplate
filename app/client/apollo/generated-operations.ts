@@ -28,13 +28,20 @@ export type UserDto = {
   email: Scalars["String"];
 };
 
-/** Login User Response DTO model */
-export type LoginUserResponseDto = {
-  __typename?: "LoginUserResponseDto";
+/** Sign In Response DTO model */
+export type SignInResponseDto = {
+  __typename?: "SignInResponseDto";
   /** JWT expires in */
   expiresIn: Scalars["Int"];
   /** JSON web token */
   accessToken: Scalars["String"];
+};
+
+/** Message Response DTO model */
+export type MessageResponseDto = {
+  __typename?: "MessageResponseDto";
+  /** Custom information message */
+  message: Scalars["String"];
 };
 
 /** Csrf token */
@@ -70,17 +77,35 @@ export type QueryUserArgs = {
 export type Mutation = {
   __typename?: "Mutation";
   /** Register as a new user */
-  register: UserDto;
+  signUp: MessageResponseDto;
   /** Login as user */
-  login: LoginUserResponseDto;
+  signIn: SignInResponseDto;
+  /** Request user password reset instructions */
+  resetPasswordRequest: MessageResponseDto;
+  /** Request account confirmation instructions */
+  confirmAccountRequest: MessageResponseDto;
+  /** Request account unlock instructions */
+  unlockAccountRequest: MessageResponseDto;
 };
 
-export type MutationRegisterArgs = {
-  createUserInput: CreateUserDto;
+export type MutationSignUpArgs = {
+  data: CreateUserDto;
 };
 
-export type MutationLoginArgs = {
-  loginUserInput: LoginUserRequestDto;
+export type MutationSignInArgs = {
+  data: SignInRequestDto;
+};
+
+export type MutationResetPasswordRequestArgs = {
+  data: EmailRequestDto;
+};
+
+export type MutationConfirmAccountRequestArgs = {
+  data: EmailRequestDto;
+};
+
+export type MutationUnlockAccountRequestArgs = {
+  data: EmailRequestDto;
 };
 
 /** Create User DTO model */
@@ -95,38 +120,80 @@ export type CreateUserDto = {
   password: Scalars["String"];
 };
 
-/** Login User DTO model */
-export type LoginUserRequestDto = {
+/** Sign In Request DTO model */
+export type SignInRequestDto = {
   /** User email */
   email: Scalars["String"];
   /** User password */
   password: Scalars["String"];
 };
 
-export type RegisterUserMutationVariables = Exact<{
+/** Email Request DTO model */
+export type EmailRequestDto = {
+  /** User email */
+  email: Scalars["String"];
+};
+
+export type SignUpMutationVariables = Exact<{
   firstName?: Maybe<Scalars["String"]>;
   lastName?: Maybe<Scalars["String"]>;
   email: Scalars["String"];
   password: Scalars["String"];
 }>;
 
-export type RegisterUserMutation = { readonly __typename?: "Mutation" } & {
-  readonly register: { readonly __typename?: "UserDto" } & Pick<
-    UserDto,
-    "id" | "firstName" | "lastName" | "email"
+export type SignUpMutation = { readonly __typename?: "Mutation" } & {
+  readonly signUp: { readonly __typename?: "MessageResponseDto" } & Pick<
+    MessageResponseDto,
+    "message"
   >;
 };
 
-export type LoginUserMutationVariables = Exact<{
+export type SignInMutationVariables = Exact<{
   email: Scalars["String"];
   password: Scalars["String"];
 }>;
 
-export type LoginUserMutation = { readonly __typename?: "Mutation" } & {
-  readonly login: { readonly __typename?: "LoginUserResponseDto" } & Pick<
-    LoginUserResponseDto,
+export type SignInMutation = { readonly __typename?: "Mutation" } & {
+  readonly signIn: { readonly __typename?: "SignInResponseDto" } & Pick<
+    SignInResponseDto,
     "accessToken" | "expiresIn"
   >;
+};
+
+export type ResetPasswordRequestMutationVariables = Exact<{
+  email: Scalars["String"];
+}>;
+
+export type ResetPasswordRequestMutation = {
+  readonly __typename?: "Mutation";
+} & {
+  readonly resetPasswordRequest: {
+    readonly __typename?: "MessageResponseDto";
+  } & Pick<MessageResponseDto, "message">;
+};
+
+export type ConfirmAccountRequestMutationVariables = Exact<{
+  email: Scalars["String"];
+}>;
+
+export type ConfirmAccountRequestMutation = {
+  readonly __typename?: "Mutation";
+} & {
+  readonly confirmAccountRequest: {
+    readonly __typename?: "MessageResponseDto";
+  } & Pick<MessageResponseDto, "message">;
+};
+
+export type UnlockAccountRequestMutationVariables = Exact<{
+  email: Scalars["String"];
+}>;
+
+export type UnlockAccountRequestMutation = {
+  readonly __typename?: "Mutation";
+} & {
+  readonly unlockAccountRequest: {
+    readonly __typename?: "MessageResponseDto";
+  } & Pick<MessageResponseDto, "message">;
 };
 
 export type GetProfileQueryVariables = Exact<{ [key: string]: never }>;
@@ -156,41 +223,38 @@ export type CsrfTokenQuery = { readonly __typename?: "Query" } & {
   >;
 };
 
-export const RegisterUserDocument = gql`
-  mutation registerUser(
+export const SignUpDocument = gql`
+  mutation signUp(
     $firstName: String
     $lastName: String
     $email: String!
     $password: String!
   ) {
-    register(
-      createUserInput: {
+    signUp(
+      data: {
         firstName: $firstName
         lastName: $lastName
         email: $email
         password: $password
       }
     ) {
-      id
-      firstName
-      lastName
-      email
+      message
     }
   }
 `;
 
 /**
- * __useRegisterUserMutation__
+ * __useSignUpMutation__
  *
- * To run a mutation, you first call `useRegisterUserMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useRegisterUserMutation` returns an object that includes:
+ * To run a mutation, you first call `useSignUpMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useSignUpMutation` returns an object that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
  *
  * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
  *
  * @example
- * const { mutate, loading, error, onDone } = useRegisterUserMutation({
+ * const { mutate, loading, error, onDone } = useSignUpMutation({
  *   variables: {
  *      firstName: // value for 'firstName'
  *      lastName: // value for 'lastName'
@@ -199,31 +263,31 @@ export const RegisterUserDocument = gql`
  *   },
  * });
  */
-export function useRegisterUserMutation(
+export function useSignUpMutation(
   options:
     | VueApolloComposable.UseMutationOptions<
-        RegisterUserMutation,
-        RegisterUserMutationVariables
+        SignUpMutation,
+        SignUpMutationVariables
       >
     | ReactiveFunction<
         VueApolloComposable.UseMutationOptions<
-          RegisterUserMutation,
-          RegisterUserMutationVariables
+          SignUpMutation,
+          SignUpMutationVariables
         >
       >,
 ) {
   return VueApolloComposable.useMutation<
-    RegisterUserMutation,
-    RegisterUserMutationVariables
-  >(RegisterUserDocument, options);
+    SignUpMutation,
+    SignUpMutationVariables
+  >(SignUpDocument, options);
 }
-export type RegisterUserMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  RegisterUserMutation,
-  RegisterUserMutationVariables
+export type SignUpMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  SignUpMutation,
+  SignUpMutationVariables
 >;
-export const LoginUserDocument = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    login(loginUserInput: { email: $email, password: $password }) {
+export const SignInDocument = gql`
+  mutation signIn($email: String!, $password: String!) {
+    signIn(data: { email: $email, password: $password }) {
       accessToken
       expiresIn
     }
@@ -231,44 +295,185 @@ export const LoginUserDocument = gql`
 `;
 
 /**
- * __useLoginUserMutation__
+ * __useSignInMutation__
  *
- * To run a mutation, you first call `useLoginUserMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useLoginUserMutation` returns an object that includes:
+ * To run a mutation, you first call `useSignInMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useSignInMutation` returns an object that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
  *
  * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
  *
  * @example
- * const { mutate, loading, error, onDone } = useLoginUserMutation({
+ * const { mutate, loading, error, onDone } = useSignInMutation({
  *   variables: {
  *      email: // value for 'email'
  *      password: // value for 'password'
  *   },
  * });
  */
-export function useLoginUserMutation(
+export function useSignInMutation(
   options:
     | VueApolloComposable.UseMutationOptions<
-        LoginUserMutation,
-        LoginUserMutationVariables
+        SignInMutation,
+        SignInMutationVariables
       >
     | ReactiveFunction<
         VueApolloComposable.UseMutationOptions<
-          LoginUserMutation,
-          LoginUserMutationVariables
+          SignInMutation,
+          SignInMutationVariables
         >
       >,
 ) {
   return VueApolloComposable.useMutation<
-    LoginUserMutation,
-    LoginUserMutationVariables
-  >(LoginUserDocument, options);
+    SignInMutation,
+    SignInMutationVariables
+  >(SignInDocument, options);
 }
-export type LoginUserMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  LoginUserMutation,
-  LoginUserMutationVariables
+export type SignInMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  SignInMutation,
+  SignInMutationVariables
+>;
+export const ResetPasswordRequestDocument = gql`
+  mutation resetPasswordRequest($email: String!) {
+    resetPasswordRequest(data: { email: $email }) {
+      message
+    }
+  }
+`;
+
+/**
+ * __useResetPasswordRequestMutation__
+ *
+ * To run a mutation, you first call `useResetPasswordRequestMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useResetPasswordRequestMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useResetPasswordRequestMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useResetPasswordRequestMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        ResetPasswordRequestMutation,
+        ResetPasswordRequestMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          ResetPasswordRequestMutation,
+          ResetPasswordRequestMutationVariables
+        >
+      >,
+) {
+  return VueApolloComposable.useMutation<
+    ResetPasswordRequestMutation,
+    ResetPasswordRequestMutationVariables
+  >(ResetPasswordRequestDocument, options);
+}
+export type ResetPasswordRequestMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  ResetPasswordRequestMutation,
+  ResetPasswordRequestMutationVariables
+>;
+export const ConfirmAccountRequestDocument = gql`
+  mutation confirmAccountRequest($email: String!) {
+    confirmAccountRequest(data: { email: $email }) {
+      message
+    }
+  }
+`;
+
+/**
+ * __useConfirmAccountRequestMutation__
+ *
+ * To run a mutation, you first call `useConfirmAccountRequestMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useConfirmAccountRequestMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useConfirmAccountRequestMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useConfirmAccountRequestMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        ConfirmAccountRequestMutation,
+        ConfirmAccountRequestMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          ConfirmAccountRequestMutation,
+          ConfirmAccountRequestMutationVariables
+        >
+      >,
+) {
+  return VueApolloComposable.useMutation<
+    ConfirmAccountRequestMutation,
+    ConfirmAccountRequestMutationVariables
+  >(ConfirmAccountRequestDocument, options);
+}
+export type ConfirmAccountRequestMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  ConfirmAccountRequestMutation,
+  ConfirmAccountRequestMutationVariables
+>;
+export const UnlockAccountRequestDocument = gql`
+  mutation unlockAccountRequest($email: String!) {
+    unlockAccountRequest(data: { email: $email }) {
+      message
+    }
+  }
+`;
+
+/**
+ * __useUnlockAccountRequestMutation__
+ *
+ * To run a mutation, you first call `useUnlockAccountRequestMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useUnlockAccountRequestMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useUnlockAccountRequestMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useUnlockAccountRequestMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        UnlockAccountRequestMutation,
+        UnlockAccountRequestMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          UnlockAccountRequestMutation,
+          UnlockAccountRequestMutationVariables
+        >
+      >,
+) {
+  return VueApolloComposable.useMutation<
+    UnlockAccountRequestMutation,
+    UnlockAccountRequestMutationVariables
+  >(UnlockAccountRequestDocument, options);
+}
+export type UnlockAccountRequestMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  UnlockAccountRequestMutation,
+  UnlockAccountRequestMutationVariables
 >;
 export const GetProfileDocument = gql`
   query getProfile {

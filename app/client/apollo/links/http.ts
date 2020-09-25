@@ -1,5 +1,5 @@
 import { createHttpLink } from "apollo-link-http";
-import { sessionStore } from "~/store";
+import { csrfStore } from "~/store";
 
 export default function httpLink(uri: string, isDev: boolean) {
   return createHttpLink({
@@ -7,8 +7,8 @@ export default function httpLink(uri: string, isDev: boolean) {
     useGETForQueries: true,
     credentials: isDev ? "include" : "same-origin",
     fetch: (uri, options) => {
-      if (options?.headers && sessionStore.csrfToken) {
-        (options.headers as any)["XSRF-TOKEN"] = sessionStore.csrfToken;
+      if (options?.headers && csrfStore.csrfToken) {
+        (options.headers as any)["XSRF-TOKEN"] = csrfStore.csrfToken;
       }
 
       return fetch(uri, options);

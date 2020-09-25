@@ -1,0 +1,6 @@
+{
+  "required": "{property} ist erforderlich",
+  "min-length": "{property} muss miindestends {length} Zeichen enthalten",
+  "max-length": "{property} muss aus weniger als {length} Zeichen bestehen",
+  "email": "{property} ist ungültig"
+}

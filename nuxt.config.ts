@@ -48,11 +48,19 @@ const config: NuxtConfig = {
       mode: "all",
     },
     {
+      src: "~/plugins/persistence.plugin",
+      mode: "client",
+    },
+    {
       src: "~/plugins/settings.plugin",
       mode: "client",
     },
     {
       src: "~/plugins/sentry.plugin",
+      mode: "all",
+    },
+    {
+      src: "~/plugins/validator.plugin",
       mode: "all",
     },
   ],
@@ -85,6 +93,8 @@ const config: NuxtConfig = {
     ["@nuxtjs/pwa", { meta: false, icon: false, manifest: false }],
     // Doc: https://github.com/nuxt-community/apollo-module
     "@nuxtjs/apollo",
+    // Doc: https://i18n.nuxtjs.org/
+    "nuxt-i18n",
   ],
 
   /*
@@ -102,9 +112,37 @@ const config: NuxtConfig = {
    ** See https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ["~/assets/variables.scss"],
+    customVariables: ["~/assets/stylesheets/variables.scss"],
     treeShake: true,
     optionsPath: "~/vuetify.options.ts",
+  },
+
+  /*
+   ** i18n module configuration
+   ** See https://i18n.nuxtjs.org/
+   */
+  i18n: {
+    locales: [
+      {
+        code: "en",
+        file: "en.js",
+      },
+      {
+        code: "de",
+        file: "de.js",
+      },
+    ],
+    defaultLocale: "en",
+    strategy: "no_prefix",
+    lazy: true,
+    langDir: "locales/",
+    detectBrowserLanguage: {
+      fallbackLocale: "en",
+      onlyOnRoot: true,
+    },
+    vueI18n: {
+      fallbackLocale: "en",
+    },
   },
 
   /*
@@ -136,6 +174,13 @@ const config: NuxtConfig = {
       dsn: process.env.SENTRY_DSN,
       environment: process.env.SENTRY_ENVIRONMENT,
       logErrors: process.env.NODE_ENV !== "production",
+    },
+  },
+  build: {
+    extend(config) {
+      config.node = {
+        fs: "empty",
+      };
     },
   },
 };

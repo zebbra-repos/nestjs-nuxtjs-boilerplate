@@ -1,0 +1,6 @@
+{
+  "required": "{property} is required",
+  "min-length": "{property} must be less than {length} characters",
+  "max-length": "{property} must be less than {length} characters",
+  "email": "{property} is invalid"
+}

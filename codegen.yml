@@ -1,5 +1,5 @@
 overwrite: true
-schema: "app/server/schema.gql"
+schema: "app/server/src/schema.gql"
 documents: "app/client/apollo/*.graphql"
 generates:
   app/client/apollo/generated-operations.ts:

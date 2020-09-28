@@ -1,12 +1,12 @@
 import { NuxtAppOptions } from "@nuxt/types";
 import { useContext } from "@nuxtjs/composition-api";
-import { LoginUserResponseDto } from "~/apollo/generated-operations";
+import { SignInResponseDto } from "~/apollo/generated-operations";
 import { notificationStore, sessionStore } from "~/store";
 
 export async function useLogin(
   app: NuxtAppOptions,
   redirect: (location: string) => void,
-  data: LoginUserResponseDto,
+  data: SignInResponseDto,
 ) {
   await app.$apolloHelpers.onLogin(data.accessToken);
   sessionStore.updateExp(data.expiresIn);

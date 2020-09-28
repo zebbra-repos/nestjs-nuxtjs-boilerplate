@@ -67,8 +67,8 @@ export default defineComponent({
     const { $validator } = app;
 
     const input = reactive({
-      email: "test@test.com",
-      password: "testtest",
+      email: "",
+      password: "",
     });
 
     const rules = {

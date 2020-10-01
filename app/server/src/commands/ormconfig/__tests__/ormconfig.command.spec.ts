@@ -4,7 +4,7 @@ import { CommandModule, CommandModuleTest } from "nestjs-command";
 
 import { OrmconfigModule } from "..";
 
-describe("Ormconfig Command", () => {
+describe("OrmconfigCommand", () => {
   let commandModule: CommandModuleTest;
 
   beforeAll(async () => {

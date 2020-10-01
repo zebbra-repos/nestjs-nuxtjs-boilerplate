@@ -19,10 +19,6 @@ describe("ConfigModule", () => {
     expect(configService).toBeDefined();
   });
 
-  it("should load auth config", () => {
-    expect(configService.get("auth")).toBeDefined();
-  });
-
   it("should load sendgrid config", () => {
     expect(configService.get("sendgrid")).toBeDefined();
   });

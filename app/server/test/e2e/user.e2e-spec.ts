@@ -5,16 +5,9 @@ import { factory, FactoryModule } from "typeorm-factories";
 import request from "supertest";
 import { decode } from "jsonwebtoken";
 
-import {
-  ConfigModule,
-  I18nModule,
-  GraphQLModule,
-  LoggerModule,
-  TypeOrmModule,
-} from "../../src/core";
-import { AuthModule } from "../../src/auth";
+import { CoreModule } from "../../src/core";
+import { AuthenticationModule, SessionModule } from "../../src/devise";
 import { User, UsersModule } from "../../src/users";
-import { DeviseModule } from "../../src/devise";
 import { createToken } from "../utils/helpers";
 
 describe("UserResolver (e2e)", () => {
@@ -26,13 +19,9 @@ describe("UserResolver (e2e)", () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
-        ConfigModule,
-        I18nModule,
-        GraphQLModule,
-        LoggerModule,
-        TypeOrmModule,
-        AuthModule,
-        DeviseModule,
+        CoreModule,
+        AuthenticationModule,
+        SessionModule,
         UsersModule,
         FactoryModule,
       ],

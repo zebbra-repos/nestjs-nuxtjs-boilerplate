@@ -1,7 +1,6 @@
 import { ConfigModule as Config } from "@nestjs/config";
 import * as Joi from "joi";
 
-import authConfig from "../../auth/auth.config";
 import deviseConfig from "../../devise/devise.config";
 import sendgridConfig from "../sendgrid/sendgrid.config";
 import sentryConfig from "../sentry/sentry.config";
@@ -13,7 +12,6 @@ import test from "./environments/test.config";
 import production from "./environments/production.config";
 
 const load: any[] = [
-  authConfig,
   typeOrmConfig,
   deviseConfig,
   sendgridConfig,
@@ -58,7 +56,7 @@ export const ConfigModule = Config.forRoot({
       .default("debug"),
     ACCESS_CONTROL_ALLOW_ORIGIN: Joi.string().default("http://localhost:5000"),
 
-    // AUTH
+    // DEVISE > AUTHENTICATION
     JWT_SECRET: Joi.string().required(),
     JWT_EXPIRES_IN: Joi.number().default(60 * 60), // in seconds!
 

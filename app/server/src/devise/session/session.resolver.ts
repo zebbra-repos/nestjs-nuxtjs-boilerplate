@@ -2,28 +2,28 @@ import { Mutation, Resolver, Args } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 import { I18n, I18nContext } from "nestjs-i18n";
 
-import { CurrentUser } from "../common/decorators";
-import { User, CreateUserDto } from "../users";
-import { LocalAuthGuard } from "../auth/strategies/local/local-auth.guard";
+import { CurrentUser } from "../../common/decorators";
+import { User, CreateUserDto } from "../../users";
 
-import { DeviseService } from "./devise.service";
+import { LocalAuthGuard } from "../authentication";
 import {
   SignInRequestDto,
   SignInResponseDto,
   EmailRequestDto,
   MessageResponseDto,
-} from "./devise.dto";
+} from "./session.dto";
+import { SessionService } from "./session.service";
 
-@Resolver("Devise")
-export class DeviseResolver {
-  constructor(private readonly deviseService: DeviseService) {}
+@Resolver("Session")
+export class SessionResolver {
+  constructor(private readonly sessionService: SessionService) {}
 
   @Mutation(() => MessageResponseDto, {
     name: "signUp",
     description: "Register as a new user",
   })
   async signUp(@Args("data") data: CreateUserDto, @I18n() i18n: I18nContext) {
-    await this.deviseService.signUp(data);
+    await this.sessionService.signUp(data);
 
     return {
       message: i18n.t("devise.confirmations.send-instructions"),
@@ -39,7 +39,7 @@ export class DeviseResolver {
     @Args("data") _data: SignInRequestDto,
     @CurrentUser() user: User,
   ) {
-    return await this.deviseService.signIn(user);
+    return await this.sessionService.signIn(user);
   }
 
   @Mutation(() => MessageResponseDto, {

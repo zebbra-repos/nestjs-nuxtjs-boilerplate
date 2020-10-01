@@ -6,13 +6,13 @@ import { JwtModule, JwtModuleOptions } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { hash } from "bcrypt";
 
-import { MockType, repositoryMockFactory } from "../../../test/factories";
-import { ConfigModule } from "../../core";
-import { User, UsersService } from "../../users";
-import { DeviseService } from "..";
+import { MockType, repositoryMockFactory } from "../../../../test/factories";
+import { ConfigModule } from "../../../core";
+import { User, UsersService } from "../../../users";
+import { SessionService } from "..";
 
-describe("DeviseService", () => {
-  let deviseService: DeviseService;
+describe("SessionService", () => {
+  let sessionService: SessionService;
   let repository: MockType<Repository<User>>;
   let user: User;
 
@@ -28,7 +28,7 @@ describe("DeviseService", () => {
         FactoryModule,
       ],
       providers: [
-        DeviseService,
+        SessionService,
         {
           provide: getRepositoryToken(User),
           useFactory: repositoryMockFactory,
@@ -38,14 +38,14 @@ describe("DeviseService", () => {
     }).compile();
     await moduleRef.init();
 
-    deviseService = moduleRef.get<DeviseService>(DeviseService);
+    sessionService = moduleRef.get<SessionService>(SessionService);
     repository = moduleRef.get(getRepositoryToken(User));
     user = await factory(User).make();
     user.password = await hash(user.password, 10);
   }, 1000 * 10);
 
   it("should be defined", () => {
-    expect(deviseService).toBeDefined();
+    expect(sessionService).toBeDefined();
     expect(repository).toBeDefined();
   });
 
@@ -57,7 +57,7 @@ describe("DeviseService", () => {
       repository.create.mockReturnValueOnce(userWithId);
       repository.save.mockReturnValueOnce(userWithId);
 
-      expect(await deviseService.signUp(user)).toEqual(userWithId);
+      expect(await sessionService.signUp(user)).toEqual(userWithId);
 
       expect(repository.findOne).toBeCalledWith({
         where: { email: user.email },
@@ -68,7 +68,7 @@ describe("DeviseService", () => {
 
     it("fails if email is already taken", async () => {
       repository.findOne.mockReturnValueOnce(user);
-      await expect(deviseService.signUp(user)).rejects.toThrow();
+      await expect(sessionService.signUp(user)).rejects.toThrow();
 
       expect(repository.findOne).toBeCalledWith({
         where: { email: user.email },

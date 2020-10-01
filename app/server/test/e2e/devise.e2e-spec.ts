@@ -3,14 +3,7 @@ import { INestApplication, ValidationPipe } from "@nestjs/common";
 import { Connection, EntityManager, QueryRunner } from "typeorm";
 import { factory, FactoryModule } from "typeorm-factories";
 
-import { AuthModule } from "../../src/auth";
-import {
-  ConfigModule,
-  I18nModule,
-  GraphQLModule,
-  LoggerModule,
-  TypeOrmModule,
-} from "../../src/core";
+import { CoreModule } from "../../src/core";
 import { DeviseModule } from "../../src/devise";
 import { User } from "../../src/users";
 import { signUp, signIn } from "../utils/helpers";
@@ -21,16 +14,7 @@ describe("DeviseResolver (e2e)", () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [
-        ConfigModule,
-        I18nModule,
-        GraphQLModule,
-        LoggerModule,
-        TypeOrmModule,
-        AuthModule,
-        DeviseModule,
-        FactoryModule,
-      ],
+      imports: [CoreModule, DeviseModule, FactoryModule],
     }).compile();
 
     app = moduleRef.createNestApplication();

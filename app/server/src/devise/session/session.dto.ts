@@ -1,6 +1,6 @@
 import { InputType, PickType, ObjectType, Field, Int } from "@nestjs/graphql";
 
-import { CreateUserDto } from "../users";
+import { CreateUserDto } from "../../users";
 
 @InputType({ description: "Sign In Request DTO model" })
 export class SignInRequestDto extends PickType(CreateUserDto, [

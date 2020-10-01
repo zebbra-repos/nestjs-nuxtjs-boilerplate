@@ -1,21 +1,21 @@
-// import { MailerService } from "@nestjs-modules/mailer";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { classToPlain } from "class-transformer";
+// import { MailerService } from "@nestjs-modules/mailer";
 // import { I18nService } from "nestjs-i18n";
 
-import { User, UsersService, UserDto, CreateUserDto } from "../users";
+import { User, UsersService, UserDto, CreateUserDto } from "../../users";
 
 @Injectable()
-export class DeviseService {
+export class SessionService {
   private baseUrl: string;
 
   constructor(
     private readonly jwtService: JwtService,
     private readonly usersService: UsersService,
-    // private readonly i18nService: I18nService,
     // private readonly mailService: MailerService,
+    // private readonly i18nService: I18nService,
     private readonly configService: ConfigService,
   ) {
     this.baseUrl = configService.get<string>("accessControlAllowOrigin")!;
@@ -25,8 +25,8 @@ export class DeviseService {
     return await user;
   }
 
-  signUp(payload: CreateUserDto) {
-    return this.usersService.signUp(payload);
+  async signUp(payload: CreateUserDto) {
+    return await this.usersService.signUp(payload);
     // const { email } = payload;
     // let user = await this.usersService.findByEmail(email);
 
@@ -40,7 +40,9 @@ export class DeviseService {
 
   signIn(user: User) {
     return {
-      expiresIn: this.configService.get<number>("auth.signOptions.expiresIn")!,
+      expiresIn: this.configService.get<number>(
+        "devise.authentication.signOptions.expiresIn",
+      )!,
       accessToken: this.jwtService.sign(classToPlain(user)),
     };
   }

@@ -2,47 +2,35 @@ import { Repository } from "typeorm";
 import { Test } from "@nestjs/testing";
 import { FactoryModule, factory } from "typeorm-factories";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { JwtModule, JwtModuleOptions } from "@nestjs/jwt";
-import { ConfigService } from "@nestjs/config";
 import { hash } from "bcrypt";
 
-import { MockType, repositoryMockFactory } from "../../../test/factories";
-import { ConfigModule } from "../../core";
-import { User, UsersService } from "../../users";
-import { DeviseService } from "../../devise";
+import { MockType, repositoryMockFactory } from "../../../../test/factories";
+import { ConfigModule } from "../../../core";
+import { User, UsersService } from "../../../users";
 
-import { AuthService } from "../";
+import { AuthenticationService } from "..";
 
-describe("AuthService", () => {
-  let authService: AuthService;
+describe("AuthenticationService", () => {
+  let authService: AuthenticationService;
   let repository: MockType<Repository<User>>;
   let user: User;
   let password: string;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [
-        ConfigModule,
-        FactoryModule,
-        JwtModule.registerAsync({
-          inject: [ConfigService],
-          useFactory: (configService: ConfigService) =>
-            configService.get<JwtModuleOptions>("auth")!,
-        }),
-      ],
+      imports: [ConfigModule, FactoryModule],
       providers: [
-        AuthService,
+        AuthenticationService,
         {
           provide: getRepositoryToken(User),
           useFactory: repositoryMockFactory,
         },
         UsersService,
-        DeviseService,
       ],
     }).compile();
     await moduleRef.init();
 
-    authService = moduleRef.get<AuthService>(AuthService);
+    authService = moduleRef.get<AuthenticationService>(AuthenticationService);
     repository = moduleRef.get(getRepositoryToken(User));
     user = await factory(User).make();
     password = user.password;

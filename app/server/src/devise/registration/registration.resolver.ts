@@ -14,7 +14,10 @@ export class RegistrationResolver {
     name: "signUp",
     description: "Register as a new user",
   })
-  async signUp(@Args("data") data: CreateUserDto, @I18n() i18n: I18nContext) {
+  public async signUp(
+    @Args("data") data: CreateUserDto,
+    @I18n() i18n: I18nContext,
+  ) {
     await this.registrationService.signUp(data);
 
     return {

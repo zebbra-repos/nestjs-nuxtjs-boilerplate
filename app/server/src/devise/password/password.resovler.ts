@@ -9,7 +9,7 @@ export class PasswordResolver {
     name: "resetPasswordRequest",
     description: "Request user password reset instructions",
   })
-  resetPasswordRequest(
+  public resetPasswordRequest(
     @Args("data") data: EmailRequestDto,
     @I18n() i18n: I18nContext,
   ) {

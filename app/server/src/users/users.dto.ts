@@ -26,7 +26,7 @@ export class CreateUserDto extends PickType(
   @Field({ description: "User password" })
   @IsString()
   @MinLength(8)
-  password!: string;
+  public password!: string;
 }
 
 @InputType({ description: "Update User DTO model" })

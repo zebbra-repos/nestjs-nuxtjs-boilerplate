@@ -6,7 +6,7 @@ import { UsersService, CreateUserDto } from "../../users";
 export class RegistrationService {
   constructor(private readonly usersService: UsersService) {}
 
-  async signUp(payload: CreateUserDto) {
-    return await this.usersService.signUp(payload);
+  public signUp(payload: CreateUserDto) {
+    return this.usersService.signUp(payload);
   }
 }

@@ -9,7 +9,7 @@ export class UnlockResolver {
     name: "unlockAccountRequest",
     description: "Request account unlock instructions",
   })
-  unlockAccountRequest(
+  public unlockAccountRequest(
     @Args("data") data: EmailRequestDto,
     @I18n() i18n: I18nContext,
   ) {

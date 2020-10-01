@@ -17,7 +17,7 @@ export class UsersResolver {
     description: "Get current user profile",
   })
   @UseGuards(JwtAuthGuard)
-  getProfile(@CurrentUser() user: User) {
+  public getProfile(@CurrentUser() user: User) {
     return user;
   }
 
@@ -26,7 +26,7 @@ export class UsersResolver {
     description: "Get user by ID",
   })
   @UseGuards(JwtAuthGuard)
-  async getUser(@Args("id", { type: () => Int }) id: number) {
-    return await this.usersService.findById(id);
+  public getUser(@Args("id", { type: () => Int }) id: number) {
+    return this.usersService.findById(id);
   }
 }

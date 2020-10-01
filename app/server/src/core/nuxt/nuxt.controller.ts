@@ -34,7 +34,7 @@ export class NuxtController {
     }
   }
 
-  async init() {
+  public async init() {
     Object.assign(configFile, OVERRIDES.start);
 
     try {
@@ -46,7 +46,8 @@ export class NuxtController {
     }
   }
 
-  @Get("*") root(
+  @Get("*")
+  public root(
     @Req() req: Request,
     @Res() res: Response,
     @Next() next: NextFunction,

@@ -14,7 +14,7 @@ export class HealthController {
 
   @Get()
   @HealthCheck()
-  readiness() {
+  public readiness() {
     return this.health.check([
       () => this.db.pingCheck("database", { timeout: 300 }),
     ]);

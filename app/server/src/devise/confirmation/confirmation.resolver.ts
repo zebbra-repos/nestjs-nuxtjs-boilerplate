@@ -9,7 +9,7 @@ export class ConfirmationResolver {
     name: "confirmAccountRequest",
     description: "Request account confirmation instructions",
   })
-  confirmAccountRequest(
+  public confirmAccountRequest(
     @Args("data") data: EmailRequestDto,
     @I18n() i18n: I18nContext,
   ) {

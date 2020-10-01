@@ -12,7 +12,7 @@ export class SessionService {
     private readonly configService: ConfigService,
   ) {}
 
-  signIn(user: User) {
+  public signIn(user: User) {
     return {
       expiresIn: this.configService.get<number>(
         "devise.authentication.signOptions.expiresIn",

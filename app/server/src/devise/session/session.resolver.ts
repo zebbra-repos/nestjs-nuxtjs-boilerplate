@@ -17,10 +17,10 @@ export class SessionResolver {
     description: "Login as user",
   })
   @UseGuards(LocalAuthGuard)
-  async signIn(
+  public signIn(
     @Args("data") _data: SignInRequestDto,
     @CurrentUser() user: User,
   ) {
-    return await this.sessionService.signIn(user);
+    return this.sessionService.signIn(user);
   }
 }

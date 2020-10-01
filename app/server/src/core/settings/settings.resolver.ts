@@ -9,7 +9,7 @@ export class SettingsResolver {
     name: "settings",
     description: "Get application settings for frontend",
   })
-  getSettings() {
+  public getSettings() {
     return {
       version: pjson.version,
     };

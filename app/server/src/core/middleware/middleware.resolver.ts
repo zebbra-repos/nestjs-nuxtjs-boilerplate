@@ -10,7 +10,7 @@ export class MiddlewareResolver {
     name: "csrf",
     description: "Fetch a new csrf token",
   })
-  getCsrfToken(@CsrfToken() token: string) {
+  public getCsrfToken(@CsrfToken() token: string) {
     return {
       token,
     };

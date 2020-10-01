@@ -4,7 +4,7 @@ import { GqlExecutionContext } from "@nestjs/graphql";
 
 @Injectable()
 export class LocalAuthGuard extends AuthGuard("local") {
-  getRequest(context: ExecutionContext) {
+  public getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context);
     const request = ctx.getContext().req;
     request.body = Object.assign({}, request.body, request.body.variables);

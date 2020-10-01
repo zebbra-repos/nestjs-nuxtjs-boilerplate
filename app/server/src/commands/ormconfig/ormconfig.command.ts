@@ -14,7 +14,7 @@ export class OrmconfigCommand {
     describe: "create the ormconfig.json file on the fly",
     autoExit: true,
   })
-  async create() {
+  public async create() {
     const ormconfig = this.configService.get<TypeOrmModuleOptions>("type-orm");
     const migrationSettings = {
       migrations: ["db/migrate/*.ts"],

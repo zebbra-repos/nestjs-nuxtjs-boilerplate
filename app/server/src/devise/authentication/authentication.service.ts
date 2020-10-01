@@ -6,7 +6,7 @@ import { UserDto, UsersService } from "../../users";
 export class AuthenticationService {
   constructor(private readonly usersService: UsersService) {}
 
-  async validateUser(email: string, password: string) {
+  public async validateUser(email: string, password: string) {
     const user = await this.usersService.findByEmail(email);
     if (user && (await user.comparePassword(password))) {
       return user;
@@ -14,7 +14,7 @@ export class AuthenticationService {
     return null;
   }
 
-  validateUserToken(payload: UserDto) {
+  public validateUserToken(payload: UserDto) {
     return this.usersService.findById(payload.id);
   }
 }

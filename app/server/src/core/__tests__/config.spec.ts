@@ -19,6 +19,10 @@ describe("ConfigModule", () => {
     expect(configService).toBeDefined();
   });
 
+  it("should load devise config", () => {
+    expect(configService.get("devise")).toBeDefined();
+  });
+
   it("should load sendgrid config", () => {
     expect(configService.get("sendgrid")).toBeDefined();
   });

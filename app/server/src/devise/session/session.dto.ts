@@ -11,8 +11,8 @@ export class SignInRequestDto extends PickType(CreateUserDto, [
 @ObjectType({ description: "Sign In Response DTO model" })
 export class SignInResponseDto {
   @Field(() => Int, { description: "JWT expires in" })
-  expiresIn!: number;
+  public expiresIn!: number;
 
   @Field(() => String, { description: "JSON web token" })
-  accessToken!: string;
+  public accessToken!: string;
 }

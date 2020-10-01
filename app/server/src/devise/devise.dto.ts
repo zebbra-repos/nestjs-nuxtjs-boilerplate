@@ -8,5 +8,5 @@ export class EmailRequestDto extends PickType(User, ["email"] as const) {}
 @ObjectType({ description: "Message Response DTO model" })
 export class MessageResponseDto {
   @Field(() => String, { description: "Custom information message" })
-  message!: string;
+  public message!: string;
 }

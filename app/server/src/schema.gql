@@ -29,6 +29,12 @@ type UserDto {
   email: String!
 }
 
+"""Message Response DTO model"""
+type MessageResponseDto {
+  """Custom information message"""
+  message: String!
+}
+
 """Sign In Response DTO model"""
 type SignInResponseDto {
   """JWT expires in"""
@@ -36,12 +42,6 @@ type SignInResponseDto {
 
   """JSON web token"""
   accessToken: String!
-}
-
-"""Message Response DTO model"""
-type MessageResponseDto {
-  """Custom information message"""
-  message: String!
 }
 
 type Query {
@@ -59,20 +59,26 @@ type Query {
 }
 
 type Mutation {
+  """Request account confirmation instructions"""
+  confirmAccountRequest(data: EmailRequestDto!): MessageResponseDto!
+
+  """Request user password reset instructions"""
+  resetPasswordRequest(data: EmailRequestDto!): MessageResponseDto!
+
   """Register as a new user"""
   signUp(data: CreateUserDto!): MessageResponseDto!
 
   """Login as user"""
   signIn(data: SignInRequestDto!): SignInResponseDto!
 
-  """Request user password reset instructions"""
-  resetPasswordRequest(data: EmailRequestDto!): MessageResponseDto!
-
-  """Request account confirmation instructions"""
-  confirmAccountRequest(data: EmailRequestDto!): MessageResponseDto!
-
   """Request account unlock instructions"""
   unlockAccountRequest(data: EmailRequestDto!): MessageResponseDto!
+}
+
+"""Email Request DTO model"""
+input EmailRequestDto {
+  """User email"""
+  email: String!
 }
 
 """Create User DTO model"""
@@ -97,10 +103,4 @@ input SignInRequestDto {
 
   """User password"""
   password: String!
-}
-
-"""Email Request DTO model"""
-input EmailRequestDto {
-  """User email"""
-  email: String!
 }

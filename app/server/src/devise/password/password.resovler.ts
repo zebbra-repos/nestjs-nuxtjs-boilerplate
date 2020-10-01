@@ -3,20 +3,20 @@ import { I18n, I18nContext } from "nestjs-i18n";
 
 import { EmailRequestDto, MessageResponseDto } from "../devise.dto";
 
-@Resolver("Confirmation")
-export class ConfirmationResolver {
+@Resolver("Password")
+export class PasswordResolver {
   @Mutation(() => MessageResponseDto, {
-    name: "confirmAccountRequest",
-    description: "Request account confirmation instructions",
+    name: "resetPasswordRequest",
+    description: "Request user password reset instructions",
   })
-  confirmAccountRequest(
+  resetPasswordRequest(
     @Args("data") data: EmailRequestDto,
     @I18n() i18n: I18nContext,
   ) {
     console.log(data);
 
     return {
-      message: i18n.t("devise.confirmations.send-instructions"),
+      message: i18n.t("devise.passwords.send-instructions"),
     };
   }
 }

@@ -9,7 +9,7 @@ import { CsrfTokenDocument } from "~/apollo/generated-operations";
 import { useLogout } from "~/composable/useSession";
 
 export default function errorLink(ctx: Context) {
-  const { redirect, error: nuxtError, app } = ctx;
+  const { redirect, error: nuxtError, app, route } = ctx;
 
   return onError(({ graphQLErrors, networkError, operation, forward }) => {
     let handled = false;
@@ -30,7 +30,7 @@ export default function errorLink(ctx: Context) {
             : app.i18n.t("devise.failure.unauthenticated");
 
         if (path !== "login") {
-          useLogout(app, redirect, message as string, true);
+          useLogout(app, redirect, message as string, true, route.path);
           return;
         }
       }

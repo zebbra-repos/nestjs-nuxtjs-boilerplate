@@ -16,14 +16,3 @@ export class SignInResponseDto {
   @Field(() => String, { description: "JSON web token" })
   accessToken!: string;
 }
-
-@InputType({ description: "Email Request DTO model" })
-export class EmailRequestDto extends PickType(SignInRequestDto, [
-  "email",
-] as const) {}
-
-@ObjectType({ description: "Message Response DTO model" })
-export class MessageResponseDto {
-  @Field(() => String, { description: "Custom information message" })
-  message!: string;
-}

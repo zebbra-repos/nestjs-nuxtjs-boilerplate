@@ -7,6 +7,7 @@ import { VuexModule, Module, Mutation } from "vuex-module-decorators";
 })
 export default class Session extends VuexModule {
   public expiresAt: number = 0;
+  public _afterSignInPath: string | null = null;
 
   @Mutation
   initialize() {
@@ -28,5 +29,18 @@ export default class Session extends VuexModule {
 
   get expired() {
     return this.expiresAt > 0 && Date.now() > this.expiresAt;
+  }
+
+  @Mutation
+  updateAfterSignInPath(path: string | null) {
+    if (path && path.startsWith("/devise")) {
+      this._afterSignInPath = "/";
+    } else {
+      this._afterSignInPath = path;
+    }
+  }
+
+  get afterSignInPath() {
+    return this._afterSignInPath || "/";
   }
 }

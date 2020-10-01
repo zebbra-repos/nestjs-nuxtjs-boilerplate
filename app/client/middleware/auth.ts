@@ -2,7 +2,7 @@ import { defineNuxtMiddleware } from "@nuxtjs/composition-api";
 import { useLogout } from "~/composable/useSession";
 import { sessionStore } from "~/store";
 
-export default defineNuxtMiddleware(async ({ app, redirect }) => {
+export default defineNuxtMiddleware(async ({ app, redirect, route }) => {
   const token = app.$apolloHelpers.getToken();
 
   if (!token) {
@@ -10,6 +10,8 @@ export default defineNuxtMiddleware(async ({ app, redirect }) => {
       app,
       redirect,
       app.i18n.t("devise.failure.unauthenticated") as string,
+      false,
+      route.path,
     );
   }
 
@@ -18,6 +20,8 @@ export default defineNuxtMiddleware(async ({ app, redirect }) => {
       app,
       redirect,
       app.i18n.t("devise.failure.timeout") as string,
+      false,
+      route.path,
     );
   }
 });

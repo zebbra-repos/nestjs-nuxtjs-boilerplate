@@ -9,10 +9,10 @@ import { hash } from "bcrypt";
 import { MockType, repositoryMockFactory } from "../../../../test/factories";
 import { ConfigModule } from "../../../core";
 import { User, UsersService } from "../../../users";
-import { SessionService } from "..";
+import { RegistrationService } from "..";
 
-describe("SessionService", () => {
-  let sessionService: SessionService;
+describe("RegistrationService", () => {
+  let sessionService: RegistrationService;
   let repository: MockType<Repository<User>>;
   let user: User;
 
@@ -28,7 +28,7 @@ describe("SessionService", () => {
         FactoryModule,
       ],
       providers: [
-        SessionService,
+        RegistrationService,
         {
           provide: getRepositoryToken(User),
           useFactory: repositoryMockFactory,
@@ -38,7 +38,7 @@ describe("SessionService", () => {
     }).compile();
     await moduleRef.init();
 
-    sessionService = moduleRef.get<SessionService>(SessionService);
+    sessionService = moduleRef.get<RegistrationService>(RegistrationService);
     repository = moduleRef.get(getRepositoryToken(User));
     user = await factory(User).make();
     user.password = await hash(user.password, 10);

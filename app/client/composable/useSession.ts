@@ -17,9 +17,9 @@ export async function useLogin(
   });
 
   if (app.router) {
-    app.router.push("/");
+    app.router.push(sessionStore.afterSignInPath);
   } else {
-    redirect("/");
+    redirect(sessionStore.afterSignInPath);
   }
 }
 
@@ -28,9 +28,14 @@ export async function useLogout(
   redirect: (location: string) => void,
   message?: string,
   skipReset: boolean = false,
+  afterSignInPath: string | null = null,
 ) {
   if (!skipReset) {
     await app.$apolloHelpers.onLogout();
+  }
+
+  if (afterSignInPath) {
+    sessionStore.updateAfterSignInPath(afterSignInPath);
   }
 
   sessionStore.updateExp(0);

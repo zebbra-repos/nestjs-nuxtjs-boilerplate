@@ -6,7 +6,11 @@ import request from "supertest";
 import { decode } from "jsonwebtoken";
 
 import { CoreModule } from "../../src/core";
-import { AuthenticationModule, SessionModule } from "../../src/devise";
+import {
+  AuthenticationModule,
+  RegistrationModule,
+  SessionModule,
+} from "../../src/devise";
 import { User, UsersModule } from "../../src/users";
 import { createToken } from "../utils/helpers";
 
@@ -21,6 +25,7 @@ describe("UserResolver (e2e)", () => {
       imports: [
         CoreModule,
         AuthenticationModule,
+        RegistrationModule,
         SessionModule,
         UsersModule,
         FactoryModule,

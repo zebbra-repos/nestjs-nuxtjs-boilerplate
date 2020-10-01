@@ -42,6 +42,13 @@ export type UserDto = {
   email: Scalars["String"];
 };
 
+/** Message Response DTO model */
+export type MessageResponseDto = {
+  __typename?: "MessageResponseDto";
+  /** Custom information message */
+  message: Scalars["String"];
+};
+
 /** Sign In Response DTO model */
 export type SignInResponseDto = {
   __typename?: "SignInResponseDto";
@@ -49,13 +56,6 @@ export type SignInResponseDto = {
   expiresIn: Scalars["Int"];
   /** JSON web token */
   accessToken: Scalars["String"];
-};
-
-/** Message Response DTO model */
-export type MessageResponseDto = {
-  __typename?: "MessageResponseDto";
-  /** Custom information message */
-  message: Scalars["String"];
 };
 
 export type Query = {
@@ -76,16 +76,24 @@ export type QueryUserArgs = {
 
 export type Mutation = {
   __typename?: "Mutation";
+  /** Request account confirmation instructions */
+  confirmAccountRequest: MessageResponseDto;
+  /** Request user password reset instructions */
+  resetPasswordRequest: MessageResponseDto;
   /** Register as a new user */
   signUp: MessageResponseDto;
   /** Login as user */
   signIn: SignInResponseDto;
-  /** Request user password reset instructions */
-  resetPasswordRequest: MessageResponseDto;
-  /** Request account confirmation instructions */
-  confirmAccountRequest: MessageResponseDto;
   /** Request account unlock instructions */
   unlockAccountRequest: MessageResponseDto;
+};
+
+export type MutationConfirmAccountRequestArgs = {
+  data: EmailRequestDto;
+};
+
+export type MutationResetPasswordRequestArgs = {
+  data: EmailRequestDto;
 };
 
 export type MutationSignUpArgs = {
@@ -96,16 +104,14 @@ export type MutationSignInArgs = {
   data: SignInRequestDto;
 };
 
-export type MutationResetPasswordRequestArgs = {
-  data: EmailRequestDto;
-};
-
-export type MutationConfirmAccountRequestArgs = {
-  data: EmailRequestDto;
-};
-
 export type MutationUnlockAccountRequestArgs = {
   data: EmailRequestDto;
+};
+
+/** Email Request DTO model */
+export type EmailRequestDto = {
+  /** User email */
+  email: Scalars["String"];
 };
 
 /** Create User DTO model */
@@ -126,12 +132,6 @@ export type SignInRequestDto = {
   email: Scalars["String"];
   /** User password */
   password: Scalars["String"];
-};
-
-/** Email Request DTO model */
-export type EmailRequestDto = {
-  /** User email */
-  email: Scalars["String"];
 };
 
 export type SignUpMutationVariables = Exact<{

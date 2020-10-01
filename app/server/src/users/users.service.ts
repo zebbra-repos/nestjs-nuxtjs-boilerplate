@@ -24,6 +24,10 @@ export class UsersService {
     return await this.usersRepository.findOneOrFail(id);
   }
 
+  async build(user: CreateUserDto) {
+    return await this.usersRepository.create(user);
+  }
+
   async create(user: CreateUserDto) {
     return await this.usersRepository.save(user);
   }

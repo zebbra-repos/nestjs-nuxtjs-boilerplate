@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
+  Index,
 } from "typeorm";
 import { IsEmail, MinLength, IsString, IsOptional } from "class-validator";
 import { Transform, Exclude } from "class-transformer";
@@ -36,6 +37,7 @@ export class User {
   @Field({ description: "User email" })
   @Column()
   @IsEmail()
+  @Index({ unique: true })
   email!: string;
 
   @Field({ description: "User password" })
@@ -46,12 +48,12 @@ export class User {
   password!: string;
 
   @Field({ description: "User creation date" })
-  @CreateDateColumn({ name: "created_at" })
+  @CreateDateColumn({ name: "created_at", type: "timestamp with time zone" })
   @Exclude()
   createdAt!: Date;
 
   @Field({ description: "User updated date" })
-  @UpdateDateColumn({ name: "updated_at" })
+  @UpdateDateColumn({ name: "updated_at", type: "timestamp with time zone" })
   @Exclude()
   updatedAt!: Date;
 

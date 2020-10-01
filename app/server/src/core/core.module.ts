@@ -11,6 +11,7 @@ import { HealthController } from "./health/health.controller";
 import { NuxtController } from "./nuxt/nuxt.controller";
 import { SettingsResolver } from "./settings/settings.resolver";
 import { I18nModule } from "./i18n/i18n.module";
+import { SendgridModule } from "./sendgrid/sendgrid.module";
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { I18nModule } from "./i18n/i18n.module";
     SentryModule,
     TypeOrmModule,
     MiddlewareModule,
+    SendgridModule,
     TerminusModule,
   ],
   controllers: [HealthController, NuxtController],

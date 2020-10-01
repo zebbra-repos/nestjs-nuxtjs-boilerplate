@@ -4,12 +4,19 @@ import * as Joi from "joi";
 import authConfig from "./auth.config";
 import databaseConfig from "./database.config";
 import sentryConfig from "./sentry.config";
+import sendgridConfig from "./sendgrid.config";
 import common from "./environments/common.config";
 import development from "./environments/development.config";
 import test from "./environments/test.config";
 import production from "./environments/production.config";
 
-const load: any[] = [authConfig, databaseConfig, sentryConfig, common];
+const load: any[] = [
+  authConfig,
+  databaseConfig,
+  sendgridConfig,
+  sentryConfig,
+  common,
+];
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 switch (NODE_ENV) {
@@ -63,6 +70,10 @@ export const ConfigModule = Config.forRoot({
     TYPEORM_ENTITIES: Joi.string().default("dist/app/server/**/*.entity.js"),
     TYPEORM_MIGRATIONS: Joi.string().default("db/migrate/*.ts"),
     TYPEORM_MIGRATIONS_DIR: Joi.string().default("db/migrate"),
+
+    // SENDGRID
+    SENDGRID_API_KEY: Joi.string(),
+    SENDGRID_DEFAULTS_FROM: Joi.string(),
 
     // SENTRY
     SENTRY_DSN: Joi.string(),

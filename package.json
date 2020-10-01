@@ -43,6 +43,7 @@
     "copy:nuxt:static": "cp -r ./app/client/static ./dist/app/client/dist"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^1.5.1",
     "@nestjs/common": "^7.4.4",
     "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.4.4",
@@ -77,6 +78,8 @@
     "nestjs-command": "^1.5.0",
     "nestjs-i18n": "^8.0.10",
     "nestjs-pino": "^1.2.0",
+    "nodemailer": "^6.4.11",
+    "nodemailer-sendgrid": "^1.0.3",
     "nuxt": "^2.14.6",
     "nuxt-i18n": "^6.15.1",
     "passport": "^0.4.1",
@@ -115,6 +118,8 @@
     "@types/flat": "^5.0.1",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.2",
+    "@types/nodemailer": "^6.4.0",
+    "@types/nodemailer-sendgrid": "^1.0.0",
     "@types/passport-jwt": "^3.0.3",
     "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.10",

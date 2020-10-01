@@ -26,6 +26,10 @@ describe("ConfigModule", () => {
     expect(configService.get("database")).toBeDefined();
   });
 
+  it("should load sendgrid config", () => {
+    expect(configService.get("sendgrid")).toBeDefined();
+  });
+
   it("should load sentry config", () => {
     expect(configService.get("sentry")).toBeDefined();
   });

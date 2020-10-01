@@ -41,5 +41,8 @@
   },
   "profile": {
     "loading": "Profil wird geladen..."
+  },
+  "shared": {
+    "loading": "Seite wird geladen..."
   }
 }

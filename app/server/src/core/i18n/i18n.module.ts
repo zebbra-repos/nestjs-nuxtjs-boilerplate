@@ -13,8 +13,8 @@ export const I18nModule = I18n.forRoot({
   parser: I18nJsonParser,
   parserOptions: {
     path: isProd
-      ? `${process.cwd()}/dist/locales`
-      : `${process.cwd()}/app/server/src/locales`,
+      ? `${process.cwd()}/dist/app/server/locales`
+      : `${process.cwd()}/app/server/locales`,
     watch: isDev,
   },
   resolvers: [

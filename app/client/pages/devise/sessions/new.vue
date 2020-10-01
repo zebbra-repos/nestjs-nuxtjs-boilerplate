@@ -1,45 +1,47 @@
 <template lang="pug">
-  v-card.pt-3(:loading='loading')
-    v-toolbar(color='accent' flat)
-      v-toolbar-title {{ $t('devise.sessions.new.sign-in') }}
-    v-card-text
-      v-alert(v-if='error' type='error' dense) {{ error }}
-      v-alert(v-if='globalError' type='error' dense) {{ globalError }}
-      v-form(v-model='valid' lazy-validation)
-        v-text-field(
-          v-model='input.email'
-          :rules='rules.email'
-          :error-messages='messages.email'
-          @keydown.enter='valid && login()'
-          validate-on-blur
-          :label='$t("user.email")'
-          prepend-icon='mdi-account'
-          type='email'
-          autofocus
-        )
-        v-text-field(
-          v-model='input.password'
-          :rules='rules.password'
-          :error-messages='messages.password'
-          :counter='32'
-          @keydown.enter='valid && login()'
-          :label='$t("user.password")'
-          prepend-icon='mdi-lock'
-          type='password'
-        )
-    v-card-actions
-      v-row
-        v-col(cols='auto')
-          v-btn(
-           color='primary'
-           outlined
-            :disabled='!valid'
-            @click='login'
-          ) {{ $t('devise.sessions.new.sign-in') }}
-        v-col.mr-auto(cols='auto')
-          v-btn(outlined nuxt to='/') {{ $t('devise.shared.links.back') }}
-        v-col(cols='auto')
-          devise-links
+  client-only
+    my-loading-placeholder(slot='placeholder')
+    v-card.pt-3(:loading='loading')
+      v-toolbar(color='accent' flat)
+        v-toolbar-title {{ $t('devise.sessions.new.sign-in') }}
+      v-card-text
+        v-alert(v-if='error' type='error' dense) {{ error }}
+        v-alert(v-if='globalError' type='error' dense) {{ globalError }}
+        v-form(v-model='valid' lazy-validation)
+          v-text-field(
+            v-model='input.email'
+            :rules='rules.email'
+            :error-messages='messages.email'
+            @keydown.enter='valid && login()'
+            validate-on-blur
+            :label='$t("user.email")'
+            prepend-icon='mdi-account'
+            type='email'
+            autofocus
+          )
+          v-text-field(
+            v-model='input.password'
+            :rules='rules.password'
+            :error-messages='messages.password'
+            :counter='32'
+            @keydown.enter='valid && login()'
+            :label='$t("user.password")'
+            prepend-icon='mdi-lock'
+            type='password'
+          )
+      v-card-actions
+        v-row
+          v-col(cols='auto')
+            v-btn(
+            color='primary'
+            outlined
+              :disabled='!valid'
+              @click='login'
+            ) {{ $t('devise.sessions.new.sign-in') }}
+          v-col.mr-auto(cols='auto')
+            v-btn(outlined nuxt to='/') {{ $t('devise.shared.links.back') }}
+          v-col(cols='auto')
+            devise-links
 </template>
 
 <script lang="ts">
@@ -54,13 +56,14 @@ import {
 import useCsrf from "~/composable/useCsrf";
 import { useSignInMutation } from "~/apollo/generated-operations";
 import errorHandler from "~/utils/error/form-error-handler";
-import { useIsLoggedInGuard, useLogin } from "~/composable/useSession";
+import { useRequireNoAuthentication } from "~/composable/useGuards";
+import { useLogin } from "~/composable/useSession";
 
 export default defineComponent({
   name: "Login",
   layout: "devise",
   setup() {
-    useIsLoggedInGuard();
+    useRequireNoAuthentication();
     useCsrf();
 
     const { app, redirect, error } = useContext();

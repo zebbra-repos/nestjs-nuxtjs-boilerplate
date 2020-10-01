@@ -45,13 +45,13 @@ import useCsrf from "~/composable/useCsrf";
 import { useUnlockAccountRequestMutation } from "~/apollo/generated-operations";
 import errorHandler from "~/utils/error/form-error-handler";
 import { notificationStore } from "~/store";
-import { useIsLoggedInGuard } from "~/composable/useSession";
+import { useRequireNoAuthentication } from "~/composable/useGuards";
 
 export default defineComponent({
   name: "UnlockInstructions",
   layout: "devise",
   setup() {
-    useIsLoggedInGuard();
+    useRequireNoAuthentication();
     useCsrf();
 
     const {

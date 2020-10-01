@@ -38,6 +38,8 @@
     "test:client:cov": "jest --config ./app/client/jest-client.config.js --runInBand --coverage",
     "generate:types": "graphql-codegen --config codegen.yml",
     "copy": "npm-run-all -p copy:**",
+    "copy:nest:locales": "cp -r ./app/server/locales ./dist/app/server/locales",
+    "copy:nest:templates": "cp -r ./app/server/templates ./dist/app/server/templates",
     "copy:nuxt:static": "cp -r ./app/client/static ./dist/app/client/dist"
   },
   "dependencies": {

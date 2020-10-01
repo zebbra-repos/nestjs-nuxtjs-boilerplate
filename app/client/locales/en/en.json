@@ -41,5 +41,8 @@
   },
   "profile": {
     "loading": "Loading profile..."
+  },
+  "shared": {
+    "loading": "Loading..."
   }
 }

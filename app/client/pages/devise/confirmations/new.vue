@@ -45,13 +45,13 @@ import useCsrf from "~/composable/useCsrf";
 import { useConfirmAccountRequestMutation } from "~/apollo/generated-operations";
 import errorHandler from "~/utils/error/form-error-handler";
 import { notificationStore } from "~/store";
-import { useIsLoggedInGuard } from "~/composable/useSession";
+import { useRequireNoAuthentication } from "~/composable/useGuards";
 
 export default defineComponent({
   name: "ConfirmationInstructions",
   layout: "devise",
   setup() {
-    useIsLoggedInGuard();
+    useRequireNoAuthentication();
     useCsrf();
 
     const {

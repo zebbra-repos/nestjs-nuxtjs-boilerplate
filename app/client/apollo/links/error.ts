@@ -30,7 +30,7 @@ export default function errorLink(ctx: Context) {
             : app.i18n.t("devise.failure.unauthenticated");
 
         if (path !== "login") {
-          useLogout(app, redirect, message as string);
+          useLogout(app, redirect, message as string, true);
           return;
         }
       }

@@ -1,11 +1,13 @@
 <template lang="pug">
   v-layout
     v-flex
-      v-card
-        v-card-title(v-if='loading') {{ $t('profile.loading') }}
-        span(v-else-if='profile')
-          v-card-title {{ profile.firstName }} {{ profile.lastName }}
-          v-card-text {{ profile.email }}
+      client-only
+        my-loading-placeholder(slot='placeholder')
+        v-card
+          v-card-title(v-if='loading') {{ $t('profile.loading') }}
+          span(v-else-if='profile')
+            v-card-title {{ profile.firstName }} {{ profile.lastName }}
+            v-card-text {{ profile.email }}
 </template>
 
 <script lang="ts">

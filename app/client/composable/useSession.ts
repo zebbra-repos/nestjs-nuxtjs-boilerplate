@@ -1,5 +1,4 @@
 import { NuxtAppOptions } from "@nuxt/types";
-import { useContext } from "@nuxtjs/composition-api";
 import { SignInResponseDto } from "~/apollo/generated-operations";
 import { notificationStore, sessionStore } from "~/store";
 
@@ -24,34 +23,16 @@ export async function useLogin(
   }
 }
 
-export function useIsLoggedInGuard() {
-  const { app, redirect } = useContext();
-
-  if (
-    process.client &&
-    app.$apolloHelpers.getToken() &&
-    !sessionStore.expired
-  ) {
-    notificationStore.show({
-      color: "info",
-      message: app.i18n.t("devise.failure.already-authenticated") as string,
-      timeout: 3000,
-    });
-
-    if (app.router) {
-      app.router.push("/");
-    } else {
-      redirect("/");
-    }
-  }
-}
-
 export async function useLogout(
   app: NuxtAppOptions,
   redirect: (location: string) => void,
   message?: string,
+  skipReset: boolean = false,
 ) {
-  await app.$apolloHelpers.onLogout();
+  if (!skipReset) {
+    await app.$apolloHelpers.onLogout();
+  }
+
   sessionStore.updateExp(0);
 
   notificationStore.show({

@@ -2,7 +2,7 @@ import { promises as fs, existsSync } from "fs";
 import { Test } from "@nestjs/testing";
 import { CommandModule, CommandModuleTest } from "nestjs-command";
 
-import { OrmconfigModule } from "../ormconfig.module";
+import { OrmconfigModule } from "..";
 
 describe("Ormconfig Command", () => {
   let commandModule: CommandModuleTest;

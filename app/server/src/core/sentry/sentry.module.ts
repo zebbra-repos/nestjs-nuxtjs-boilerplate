@@ -6,7 +6,7 @@ import { ConfigService } from "@nestjs/config";
 import { Module, HttpException } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 
-import { SentryReportingInterceptor } from "../../common/interceptors/sentry.interceptor";
+import { SentryReportingInterceptor } from "../../common/interceptors";
 
 @Module({
   imports: [

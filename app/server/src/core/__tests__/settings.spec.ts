@@ -1,7 +1,6 @@
 import { Test } from "@nestjs/testing";
-import { ConfigModule } from "../config/config.module";
-import { GraphQLModule } from "../graphql/graphql.module";
-import { SettingsResolver } from "../settings/settings.resolver";
+
+import { ConfigModule, GraphQLModule, SettingsResolver } from "../";
 
 describe("SettingsResolver", () => {
   let settingsResolver: SettingsResolver;

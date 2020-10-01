@@ -5,15 +5,16 @@ import { factory, FactoryModule } from "typeorm-factories";
 import request from "supertest";
 import { decode } from "jsonwebtoken";
 
-import { ConfigModule } from "../../src/core/config/config.module";
-import { GraphQLModule } from "../../src/core/graphql/graphql.module";
-import { LoggerModule } from "../../src/core/logger/logger.module";
-import { TypeOrmModule } from "../../src/core/type-orm/type-orm.module";
-import { AuthModule } from "../../src/auth/auth.module";
-import { UsersModule } from "../../src/users/users.module";
-import { I18nModule } from "../../src/core/i18n/i18n.module";
-import { DeviseModule } from "../../src/devise/devise.module";
-import { User } from "../../src/users/users.entity";
+import {
+  ConfigModule,
+  I18nModule,
+  GraphQLModule,
+  LoggerModule,
+  TypeOrmModule,
+} from "../../src/core";
+import { AuthModule } from "../../src/auth";
+import { User, UsersModule } from "../../src/users";
+import { DeviseModule } from "../../src/devise";
 import { createToken } from "../utils/helpers";
 
 describe("UserResolver (e2e)", () => {

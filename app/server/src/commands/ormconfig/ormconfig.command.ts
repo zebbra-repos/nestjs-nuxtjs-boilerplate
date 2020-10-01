@@ -15,7 +15,7 @@ export class OrmconfigCommand {
     autoExit: true,
   })
   async create() {
-    const ormconfig = this.configService.get<TypeOrmModuleOptions>("database");
+    const ormconfig = this.configService.get<TypeOrmModuleOptions>("type-orm");
     const migrationSettings = {
       migrations: ["db/migrate/*.ts"],
       cli: {

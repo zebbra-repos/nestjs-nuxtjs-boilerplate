@@ -1,7 +1,8 @@
 import { Module } from "@nestjs/common";
 import { CommandModule } from "nestjs-command";
 
-import { ConfigModule } from "../../core/config/config.module";
+import { ConfigModule } from "../../core";
+
 import { OrmconfigCommand } from "./ormconfig.command";
 
 @Module({

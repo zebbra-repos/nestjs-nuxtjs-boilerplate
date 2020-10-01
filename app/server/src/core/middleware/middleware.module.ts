@@ -6,10 +6,12 @@ import { TypeormStore } from "connect-typeorm";
 
 import { Session } from "./session.entity";
 import { MiddlewareResolver } from "./middleware.resolver";
-import { HelmetMiddleware } from "./middlewares/helmet.middleware";
-import { CorsMiddleware } from "./middlewares/cors.middleware";
-import { ExpressSessionMiddleware } from "./middlewares/express-session.middleware";
-import { CsurfMiddleware } from "./middlewares/csurf.middleware";
+import {
+  HelmetMiddleware,
+  CorsMiddleware,
+  ExpressSessionMiddleware,
+  CsurfMiddleware,
+} from "./middlewares";
 
 @Module({
   imports: [TypeOrmModule.forFeature([Session])],

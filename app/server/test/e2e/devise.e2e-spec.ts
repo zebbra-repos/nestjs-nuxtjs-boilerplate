@@ -3,14 +3,16 @@ import { INestApplication, ValidationPipe } from "@nestjs/common";
 import { Connection, EntityManager, QueryRunner } from "typeorm";
 import { factory, FactoryModule } from "typeorm-factories";
 
-import { AuthModule } from "../../src/auth/auth.module";
-import { ConfigModule } from "../../src/core/config/config.module";
-import { GraphQLModule } from "../../src/core/graphql/graphql.module";
-import { LoggerModule } from "../../src/core/logger/logger.module";
-import { TypeOrmModule } from "../../src/core/type-orm/type-orm.module";
-import { I18nModule } from "../../src/core/i18n/i18n.module";
-import { DeviseModule } from "../../src/devise/devise.module";
-import { User } from "../../src/users/users.entity";
+import { AuthModule } from "../../src/auth";
+import {
+  ConfigModule,
+  I18nModule,
+  GraphQLModule,
+  LoggerModule,
+  TypeOrmModule,
+} from "../../src/core";
+import { DeviseModule } from "../../src/devise";
+import { User } from "../../src/users";
 import { signUp, signIn } from "../utils/helpers";
 
 describe("DeviseResolver (e2e)", () => {

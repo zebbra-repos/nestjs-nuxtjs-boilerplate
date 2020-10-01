@@ -1,6 +1,7 @@
 import { Query, Resolver } from "@nestjs/graphql";
 
-import { CsrfToken } from "../../common/decorators/csrf-token.decorator";
+import { CsrfToken } from "../../common/decorators";
+
 import { CsrfTokenDto } from "./middleware.dto";
 
 @Resolver("Middleware")

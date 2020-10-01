@@ -1,5 +1,6 @@
 import { ConfigService } from "@nestjs/config";
 import { Test } from "@nestjs/testing";
+
 import { ConfigModule } from "../config/config.module";
 
 describe("ConfigModule", () => {
@@ -22,15 +23,15 @@ describe("ConfigModule", () => {
     expect(configService.get("auth")).toBeDefined();
   });
 
-  it("should load database config", () => {
-    expect(configService.get("database")).toBeDefined();
-  });
-
   it("should load sendgrid config", () => {
     expect(configService.get("sendgrid")).toBeDefined();
   });
 
   it("should load sentry config", () => {
     expect(configService.get("sentry")).toBeDefined();
+  });
+
+  it("should load type-orm config", () => {
+    expect(configService.get("type-orm")).toBeDefined();
   });
 });

@@ -1,14 +1,13 @@
 import { Injectable } from "@nestjs/common";
 
-import { UsersService } from "../users/users.service";
-import { UserDto } from "../users/users.dto";
-import { DeviseService } from "../devise/devise.service";
+import { DeviseService } from "../devise";
+import { UserDto, UsersService } from "../users";
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly usersService: UsersService,
     private readonly deviseService: DeviseService,
+    private readonly usersService: UsersService,
   ) {}
 
   async validateUser(email: string, password: string) {

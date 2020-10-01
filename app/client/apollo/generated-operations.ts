@@ -15,6 +15,20 @@ export type Scalars = {
   Float: number;
 };
 
+/** Csrf token */
+export type CsrfTokenDto = {
+  __typename?: "CsrfTokenDto";
+  /** Token */
+  token: Scalars["String"];
+};
+
+/** Application settings for frontend */
+export type SettingsDto = {
+  __typename?: "SettingsDto";
+  /** Application version */
+  version: Scalars["String"];
+};
+
 /** User DTO model */
 export type UserDto = {
   __typename?: "UserDto";
@@ -44,30 +58,16 @@ export type MessageResponseDto = {
   message: Scalars["String"];
 };
 
-/** Csrf token */
-export type CsrfTokenDto = {
-  __typename?: "CsrfTokenDto";
-  /** Token */
-  token: Scalars["String"];
-};
-
-/** Application settings for frontend */
-export type SettingsDto = {
-  __typename?: "SettingsDto";
-  /** Application version */
-  version: Scalars["String"];
-};
-
 export type Query = {
   __typename?: "Query";
-  /** Get current user profile */
-  profile: UserDto;
-  /** Get user by ID */
-  user: UserDto;
   /** Fetch a new csrf token */
   csrf: CsrfTokenDto;
   /** Get application settings for frontend */
   settings: SettingsDto;
+  /** Get current user profile */
+  profile: UserDto;
+  /** Get user by ID */
+  user: UserDto;
 };
 
 export type QueryUserArgs = {

@@ -3,8 +3,7 @@ import { Test } from "@nestjs/testing";
 import { ConfigService } from "@nestjs/config";
 import request from "supertest";
 
-import { CoreModule } from "../../src/core/core.module";
-import { SettingsResolver } from "../../src/core/settings/settings.resolver";
+import { CoreModule, SettingsResolver } from "../../src/core";
 
 describe("Middlware (e2e)", () => {
   let app: INestApplication;

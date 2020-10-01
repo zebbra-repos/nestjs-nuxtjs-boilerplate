@@ -6,14 +6,10 @@ import { JwtModule, JwtModuleOptions } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { hash } from "bcrypt";
 
-import {
-  MockType,
-  repositoryMockFactory,
-} from "../../../test/factories/repository-mock.factory";
-import { ConfigModule } from "../../core/config/config.module";
-import { User } from "../../users/users.entity";
-import { UsersService } from "../../users/users.service";
-import { DeviseService } from "../devise.service";
+import { MockType, repositoryMockFactory } from "../../../test/factories";
+import { ConfigModule } from "../../core";
+import { User, UsersService } from "../../users";
+import { DeviseService } from "..";
 
 describe("DeviseService", () => {
   let deviseService: DeviseService;

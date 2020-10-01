@@ -1,10 +1,12 @@
 import { ConfigModule as Config } from "@nestjs/config";
 import * as Joi from "joi";
 
-import authConfig from "./auth.config";
-import databaseConfig from "./database.config";
-import sentryConfig from "./sentry.config";
-import sendgridConfig from "./sendgrid.config";
+import authConfig from "../../auth/auth.config";
+import deviseConfig from "../../devise/devise.config";
+import sendgridConfig from "../sendgrid/sendgrid.config";
+import sentryConfig from "../sentry/sentry.config";
+import typeOrmConfig from "../type-orm/type-orm.config";
+
 import common from "./environments/common.config";
 import development from "./environments/development.config";
 import test from "./environments/test.config";
@@ -12,7 +14,8 @@ import production from "./environments/production.config";
 
 const load: any[] = [
   authConfig,
-  databaseConfig,
+  typeOrmConfig,
+  deviseConfig,
   sendgridConfig,
   sentryConfig,
   common,

@@ -1,9 +1,7 @@
 import { Test } from "@nestjs/testing";
 import Tokens from "csrf";
 
-import { ConfigModule } from "../config/config.module";
-import { GraphQLModule } from "../graphql/graphql.module";
-import { MiddlewareResolver } from "../middleware/middleware.resolver";
+import { ConfigModule, GraphQLModule, MiddlewareResolver } from "../";
 
 const tokens = new Tokens();
 

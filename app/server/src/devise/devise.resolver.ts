@@ -2,10 +2,10 @@ import { Mutation, Resolver, Args } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 import { I18n, I18nContext } from "nestjs-i18n";
 
-import { CurrentUser } from "../common/decorators/current-user.decorator";
-import { CreateUserDto } from "../users/users.dto";
-import { User } from "../users/users.entity";
-import { LocalAuthGuard } from "../auth/local-auth.guard";
+import { CurrentUser } from "../common/decorators";
+import { User, CreateUserDto } from "../users";
+import { LocalAuthGuard } from "../auth/strategies/local/local-auth.guard";
+
 import { DeviseService } from "./devise.service";
 import {
   SignInRequestDto,

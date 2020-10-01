@@ -3,12 +3,9 @@ import { Test } from "@nestjs/testing";
 import { FactoryModule, factory } from "typeorm-factories";
 import { Repository } from "typeorm";
 
-import {
-  repositoryMockFactory,
-  MockType,
-} from "../../../test/factories/repository-mock.factory";
-import { User } from "../users.entity";
-import { UsersService } from "../users.service";
+import { repositoryMockFactory, MockType } from "../../../test/factories";
+
+import { User, UsersService } from "..";
 
 describe("UsersService", () => {
   let usersService: UsersService;

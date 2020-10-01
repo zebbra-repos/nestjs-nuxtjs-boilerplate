@@ -2,6 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""Csrf token"""
+type CsrfTokenDto {
+  """Token"""
+  token: String!
+}
+
+"""Application settings for frontend"""
+type SettingsDto {
+  """Application version"""
+  version: String!
+}
+
 """User DTO model"""
 type UserDto {
   """User database ID"""
@@ -32,30 +44,18 @@ type MessageResponseDto {
   message: String!
 }
 
-"""Csrf token"""
-type CsrfTokenDto {
-  """Token"""
-  token: String!
-}
-
-"""Application settings for frontend"""
-type SettingsDto {
-  """Application version"""
-  version: String!
-}
-
 type Query {
-  """Get current user profile"""
-  profile: UserDto!
-
-  """Get user by ID"""
-  user(id: Int!): UserDto!
-
   """Fetch a new csrf token"""
   csrf: CsrfTokenDto!
 
   """Get application settings for frontend"""
   settings: SettingsDto!
+
+  """Get current user profile"""
+  profile: UserDto!
+
+  """Get user by ID"""
+  user(id: Int!): UserDto!
 }
 
 type Mutation {

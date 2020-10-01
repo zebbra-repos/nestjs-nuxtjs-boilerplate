@@ -1,17 +1,19 @@
 import { Module } from "@nestjs/common";
 import { TerminusModule } from "@nestjs/terminus";
+import { SentryModule } from "@ntegral/nestjs-sentry";
 
-import { ConfigModule } from "./config/config.module";
-import { SentryModule } from "./sentry/sentry.module";
-import { GraphQLModule } from "./graphql/graphql.module";
-import { LoggerModule } from "./logger/logger.module";
-import { TypeOrmModule } from "./type-orm/type-orm.module";
-import { MiddlewareModule } from "./middleware/middleware.module";
-import { HealthController } from "./health/health.controller";
-import { NuxtController } from "./nuxt/nuxt.controller";
-import { SettingsResolver } from "./settings/settings.resolver";
-import { I18nModule } from "./i18n/i18n.module";
-import { SendgridModule } from "./sendgrid/sendgrid.module";
+import {
+  ConfigModule,
+  GraphQLModule,
+  HealthController,
+  I18nModule,
+  LoggerModule,
+  MiddlewareModule,
+  NuxtController,
+  SendgridModule,
+  SettingsResolver,
+  TypeOrmModule,
+} from ".";
 
 @Module({
   imports: [

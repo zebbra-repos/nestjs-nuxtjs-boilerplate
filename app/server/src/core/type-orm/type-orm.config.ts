@@ -2,7 +2,7 @@ import { registerAs } from "@nestjs/config";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
 export default registerAs(
-  "database",
+  "type-orm",
   (): TypeOrmModuleOptions => {
     const base: TypeOrmModuleOptions = {
       type: "postgres",

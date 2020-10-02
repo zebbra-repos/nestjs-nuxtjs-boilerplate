@@ -27,7 +27,7 @@ describe("DeviseResolver (e2e)", () => {
     queryRunner = (manager.queryRunner as any) = dbConnection.createQueryRunner(
       "master",
     );
-  }, 1000 * 10);
+  }, 1000 * 20);
 
   afterAll(async () => {
     await app.close();
@@ -90,7 +90,7 @@ describe("DeviseResolver (e2e)", () => {
       const user = await factory(User).make();
       return signIn(app, user)
         .expect(({ body }) => {
-          expect(body.errors[0].message).toBe("Invalid email or password");
+          expect(body.errors[0].message).toBe("Invalid Email or password.");
         })
         .expect(200);
     });
@@ -101,7 +101,7 @@ describe("DeviseResolver (e2e)", () => {
         password: user.password + "1234",
       } as User)
         .expect(({ body }) => {
-          expect(body.errors[0].message).toBe("Invalid email or password");
+          expect(body.errors[0].message).toBe("Invalid Email or password.");
         })
         .expect(200);
     });

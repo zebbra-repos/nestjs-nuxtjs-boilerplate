@@ -12,12 +12,14 @@ export class DeviceModuleOptions {
   };
 
   public readonly confirmation = {
-    enabled: true,
+    enabled: false,
     confirmWithin: 1000 * 60 * 60 * 24 * 3,
   };
 
   public readonly unlock = {
-    enabled: true,
+    enabled: false,
+    unlockIn: 1000 * 60 * 60 * 24 * 2,
+    strategy: "both",
   };
 }
 

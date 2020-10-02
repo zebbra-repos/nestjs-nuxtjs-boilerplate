@@ -24,7 +24,7 @@ describe("Middlware (e2e)", () => {
 
     settingsResolver = moduleRef.get<SettingsResolver>(SettingsResolver);
     configService = moduleRef.get<ConfigService>(ConfigService);
-  }, 1000 * 10);
+  }, 1000 * 20);
 
   afterAll(async () => {
     await app.close();

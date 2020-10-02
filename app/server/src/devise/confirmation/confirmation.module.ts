@@ -5,5 +5,6 @@ import { ConfirmationService } from "./confirmation.service";
 
 @Module({
   providers: [ConfirmationResolver, ConfirmationService],
+  exports: [ConfirmationService],
 })
 export class ConfirmationModule {}

@@ -5,10 +5,12 @@ import { getRepositoryToken } from "@nestjs/typeorm";
 import { hash } from "bcrypt";
 
 import { MockType, repositoryMockFactory } from "../../../../test/factories";
-import { ConfigModule } from "../../../core";
+import { ConfigModule, I18nModule } from "../../../core";
 import { User, UsersService } from "../../../users";
 
 import { AuthenticationService } from "..";
+import { Devise } from "../../devise.entity";
+import { ConfirmationService, UnlockService } from "../../";
 
 describe("AuthenticationService", () => {
   let authService: AuthenticationService;
@@ -18,14 +20,20 @@ describe("AuthenticationService", () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [ConfigModule, FactoryModule],
+      imports: [ConfigModule, I18nModule, FactoryModule],
       providers: [
         AuthenticationService,
         {
           provide: getRepositoryToken(User),
           useFactory: repositoryMockFactory,
         },
+        {
+          provide: getRepositoryToken(Devise),
+          useFactory: repositoryMockFactory,
+        },
         UsersService,
+        ConfirmationService,
+        UnlockService,
       ],
     }).compile();
     await moduleRef.init();
@@ -35,7 +43,7 @@ describe("AuthenticationService", () => {
     user = await factory(User).make();
     password = user.password;
     user.password = await hash(user.password, 10);
-  }, 1000 * 10);
+  }, 1000 * 20);
 
   it("should be defined", () => {
     expect(authService).toBeDefined();
@@ -45,23 +53,25 @@ describe("AuthenticationService", () => {
   describe("validateUser", () => {
     it("to return the validated user", async () => {
       repository.findOne.mockReturnValueOnce(user);
-      expect(await authService.validateUser(user.email, password)).toEqual(
-        user,
-      );
+      expect(
+        await authService.validateUser(user.email, password, "en"),
+      ).toEqual(user);
       expect(repository.findOne).toBeCalledWith({ email: user.email });
     });
 
-    it("to return null for invalid email", async () => {
+    it("to return null for invalid email", () => {
       repository.findOne.mockReturnValueOnce(false);
-      expect(await authService.validateUser(user.email, password)).toBe(null);
+      expect(
+        authService.validateUser(user.email, password, "en"),
+      ).rejects.toThrow("Invalid Email or password.");
     });
 
-    it("to return null for invalid password", async () => {
+    it("to return null for invalid password", () => {
       const invalidPassword = password + "invalid";
       repository.findOne.mockReturnValueOnce(user);
-      expect(await authService.validateUser(user.email, invalidPassword)).toBe(
-        null,
-      );
+      expect(
+        authService.validateUser(user.email, invalidPassword, "en"),
+      ).rejects.toThrow("Invalid Email or password.");
     });
   });
 
@@ -69,7 +79,7 @@ describe("AuthenticationService", () => {
     it("to return the validated user", async () => {
       const userWithId = Object.assign({}, user, { id: 1 });
       repository.findOneOrFail.mockReturnValueOnce(userWithId);
-      expect(await authService.validateUserToken(userWithId)).toEqual(
+      expect(await authService.validateUserToken(userWithId, "en")).toEqual(
         userWithId,
       );
       expect(repository.findOneOrFail).toBeCalledWith(userWithId.id);

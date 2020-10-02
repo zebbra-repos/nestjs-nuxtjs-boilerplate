@@ -2,7 +2,7 @@ import { Strategy } from "passport-local";
 import { PassportStrategy } from "@nestjs/passport";
 import { I18nService } from "nestjs-i18n";
 import { ConfigService } from "@nestjs/config";
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { Request } from "express";
 
 import { AuthenticationService } from "../../authentication.service";
@@ -22,27 +22,11 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  public async validate(req: Request, email: string, password: string) {
-    const user = await this.authenticationService.validateUser(email, password);
+  public validate(req: Request, email: string, password: string) {
+    const lang: string =
+      (req.cookies && req.cookies.i18n_redirected) ||
+      this.configService.get<string>("fallbackLanguage");
 
-    if (!user) {
-      const lang: string =
-        (req.cookies && req.cookies.i18n_redirected) ||
-        this.configService.get<string>("fallbackLanguage");
-
-      const message = await this.i18n.t(
-        "devise.failure.not-found-in-database",
-        {
-          lang,
-          args: {
-            authenticationKeys: await this.i18n.t("user.email", { lang }),
-          },
-        },
-      );
-
-      throw new UnauthorizedException(null, message);
-    }
-
-    return user;
+    return this.authenticationService.validateUser(email, password, lang);
   }
 }

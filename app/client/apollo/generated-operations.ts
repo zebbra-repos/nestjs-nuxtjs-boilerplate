@@ -58,6 +58,19 @@ export type SignInResponseDto = {
   accessToken: Scalars["String"];
 };
 
+/** Sign Up Response DTO model */
+export type SignUpResponseDto = {
+  __typename?: "SignUpResponseDto";
+  /** Custom information message */
+  message: Scalars["String"];
+  /** Path to redirect to after action performed */
+  afterActionPath: Scalars["String"];
+  /** JWT expires in */
+  expiresIn?: Maybe<Scalars["Int"]>;
+  /** JSON web token */
+  accessToken?: Maybe<Scalars["String"]>;
+};
+
 export type Query = {
   __typename?: "Query";
   /** Fetch a new csrf token */
@@ -82,10 +95,10 @@ export type Mutation = {
   unlockAccountRequest: MessageResponseDto;
   /** Request user password reset instructions */
   resetPasswordRequest: MessageResponseDto;
-  /** Register as a new user */
-  signUp: MessageResponseDto;
   /** Login as user */
   signIn: SignInResponseDto;
+  /** Register as a new user */
+  signUp: SignUpResponseDto;
 };
 
 export type MutationConfirmAccountRequestArgs = {
@@ -100,18 +113,26 @@ export type MutationResetPasswordRequestArgs = {
   data: EmailRequestDto;
 };
 
-export type MutationSignUpArgs = {
-  data: CreateUserDto;
-};
-
 export type MutationSignInArgs = {
   data: SignInRequestDto;
+};
+
+export type MutationSignUpArgs = {
+  data: CreateUserDto;
 };
 
 /** Email Request DTO model */
 export type EmailRequestDto = {
   /** User email */
   email: Scalars["String"];
+};
+
+/** Sign In Request DTO model */
+export type SignInRequestDto = {
+  /** User email */
+  email: Scalars["String"];
+  /** User password */
+  password: Scalars["String"];
 };
 
 /** Create User DTO model */
@@ -126,14 +147,6 @@ export type CreateUserDto = {
   password: Scalars["String"];
 };
 
-/** Sign In Request DTO model */
-export type SignInRequestDto = {
-  /** User email */
-  email: Scalars["String"];
-  /** User password */
-  password: Scalars["String"];
-};
-
 export type SignUpMutationVariables = Exact<{
   firstName?: Maybe<Scalars["String"]>;
   lastName?: Maybe<Scalars["String"]>;
@@ -142,9 +155,9 @@ export type SignUpMutationVariables = Exact<{
 }>;
 
 export type SignUpMutation = { readonly __typename?: "Mutation" } & {
-  readonly signUp: { readonly __typename?: "MessageResponseDto" } & Pick<
-    MessageResponseDto,
-    "message"
+  readonly signUp: { readonly __typename?: "SignUpResponseDto" } & Pick<
+    SignUpResponseDto,
+    "message" | "afterActionPath" | "expiresIn" | "accessToken"
   >;
 };
 
@@ -239,6 +252,9 @@ export const SignUpDocument = gql`
       }
     ) {
       message
+      afterActionPath
+      expiresIn
+      accessToken
     }
   }
 `;

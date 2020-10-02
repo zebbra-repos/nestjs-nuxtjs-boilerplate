@@ -49,7 +49,7 @@ describe("DeviseResolver (e2e)", () => {
       return signUp(app, user)
         .expect(({ body }) => {
           expect(body.data.signUp.message).toBe(
-            "You will receive an email with instructions for how to confirm your email address in a few minutes.",
+            "Welcome! You have signed up successfully.",
           );
         })
         .expect(200);

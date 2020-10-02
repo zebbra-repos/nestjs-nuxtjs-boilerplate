@@ -9,11 +9,13 @@ export class DeviceModuleOptions {
 
   public readonly registration = {
     enabled: true,
+    afterSignUpPath: "/users/profile",
+    afterInactiveSignUpPath: "/devise/sessions/new",
   };
 
   public readonly confirmation = {
     enabled: false,
-    confirmWithin: 1000 * 60 * 60 * 24 * 3,
+    confirmWithin: 0,
   };
 
   public readonly unlock = {

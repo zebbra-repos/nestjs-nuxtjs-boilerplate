@@ -13,6 +13,9 @@ mutation signUp(
     }
   ) {
     message
+    afterActionPath
+    expiresIn
+    accessToken
   }
 }
 

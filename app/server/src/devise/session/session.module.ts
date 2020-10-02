@@ -17,5 +17,6 @@ import { SessionService } from "./session.service";
     UsersModule,
   ],
   providers: [SessionResolver, SessionService],
+  exports: [SessionService],
 })
 export class SessionModule {}

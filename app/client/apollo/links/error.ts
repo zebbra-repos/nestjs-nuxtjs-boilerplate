@@ -21,15 +21,15 @@ export default function errorLink(ctx: Context) {
 
       if (unauthorized) {
         handled = true;
-
         const path = unauthorized.path && unauthorized.path[0];
-        const token = app.$apolloHelpers.getToken();
-        const message =
-          token && sessionStore.expired
-            ? app.i18n.t("devise.failure.timeout")
-            : app.i18n.t("devise.failure.unauthenticated");
 
-        if (path !== "login") {
+        if (path !== "signIn") {
+          const token = app.$apolloHelpers.getToken();
+          const message =
+            token && sessionStore.expired
+              ? app.i18n.t("devise.failure.timeout")
+              : app.i18n.t("devise.failure.unauthenticated");
+
           useLogout(app, redirect, message as string, true, route.path);
           return;
         }

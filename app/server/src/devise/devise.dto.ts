@@ -10,3 +10,11 @@ export class MessageResponseDto {
   @Field(() => String, { description: "Custom information message" })
   public message!: string;
 }
+
+@ObjectType({ description: "After Action Path DTO model" })
+export class AfterActionPathDto {
+  @Field(() => String, {
+    description: "Path to redirect to after action performed",
+  })
+  public afterActionPath!: string;
+}

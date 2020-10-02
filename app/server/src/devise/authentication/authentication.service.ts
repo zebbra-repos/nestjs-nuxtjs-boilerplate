@@ -22,14 +22,14 @@ export class AuthenticationService {
 
   // Validation callback for local strategy
   public async validateUser(email: string, password: string, lang: string) {
-    let user = await this.usersService.findByEmail(email);
+    const user = await this.usersService.findByEmail(email);
 
     if (!user || !(await user.comparePassword(password))) {
       throw new UnauthorizedException(null, await this.notFoundMessage(lang));
     }
 
-    user = await this.afterSetUser(user);
-    user = await this.unlockService.afterSetUser(user);
+    await this.afterSetUser(user, lang);
+    await this.unlockService.afterSetUser(user);
     return user;
   }
 
@@ -45,28 +45,47 @@ export class AuthenticationService {
       throw new UnauthorizedException(null, message);
     }
 
-    return this.afterSetUser(user);
+    await this.afterSetUser(user, lang);
+    return user;
   }
 
   // Deny user access whenever their account is not active yet
-  public async afterSetUser(user: User) {
+  public async afterSetUser(user: User, lang: string) {
+    const { active, message } = await this.activeForAuthentication(user);
+
+    if (!active) {
+      throw new UnauthorizedException(
+        null,
+        await this.i18n.t(`devise.failure.${message}`, { lang }),
+      );
+    }
+
+    return user;
+  }
+
+  public async activeForAuthentication(user: User) {
     // Make sure user is linked to a devise
     user = await this.ensureDevice(user);
 
     let active = this.confirmationService.activeForAuthentication(user);
     if (!active) {
-      throw new UnauthorizedException(
-        null,
-        this.confirmationService.inactiveMessage,
-      );
+      return {
+        active,
+        message: this.confirmationService.inactiveMessage,
+      };
     }
 
     active = this.unlockService.activeForAuthentication(user);
     if (!active) {
-      throw new UnauthorizedException(null, this.unlockService.inactiveMessage);
+      return {
+        active,
+        message: this.unlockService.inactiveMessage,
+      };
     }
 
-    return user;
+    return {
+      active,
+    };
   }
 
   // If devise does not exists on user we create it on the fly and
@@ -75,16 +94,7 @@ export class AuthenticationService {
       return user;
     }
 
-    // If confirmable is enabled we have to make sure to not block
-    // existing users for backwards compatibility
-    const params = this.confirmationService.confirmable
-      ? {
-          confirmationSentAt: new Date(),
-          confirmedAt: new Date(),
-        }
-      : {};
-
-    user.devise = this.deviseRepository.create(params);
+    user.devise = this.deviseRepository.create();
     return this.usersService.save(user);
   }
 

@@ -44,6 +44,21 @@ type SignInResponseDto {
   accessToken: String!
 }
 
+"""Sign Up Response DTO model"""
+type SignUpResponseDto {
+  """Custom information message"""
+  message: String!
+
+  """Path to redirect to after action performed"""
+  afterActionPath: String!
+
+  """JWT expires in"""
+  expiresIn: Int
+
+  """JSON web token"""
+  accessToken: String
+}
+
 type Query {
   """Fetch a new csrf token"""
   csrf: CsrfTokenDto!
@@ -68,17 +83,26 @@ type Mutation {
   """Request user password reset instructions"""
   resetPasswordRequest(data: EmailRequestDto!): MessageResponseDto!
 
-  """Register as a new user"""
-  signUp(data: CreateUserDto!): MessageResponseDto!
-
   """Login as user"""
   signIn(data: SignInRequestDto!): SignInResponseDto!
+
+  """Register as a new user"""
+  signUp(data: CreateUserDto!): SignUpResponseDto!
 }
 
 """Email Request DTO model"""
 input EmailRequestDto {
   """User email"""
   email: String!
+}
+
+"""Sign In Request DTO model"""
+input SignInRequestDto {
+  """User email"""
+  email: String!
+
+  """User password"""
+  password: String!
 }
 
 """Create User DTO model"""
@@ -89,15 +113,6 @@ input CreateUserDto {
   """User last name"""
   lastName: String
 
-  """User email"""
-  email: String!
-
-  """User password"""
-  password: String!
-}
-
-"""Sign In Request DTO model"""
-input SignInRequestDto {
   """User email"""
   email: String!
 

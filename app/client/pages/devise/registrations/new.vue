@@ -69,9 +69,10 @@ import {
 
 import { useSignUpMutation } from "~/apollo/generated-operations";
 import errorHandler from "~/utils/error/form-error-handler";
-import { notificationStore } from "~/store";
+import { notificationStore, sessionStore } from "~/store";
 import useCsrf from "~/composable/useCsrf";
 import { useRequireNoAuthentication } from "~/composable/useGuards";
+import { useLogin } from "~/composable/useSession";
 
 export default defineComponent({
   name: "Register",
@@ -82,6 +83,7 @@ export default defineComponent({
 
     const {
       redirect,
+      app,
       app: { $validator },
     } = useContext();
 
@@ -136,13 +138,32 @@ export default defineComponent({
       if (data?.errors) {
         errorHandler(data.errors, messages, globalError);
       } else {
-        notificationStore.show({
-          color: "info",
-          message: data?.data?.signUp.message,
-          timeout: 3000,
-        });
+        const {
+          message,
+          afterActionPath,
+          expiresIn,
+          accessToken,
+        } = data?.data?.signUp!;
 
-        redirect("/devise/sessions/new");
+        if (expiresIn && accessToken) {
+          sessionStore.updateAfterSignInPath(afterActionPath);
+          useLogin(
+            app,
+            redirect,
+            {
+              expiresIn,
+              accessToken,
+            },
+            message,
+          );
+        } else {
+          notificationStore.show({
+            color: "info",
+            message,
+            timeout: 3000,
+          });
+          redirect(afterActionPath);
+        }
       }
     });
 

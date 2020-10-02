@@ -54,7 +54,7 @@ export class UnlockService {
   }
 
   get inactiveMessage() {
-    return "devise.failure.locked";
+    return "locked";
   }
 
   get unlockStrategy() {

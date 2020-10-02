@@ -45,7 +45,7 @@ export class ConfirmationService {
   }
 
   get inactiveMessage() {
-    return "devise.failure.unconfirmed";
+    return "unconfirmed";
   }
 
   get allowUnconfirmedAccessFor() {

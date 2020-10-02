@@ -6,13 +6,14 @@ export async function useLogin(
   app: NuxtAppOptions,
   redirect: (location: string) => void,
   data: SignInResponseDto,
+  message: string | null = null,
 ) {
   await app.$apolloHelpers.onLogin(data.accessToken);
   sessionStore.updateExp(data.expiresIn);
 
   notificationStore.show({
     color: "info",
-    message: app.i18n.t("devise.sessions.signed-in") as string,
+    message: message || (app.i18n.t("devise.sessions.signed-in") as string),
     timeout: 3000,
   });
 
@@ -30,25 +31,27 @@ export async function useLogout(
   skipReset: boolean = false,
   afterSignInPath: string | null = null,
 ) {
-  if (!skipReset) {
-    await app.$apolloHelpers.onLogout();
-  }
+  if (process.client) {
+    if (!skipReset) {
+      await app.$apolloHelpers.onLogout();
+    }
 
-  if (afterSignInPath) {
-    sessionStore.updateAfterSignInPath(afterSignInPath);
-  }
+    if (afterSignInPath) {
+      sessionStore.updateAfterSignInPath(afterSignInPath);
+    }
 
-  sessionStore.updateExp(0);
+    sessionStore.updateExp(0);
 
-  notificationStore.show({
-    color: "info",
-    message: message || (app.i18n.t("devise.sessions.signed-out") as string),
-    timeout: 3000,
-  });
+    notificationStore.show({
+      color: "info",
+      message: message || (app.i18n.t("devise.sessions.signed-out") as string),
+      timeout: 3000,
+    });
 
-  if (app.router) {
-    app.router.push("/devise/sessions/new");
-  } else {
-    redirect("/devise/sessions/new");
+    if (app.router) {
+      app.router.push("/devise/sessions/new");
+    } else {
+      redirect("/devise/sessions/new");
+    }
   }
 }

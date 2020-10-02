@@ -4,6 +4,7 @@ import { NestExpressApplication } from "@nestjs/platform-express";
 import { Logger } from "nestjs-pino";
 import { ConfigService } from "@nestjs/config";
 import { ValidationError } from "class-validator";
+import cookieParser from "cookie-parser";
 
 import { AppModule } from "./app.module";
 
@@ -14,6 +15,9 @@ async function bootstrap() {
   // use pino logger as application logger
   const logger = app.get(Logger);
   app.useLogger(logger);
+
+  // use cookie-parser
+  app.use(cookieParser());
 
   // use class-validator
   app.useGlobalPipes(

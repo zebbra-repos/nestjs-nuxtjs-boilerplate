@@ -6,4 +6,5 @@ export default () => ({
   logger: {
     level: process.env.LOG_LEVEL,
   },
+  fallbackLanguage: "en",
 });

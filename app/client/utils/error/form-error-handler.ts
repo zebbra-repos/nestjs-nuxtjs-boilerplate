@@ -1,4 +1,4 @@
-import { GraphQLError } from "apollo-link/node_modules/graphql";
+import { GraphQLError } from "graphql";
 import { Ref } from "@vue/composition-api";
 import { ValidationError } from "class-validator";
 

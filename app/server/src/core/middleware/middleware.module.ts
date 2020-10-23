@@ -47,8 +47,13 @@ export class MiddlewareModule implements NestModule {
       },
     });
 
+    const ignoreMethods = ["GET", "OPTIONS", "HEAD"];
+    if (process.env.NODE_ENV !== "production") {
+      ignoreMethods.push("POST");
+    }
+
     CsurfMiddleware.configure({
-      ignoreMethods: ["GET", "OPTIONS", "HEAD"],
+      ignoreMethods,
     });
 
     consumer

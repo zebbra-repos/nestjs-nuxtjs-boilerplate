@@ -125,5 +125,18 @@
     "send-instructions": "You will receive an email with instructions for how to unlock your account in a few minutes.",
     "send-paranoid-instructions": "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.",
     "unlocked": "Your account has been unlocked successfully. Please sign in to continue."
+  },
+  "errors": {
+    "messages": {
+      "already-confirmed": "was already confirmed, please try signing in",
+      "confirmation-period-expired": "needs to be confirmed within {period}, please request a new one",
+      "expired": "has expired, please request a new one",
+      "not-found": "not found",
+      "not-locked": "was not locked",
+      "not-saved": {
+        "one": "1 error prohibited this {resource} from being saved:",
+        "other": "{count} errors prohibited this {resource} from being saved:"
+      }
+    }
   }
 }

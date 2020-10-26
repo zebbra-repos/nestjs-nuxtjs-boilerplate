@@ -125,5 +125,18 @@
     "send-instructions": "Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Konto entsperren können.",
     "send-paranoid-instructions": "Falls Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten eine E-Mail, mit der Anleitung, wie Sie Ihr Konto entsperren können.",
     "unlocked": "Ihr Konto wurde entsperrt. Bitte melden Sie sich an, um fortzufahren."
+  },
+  "errors": {
+    "messages": {
+      "already-confirmed": "wurde bereits bestätigt; bitte versuchen Sie, sich anzumelden",
+      "confirmation-period-expired": "musste innerhalb von {period} bestätigt werden, bitte neu anfordern.",
+      "expired": "ist abgelaufen, bitte neu anfordern",
+      "not-found": "nicht gefunden",
+      "not-locked": "ist nicht gesperrt",
+      "not-saved": {
+        "one": "{resource} konnte aufgrund eines Fehlers nicht gespeichert werden:",
+        "other": "{count} Fehler verhinderten das Speichern von {resource}:"
+      }
+    }
   }
 }

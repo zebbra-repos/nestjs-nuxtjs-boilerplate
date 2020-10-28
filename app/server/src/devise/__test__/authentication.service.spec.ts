@@ -4,15 +4,13 @@ import { FactoryModule, factory } from "typeorm-factories";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { hash } from "bcrypt";
 
-import { MockType, repositoryMockFactory } from "../../../../test/factories";
-import { ConfigModule, I18nModule } from "../../../core";
-import { User, UsersService } from "../../../users";
+import { MockType, repositoryMockFactory } from "../../../test/factories";
+import { ConfigModule, I18nModule } from "../../core";
+import { User, UsersService } from "../../users";
 
 import { AuthenticationService } from "..";
-import { Devise } from "../../devise.entity";
-import { ConfirmationService, UnlockService } from "../../";
 
-describe("AuthenticationService", () => {
+describe("Authentication Service", () => {
   let authService: AuthenticationService;
   let repository: MockType<Repository<User>>;
   let user: User;
@@ -27,13 +25,7 @@ describe("AuthenticationService", () => {
           provide: getRepositoryToken(User),
           useFactory: repositoryMockFactory,
         },
-        {
-          provide: getRepositoryToken(Devise),
-          useFactory: repositoryMockFactory,
-        },
         UsersService,
-        ConfirmationService,
-        UnlockService,
       ],
     }).compile();
     await moduleRef.init();
@@ -45,7 +37,7 @@ describe("AuthenticationService", () => {
     user.password = await hash(user.password, 10);
   }, 1000 * 20);
 
-  it("should be defined", () => {
+  it("is defined", () => {
     expect(authService).toBeDefined();
     expect(repository).toBeDefined();
   });
@@ -59,14 +51,14 @@ describe("AuthenticationService", () => {
       expect(repository.findOne).toBeCalledWith({ email: user.email });
     });
 
-    it("to return null for invalid email", () => {
+    it("to throw an error for invalid email", () => {
       repository.findOne.mockReturnValueOnce(false);
       expect(
         authService.validateUser(user.email, password, "en"),
       ).rejects.toThrow("Invalid Email or password.");
     });
 
-    it("to return null for invalid password", () => {
+    it("to throw an error for invalid password", () => {
       const invalidPassword = password + "invalid";
       repository.findOne.mockReturnValueOnce(user);
       expect(
@@ -75,11 +67,12 @@ describe("AuthenticationService", () => {
     });
   });
 
-  describe("validateUserToken", () => {
+  describe("validateToken", () => {
     it("to return the validated user", async () => {
       const userWithId = Object.assign({}, user, { id: 1 });
       repository.findOneOrFail.mockReturnValueOnce(userWithId);
-      expect(await authService.validateUserToken(userWithId, "en")).toEqual(
+
+      expect(await authService.validateToken(userWithId, "en")).toEqual(
         userWithId,
       );
       expect(repository.findOneOrFail).toBeCalledWith(userWithId.id);

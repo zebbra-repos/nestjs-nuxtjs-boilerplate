@@ -4,6 +4,7 @@ import { FactoryModule, factory } from "typeorm-factories";
 import { Repository } from "typeorm";
 
 import { repositoryMockFactory, MockType } from "../../../test/factories";
+import { ConfigModule, I18nModule } from "../../core";
 
 import { User, UsersService } from "..";
 
@@ -14,7 +15,7 @@ describe("UsersService", () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [FactoryModule],
+      imports: [ConfigModule, I18nModule, FactoryModule],
       providers: [
         UsersService,
         {

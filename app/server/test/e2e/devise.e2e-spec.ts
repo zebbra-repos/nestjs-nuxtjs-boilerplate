@@ -58,7 +58,9 @@ describe("DeviseResolver (e2e)", () => {
     it("to fail if email is taken", () => {
       return signUp(app, user)
         .expect(({ body }) => {
-          expect(body.errors[0].message).toBe("User already exists");
+          expect(body.errors[0].message).toBe(
+            "This e-mail address is already taken.",
+          );
         })
         .expect(200);
     });

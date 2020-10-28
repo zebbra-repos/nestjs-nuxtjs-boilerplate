@@ -77,9 +77,6 @@ type Mutation {
   """Request account confirmation instructions"""
   confirmAccountRequest(data: EmailRequestDto!): MessageResponseDto!
 
-  """Request account unlock instructions"""
-  unlockAccountRequest(data: EmailRequestDto!): MessageResponseDto!
-
   """Request user password reset instructions"""
   resetPasswordRequest(data: EmailRequestDto!): MessageResponseDto!
 
@@ -88,6 +85,9 @@ type Mutation {
 
   """Register as a new user"""
   signUp(data: CreateUserDto!): SignUpResponseDto!
+
+  """Request account unlock instructions"""
+  unlockAccountRequest(data: EmailRequestDto!): MessageResponseDto!
 }
 
 """Email Request DTO model"""

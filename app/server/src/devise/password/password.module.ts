@@ -5,5 +5,6 @@ import { PasswordService } from "./password.service";
 
 @Module({
   providers: [PasswordResolver, PasswordService],
+  exports: [PasswordService],
 })
 export class PasswordModule {}

@@ -5,6 +5,7 @@ import { ConfirmationModule } from "./confirmation";
 import { PasswordModule } from "./password";
 import { RegistrationModule } from "./registration";
 import { SessionModule } from "./session";
+import { StrategyModule } from "./strategy";
 import { UnlockModule } from "./unlock";
 
 @Module({
@@ -14,6 +15,7 @@ import { UnlockModule } from "./unlock";
     PasswordModule,
     RegistrationModule,
     SessionModule,
+    StrategyModule,
     UnlockModule,
   ],
 })

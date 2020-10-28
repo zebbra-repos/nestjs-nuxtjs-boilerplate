@@ -6,15 +6,11 @@ import {
   UpdateDateColumn,
   BeforeInsert,
   Index,
-  OneToOne,
-  JoinColumn,
 } from "typeorm";
 import { IsEmail, MinLength, IsString, IsOptional } from "class-validator";
 import { Transform, Exclude } from "class-transformer";
 import { Field, Int, ObjectType, InputType } from "@nestjs/graphql";
 import { hash, compare } from "bcrypt";
-
-import { Devise } from "../devise/devise.entity";
 
 @InputType("UserInput", { description: "User model" })
 @ObjectType("UserType", { description: "User model" })
@@ -50,17 +46,6 @@ export class User {
   @MinLength(8)
   @Exclude()
   public password!: string;
-
-  @Field(() => Devise, { description: "User devise model" })
-  @OneToOne(() => Devise, {
-    eager: true,
-    cascade: true,
-    onUpdate: "CASCADE",
-    onDelete: "CASCADE",
-  })
-  @JoinColumn()
-  @Exclude()
-  public devise!: Devise;
 
   @CreateDateColumn({ name: "created_at", type: "timestamp with time zone" })
   @Exclude()

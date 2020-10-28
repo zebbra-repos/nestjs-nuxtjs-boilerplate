@@ -18,43 +18,6 @@
     "unauthenticated": "Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.",
     "unconfirmed": "Sie müssen Ihr Konto bestätigen, bevor Sie fortfahren können."
   },
-  "mailer": {
-    "confirmation-instructions": {
-      "action": "Mein Konto bestätigen",
-      "greeting": "Willkommen {recipient}!",
-      "instruction": "Folgen Sie dem untenstehenden Link, um Ihr Konto zu bestätigen:",
-      "subject": "Anleitung zur Bestätigung Ihres Kontos"
-    },
-    "email-changed": {
-      "greeting": "Hallo {recipient}!",
-      "message": "Wir schreiben Ihnen, um Sie darüber zu informieren, dass Ihre E-Mail-Adresse zu {email} geändert wurde.",
-      "subject": "E-Mail-Adresse geändert"
-    },
-    "password-change": {
-      "greeting": "Hallo {recipient}!",
-      "message": "Wir schreiben Ihnen, um Sie darüber zu informieren, dass Ihr Passwort geändert wurde.",
-      "subject": "Passwort geändert"
-    },
-    "reset-password-instructions": {
-      "action": "Passwort ändern",
-      "greeting": "Hallo {recipient}!",
-      "instruction": "Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Klicken Sie auf den unten aufgeführten Link um das Passwort zu ändern.",
-      "instruction2": "Bitte ignorieren Sie diese E-Mail, wenn Sie kein neues Passwort angefordert haben.",
-      "instruction3": "Das Passwort wird nicht geändert bis Sie den obenstehenden Link abrufen und ein neues Passwort bestimmen.",
-      "subject": "Anleitung für das Zurücksetzen Ihres Passworts"
-    },
-    "unlock-instructions": {
-      "action": "Mein Konto entsperren",
-      "greeting": "Hallo {recipient}!",
-      "instruction": "Folgen Sie dem untenstehenden Link, um Ihr Konto zu entsperren:",
-      "message": "Ihr Konto wurde aufgrund einer großen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt.",
-      "subject": "Anleitung für die Konto-Freischaltung"
-    }
-  },
-  "omniauth-callbacks": {
-    "failure": "Sie konnten nicht mit Ihrem {kind}-Konto angemeldet werden, weil \"{reason}\".",
-    "success": "Sie haben sich erfolgreich mit Ihrem {kind}-Konto angemeldet."
-  },
   "passwords": {
     "edit": {
       "change-my-password": "Ändere mein Passwort",

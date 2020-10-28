@@ -2,7 +2,7 @@ import { Query, Resolver, Args, Int } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 
 import { CurrentUser } from "../common/decorators";
-import { JwtAuthGuard } from "../devise/authentication/strategies/jwt/jwt-auth.guard";
+import { JwtAuthGuard } from "../devise/strategy/jwt/jwt-auth.guard";
 
 import { UserDto } from "./users.dto";
 import { User } from "./users.entity";

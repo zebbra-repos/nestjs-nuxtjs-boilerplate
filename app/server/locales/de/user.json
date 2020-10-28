@@ -1,3 +1,9 @@
 {
-  "email": "E-Mail"
+  "email": "E-Mail",
+  "errors": {
+    "messages": {
+      "already-exists": "Diese EMail Adresse ist bereits vergeben.",
+      "does-not-exist": "Das Konto konnte nicht gefunden werden."
+    }
+  }
 }

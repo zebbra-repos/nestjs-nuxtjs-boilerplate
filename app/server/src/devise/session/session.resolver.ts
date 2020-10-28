@@ -2,9 +2,9 @@ import { Mutation, Resolver, Args } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 
 import { CurrentUser } from "../../common/decorators";
+import { LocalAuthGuard } from "../strategy/local/local-auth.guard";
 import { User } from "../../users";
 
-import { LocalAuthGuard } from "../authentication";
 import { SignInRequestDto, SignInResponseDto } from "./session.dto";
 import { SessionService } from "./session.service";
 

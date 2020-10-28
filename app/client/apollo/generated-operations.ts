@@ -91,21 +91,17 @@ export type Mutation = {
   __typename?: "Mutation";
   /** Request account confirmation instructions */
   confirmAccountRequest: MessageResponseDto;
-  /** Request account unlock instructions */
-  unlockAccountRequest: MessageResponseDto;
   /** Request user password reset instructions */
   resetPasswordRequest: MessageResponseDto;
   /** Login as user */
   signIn: SignInResponseDto;
   /** Register as a new user */
   signUp: SignUpResponseDto;
+  /** Request account unlock instructions */
+  unlockAccountRequest: MessageResponseDto;
 };
 
 export type MutationConfirmAccountRequestArgs = {
-  data: EmailRequestDto;
-};
-
-export type MutationUnlockAccountRequestArgs = {
   data: EmailRequestDto;
 };
 
@@ -119,6 +115,10 @@ export type MutationSignInArgs = {
 
 export type MutationSignUpArgs = {
   data: CreateUserDto;
+};
+
+export type MutationUnlockAccountRequestArgs = {
+  data: EmailRequestDto;
 };
 
 /** Email Request DTO model */

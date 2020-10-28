@@ -18,43 +18,6 @@
     "unauthenticated": "You need to sign in or sign up before continuing.",
     "unconfirmed": "You have to confirm your email address before continuing."
   },
-  "mailer": {
-    "confirmation-instructions": {
-      "action": "Confirm my account",
-      "greeting": "Welcome {recipient}!",
-      "instruction": "You can confirm your account email through the link below:",
-      "subject": "Confirmation instructions"
-    },
-    "email-changed": {
-      "greeting": "Hello {recipient}!",
-      "message": "We're contacting you to notify you that your email has been changed to {email}.",
-      "subject": "Email Changed"
-    },
-    "password-change": {
-      "greeting": "Hello {recipient}!",
-      "message": "We're contacting you to notify you that your password has been changed.",
-      "subject": "Password Changed"
-    },
-    "reset-password-instructions": {
-      "action": "Change my password",
-      "greeting": "Hello {recipient}!",
-      "instruction": "Someone has requested a link to change your password. You can do this through the link below.",
-      "instruction2": "If you didn't request this, please ignore this email.",
-      "instruction3": "Your password won't change until you access the link above and create a new one.",
-      "subject": "Reset password instructions"
-    },
-    "unlock-instructions": {
-      "action": "Unlock my account",
-      "greeting": "Hello {recipient}!",
-      "instruction": "Click the link below to unlock your account:",
-      "message": "Your account has been locked due to an excessive number of unsuccessful sign in attempts.",
-      "subject": "Unlock instructions"
-    }
-  },
-  "omniauth-callbacks": {
-    "failure": "Could not authenticate you from {kind} because \"{reason}\".",
-    "success": "Successfully authenticated from {kind} account."
-  },
   "passwords": {
     "edit": {
       "change-my-password": "Change my password",

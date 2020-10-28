@@ -10,6 +10,7 @@ import {
   AuthenticationModule,
   RegistrationModule,
   SessionModule,
+  StrategyModule,
 } from "../../src/devise";
 import { User, UsersModule } from "../../src/users";
 import { createToken } from "../utils/helpers";
@@ -24,6 +25,7 @@ describe("UserResolver (e2e)", () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
         CoreModule,
+        StrategyModule,
         AuthenticationModule,
         RegistrationModule,
         SessionModule,

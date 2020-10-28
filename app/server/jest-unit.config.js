@@ -13,4 +13,5 @@ module.exports = {
   collectCoverageFrom: ["<rootDir>/src/**/*.ts"],
   coverageDirectory: "<rootDir>/../../coverage/unit",
   testEnvironment: "node",
+  setupFilesAfterEnv: ["./jest.setup.js"],
 };

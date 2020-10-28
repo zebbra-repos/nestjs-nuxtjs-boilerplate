@@ -48,7 +48,7 @@ describe("UserResolver (e2e)", () => {
     user = await factory(User).make();
     token = await createToken(app, user);
     user.id = (decode(token)! as any).id;
-  }, 1000 * 20);
+  });
 
   afterAll(async () => {
     await queryRunner.rollbackTransaction();

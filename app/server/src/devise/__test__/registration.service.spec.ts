@@ -34,7 +34,7 @@ describe("Registration Service", () => {
     repository = moduleRef.get(getRepositoryToken(User));
 
     user = await factory(User).make();
-  }, 1000 * 30);
+  });
 
   it("is defined", () => {
     expect(registrationService).toBeDefined();

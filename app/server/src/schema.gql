@@ -8,10 +8,28 @@ type CsrfTokenDto {
   token: String!
 }
 
+"""Devise configurations"""
+type DeviseConfigDto {
+  """Is the account confirmable"""
+  confirmation: Boolean!
+
+  """Is the account password editable"""
+  password: Boolean!
+
+  """Is the account registerable"""
+  registration: Boolean!
+
+  """Is the account lockable"""
+  unlock: Boolean!
+}
+
 """Application settings for frontend"""
 type SettingsDto {
   """Application version"""
   version: String!
+
+  """Devise configurations"""
+  devise: DeviseConfigDto!
 }
 
 """User DTO model"""

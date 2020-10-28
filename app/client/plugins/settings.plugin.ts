@@ -12,6 +12,7 @@ export default defineNuxtPlugin(({ error }) => {
 
       if (settings) {
         globalStore.setVersion(settings.version);
+        globalStore.setDevise(settings.devise);
       }
     });
 

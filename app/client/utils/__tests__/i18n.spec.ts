@@ -1,9 +1,9 @@
 import { join } from "path";
-import { loadTranslations } from "~/utils/i18n";
+import { loadTranslations } from "@/utils/i18n";
 
-const i18nPath = join(__dirname, "../");
+const i18nPath = join(__dirname, "../../locales");
 
-describe("Locales", () => {
+describe("i18n", () => {
   it("loads translations for de", async () => {
     const translations = await loadTranslations(
       "de",

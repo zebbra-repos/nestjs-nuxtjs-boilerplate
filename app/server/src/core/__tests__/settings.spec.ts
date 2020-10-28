@@ -22,6 +22,12 @@ describe("SettingsResolver", () => {
   it("should return the application version", async () => {
     expect(await settingsResolver.getSettings()).toEqual({
       version: expect.anything(),
+      devise: {
+        confirmation: false,
+        password: false,
+        registration: true,
+        unlock: false,
+      },
     });
   });
 });

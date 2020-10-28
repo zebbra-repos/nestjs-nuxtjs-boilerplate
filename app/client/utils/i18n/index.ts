@@ -2,7 +2,7 @@ import { promises as fsp } from "fs";
 import { basename, dirname, join, relative, sep } from "path";
 import { flatten } from "flat";
 
-import { getFiles } from "~/utils/file";
+import { getFiles } from "~/utils/i18n/file";
 
 export const loadTranslations = async (
   dirPath: string,

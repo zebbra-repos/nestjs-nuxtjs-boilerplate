@@ -19,14 +19,18 @@ const factory = () => {
   return getModule(GlobalStore, store);
 };
 
+let store: GlobalStore;
+
 describe("GlobalStore", () => {
+  beforeEach(() => {
+    store = factory();
+  });
+
   it("has to get a store instance", () => {
-    const service = factory();
-    expect(service).toBeInstanceOf(Object);
+    expect(store).toBeInstanceOf(Object);
   });
 
   it("has a version getter", () => {
-    const service = factory();
-    expect(service.version).toBe("1.0");
+    expect(store.version).toBe("1.0");
   });
 });

@@ -28,7 +28,7 @@ export default class Session extends VuexModule {
   }
 
   get expired() {
-    return this.expiresAt > 0 && Date.now() > this.expiresAt;
+    return Date.now() > this.expiresAt;
   }
 
   @Mutation

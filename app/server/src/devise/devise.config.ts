@@ -12,6 +12,18 @@ export class DeviseModuleOptions {
     afterSignUpPath: "/users/profile",
     afterInactiveSignUpPath: "/devise/sessions/new",
   };
+
+  public readonly confirmation = {
+    enabled: false,
+  };
+
+  public readonly password = {
+    enabled: false,
+  };
+
+  public readonly unlock = {
+    enabled: false,
+  };
 }
 
 export default registerAs("devise", () => new DeviseModuleOptions());

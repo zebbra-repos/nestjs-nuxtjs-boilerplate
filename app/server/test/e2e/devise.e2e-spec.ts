@@ -27,7 +27,7 @@ describe("DeviseResolver (e2e)", () => {
     queryRunner = (manager.queryRunner as any) = dbConnection.createQueryRunner(
       "master",
     );
-  }, 1000 * 20);
+  });
 
   afterAll(async () => {
     await app.close();
@@ -61,6 +61,20 @@ describe("DeviseResolver (e2e)", () => {
           expect(body.errors[0].message).toBe(
             "This e-mail address is already taken.",
           );
+        })
+        .expect(200);
+    });
+
+    it("to fail is password is too short", async () => {
+      const user = await factory(User).make({ password: "short" });
+
+      return signUp(app, user)
+        .expect(({ body }) => {
+          expect(body.data).toBeNull();
+          expect(body.errors).toBeInstanceOf(Array);
+
+          const error = body.errors[0];
+          expect(error.message).toBe("Bad Request Exception");
         })
         .expect(200);
     });

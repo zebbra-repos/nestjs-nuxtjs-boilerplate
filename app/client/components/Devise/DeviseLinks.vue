@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-menu(v-model='menu' open-on-hover)
+  v-menu(v-if='items.length' v-model='menu' open-on-hover)
     template(v-slot:activator='{ on }')
       v-btn(v-on='on' :input-value='menu' color='primary')
         | {{ $t('devise.shared.links.other-options') }}
@@ -10,24 +10,45 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext } from "@nuxtjs/composition-api";
+import { computed, defineComponent, useContext } from "@nuxtjs/composition-api";
+import { globalStore } from "~/store";
 
 export default defineComponent({
   name: "DeviceLinks",
   setup() {
     const { route } = useContext();
 
-    const items = [
-      ["sign-in", "/devise/sessions/new"],
-      ["sign-up", "/devise/registrations/new"],
-      ["forgot-your-password", "/devise/passwords/new"],
-      ["didn-t-receive-confirmation-instructions", "/devise/confirmations/new"],
-      ["didn-t-receive-unlock-instructions", "/devise/unlocks/new"],
-    ].filter((item) => item[1] !== route.value.path);
+    const items = computed(() => {
+      const result = [["sign-in", "/devise/sessions/new"]];
+
+      if (globalStore.devise.registration) {
+        result.push(["sign-up", "/devise/registrations/new"]);
+      }
+
+      if (globalStore.devise.password) {
+        result.push(["forgot-your-password", "/devise/passwords/new"]);
+      }
+
+      if (globalStore.devise.confirmation) {
+        result.push([
+          "didn-t-receive-confirmation-instructions",
+          "/devise/confirmations/new",
+        ]);
+      }
+
+      if (globalStore.devise.unlock) {
+        result.push([
+          "didn-t-receive-unlock-instructions",
+          "/devise/unlocks/new",
+        ]);
+      }
+
+      return result;
+    });
 
     return {
       menu: null,
-      items,
+      items: items.value.filter((item) => item[1] !== route.value.path),
     };
   },
 });

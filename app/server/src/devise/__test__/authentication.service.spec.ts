@@ -35,7 +35,7 @@ describe("Authentication Service", () => {
     user = await factory(User).make();
     password = user.password;
     user.password = await hash(user.password, 10);
-  }, 1000 * 20);
+  });
 
   it("is defined", () => {
     expect(authService).toBeDefined();

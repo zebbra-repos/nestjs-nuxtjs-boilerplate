@@ -29,7 +29,7 @@ describe("UsersService", () => {
     usersService = moduleRef.get<UsersService>(UsersService);
     repository = moduleRef.get(getRepositoryToken(User));
     user = await factory(User).make();
-  }, 1000 * 20);
+  });
 
   it("should be defined", () => {
     expect(usersService).toBeDefined();

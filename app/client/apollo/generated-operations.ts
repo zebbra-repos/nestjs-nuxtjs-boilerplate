@@ -22,11 +22,26 @@ export type CsrfTokenDto = {
   token: Scalars["String"];
 };
 
+/** Devise configurations */
+export type DeviseConfigDto = {
+  __typename?: "DeviseConfigDto";
+  /** Is the account confirmable */
+  confirmation: Scalars["Boolean"];
+  /** Is the account password editable */
+  password: Scalars["Boolean"];
+  /** Is the account registerable */
+  registration: Scalars["Boolean"];
+  /** Is the account lockable */
+  unlock: Scalars["Boolean"];
+};
+
 /** Application settings for frontend */
 export type SettingsDto = {
   __typename?: "SettingsDto";
   /** Application version */
   version: Scalars["String"];
+  /** Devise configurations */
+  devise: DeviseConfigDto;
 };
 
 /** User DTO model */
@@ -224,7 +239,12 @@ export type AppSettingsQuery = { readonly __typename?: "Query" } & {
   readonly settings: { readonly __typename?: "SettingsDto" } & Pick<
     SettingsDto,
     "version"
-  >;
+  > & {
+      readonly devise: { readonly __typename?: "DeviseConfigDto" } & Pick<
+        DeviseConfigDto,
+        "confirmation" | "password" | "registration" | "unlock"
+      >;
+    };
 };
 
 export type CsrfTokenQueryVariables = Exact<{ [key: string]: never }>;
@@ -550,6 +570,12 @@ export const AppSettingsDocument = gql`
   query appSettings {
     settings {
       version
+      devise {
+        confirmation
+        password
+        registration
+        unlock
+      }
     }
   }
 `;

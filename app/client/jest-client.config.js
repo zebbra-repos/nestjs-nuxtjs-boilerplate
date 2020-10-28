@@ -17,4 +17,5 @@ module.exports = {
   },
   collectCoverageFrom: ["<rootDir>/**/*.vue"],
   coverageDirectory: "<rootDir>/../../coverage/client",
+  setupFilesAfterEnv: ["./jest.setup.js"],
 };

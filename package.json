@@ -72,6 +72,7 @@
     "class-validator": "^0.12.2",
     "connect-typeorm": "^1.1.4",
     "cookie-parser": "^1.4.5",
+    "cross-fetch": "^3.0.6",
     "csurf": "^1.11.0",
     "express-session": "^1.17.1",
     "flat": "^5.0.2",

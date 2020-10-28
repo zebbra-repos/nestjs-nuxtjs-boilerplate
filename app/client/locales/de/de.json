@@ -1,0 +1,48 @@
+{
+  "devise": {
+    "confirmations": {
+      "new": {
+        "submit": "Anleitung erneut senden"
+      }
+    },
+    "passwords": {
+      "new": {
+        "submit": "Passwort zurücksetzen"
+      }
+    },
+    "sessions": {
+      "sign-out": "Abmelden"
+    },
+    "shared": {
+      "links": {
+        "other-options": "Andere Optionen"
+      }
+    },
+    "unlocks": {
+      "new": {
+        "submit": "Anleitung erneut senden"
+      }
+    }
+  },
+  "errors": {
+    "home": "Startseite",
+    "not-found": "404 Seite nicht gefunden",
+    "other": "Ein Fehler ist aufgetreten"
+  },
+  "navigation": {
+    "items": {
+      "welcome": "Willkommen",
+      "inspire": "Inspirieren",
+      "profile": "Profil"
+    }
+  },
+  "notification": {
+    "close": "Schliessen"
+  },
+  "profile": {
+    "loading": "Profil wird geladen..."
+  },
+  "shared": {
+    "loading": "Seite wird geladen..."
+  }
+}

@@ -27,6 +27,7 @@
       "@nuxt/types",
       "@nuxtjs/vuetify",
       "@nuxtjs/apollo",
+      "nuxt-i18n",
       "@vue/apollo-composable",
       "jest"
     ]

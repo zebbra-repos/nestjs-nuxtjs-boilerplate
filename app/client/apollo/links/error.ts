@@ -1,16 +1,15 @@
 import { onError } from "apollo-link-error";
 import { logErrorMessages } from "@vue/apollo-util";
 import { Context } from "@nuxt/types";
-import { ValidationError } from "class-validator";
 import { Observable } from "apollo-link";
 
-import { notificationStore, sessionStore } from "~/store";
+import { csrfStore, sessionStore } from "~/store";
 import { ErrorNames } from "~/utils/enums/error-names.enum";
-import { CustomValidationError } from "~/types";
 import { CsrfTokenDocument } from "~/apollo/generated-operations";
+import { useLogout } from "~/composable/useSession";
 
 export default function errorLink(ctx: Context) {
-  const { redirect, error: nuxtError, app } = ctx;
+  const { redirect, error: nuxtError, app, route } = ctx;
 
   return onError(({ graphQLErrors, networkError, operation, forward }) => {
     let handled = false;
@@ -22,39 +21,17 @@ export default function errorLink(ctx: Context) {
 
       if (unauthorized) {
         handled = true;
-
         const path = unauthorized.path && unauthorized.path[0];
-        if (path !== "login") {
-          notificationStore.show({
-            color: "error",
-            message: "Please login",
-            timeout: 3000,
-          });
-          return redirect("/login");
-        }
-      }
 
-      const validation = graphQLErrors.find(
-        ({ extensions }) => extensions && extensions.exception.status === 422,
-      );
+        if (path !== "signIn") {
+          const token = app.$apolloHelpers.getToken();
+          const message =
+            token && sessionStore.expired
+              ? app.i18n.t("devise.failure.timeout")
+              : app.i18n.t("devise.failure.unauthenticated");
 
-      if (validation) {
-        handled = true;
-
-        if (validation.extensions?.exception?.response?.message) {
-          const errors = validation.extensions?.exception?.response?.message;
-
-          validation.name = ErrorNames.VALIDATION;
-          validation.message = errors.map((error: ValidationError) => {
-            const validationError: CustomValidationError = {
-              property: error.property,
-              value: error.value,
-              message: error.constraints
-                ? Object.values(error.constraints).join(", ")
-                : "",
-            };
-            return validationError;
-          });
+          useLogout(app, redirect, message as string, true, route.path);
+          return;
         }
       }
     }
@@ -76,7 +53,7 @@ export default function errorLink(ctx: Context) {
                 query: CsrfTokenDocument,
               });
 
-              sessionStore.updateCsrfToken(response.data.csrf.token);
+              csrfStore.updateCsrfToken(response.data.csrf.token);
 
               const subscriber = {
                 next: observer.next.bind(observer),

@@ -1,22 +1,36 @@
-import { GraphQLError } from "apollo-link/node_modules/graphql";
+import { GraphQLError } from "graphql";
 import { Ref } from "@vue/composition-api";
+import { ValidationError } from "class-validator";
+
 import { ErrorNames } from "~/utils/enums/error-names.enum";
 import { notificationStore } from "~/store";
-import { CustomValidationError } from "~/types";
 
 export default function (
   errors: ReadonlyArray<GraphQLError> = [],
-  messages: { [x: string]: string },
+  attributes: { [x: string]: string },
   globalError?: Ref<string>,
 ) {
   errors.forEach((error) => {
-    if (error.name === ErrorNames.VALIDATION) {
-      ((error.message as unknown) as CustomValidationError[]).forEach(
-        (message) => {
-          messages[message.property] = message.message;
-        },
-      );
-    } else if (globalError) {
+    if (error.message === ErrorNames.VALIDATION) {
+      let validationErrros =
+        error.extensions?.exception?.response?.message || [];
+
+      if (!Array.isArray(validationErrros)) {
+        validationErrros = [validationErrros];
+      }
+
+      if (validationErrros.length) {
+        validationErrros.forEach((error: ValidationError) => {
+          attributes[error.property] = error.constraints
+            ? Object.values(error.constraints).join(", ")
+            : "";
+        });
+
+        return;
+      }
+    }
+
+    if (globalError) {
       globalError.value = error.message;
     } else {
       notificationStore.show({

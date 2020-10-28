@@ -1,20 +1,20 @@
 <template lang="pug">
   v-tooltip(v-if='isLoggedIn' left)
     template(v-slot:activator='{ on, attrs }')
-      v-btn(icon v-bind='attrs' v-on='on' @click.stop='logout')
+      v-btn.mr-1(icon v-bind='attrs' v-on='on' @click.stop='logout')
         v-icon mdi-logout
-    span Logout
+    span {{ $t('devise.sessions.sign-out') }}
 
   v-tooltip(v-else left)
     template(v-slot:activator='{ on, attrs }')
-      v-btn(icon nuxt to='login' v-bind='attrs' v-on='on')
+      v-btn.mr-1(icon nuxt to='/devise/sessions/new' v-bind='attrs' v-on='on')
         v-icon mdi-login
-    span Login
+    span {{ $t('devise.sessions.new.sign-in') }}
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext, ref } from "@nuxtjs/composition-api";
-import { notificationStore, sessionStore } from "~/store";
+import { defineComponent, ref, useContext } from "@nuxtjs/composition-api";
+import { useLogout } from "~/composable/useSession";
 
 export default defineComponent({
   name: "Session",
@@ -22,18 +22,9 @@ export default defineComponent({
     const { app, redirect } = useContext();
     const isLoggedIn = ref(!!app.$apolloHelpers.getToken());
 
-    const logout = () => {
-      redirect("/");
-      setTimeout(async () => {
-        await app.$apolloHelpers.onLogout();
-        sessionStore.updateCsrfToken();
-        isLoggedIn.value = false;
-        notificationStore.show({
-          color: "info",
-          message: "Logged out",
-          timeout: 3000,
-        });
-      }, 200);
+    const logout = async () => {
+      isLoggedIn.value = false;
+      await useLogout(app, redirect);
     };
 
     return {

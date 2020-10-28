@@ -17,5 +17,6 @@ module.exports = {
   rules: {
     "no-useless-constructor": 0,
     "no-console": 0,
+    "no-use-before-define": 0,
   },
 };

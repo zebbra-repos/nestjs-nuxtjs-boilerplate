@@ -1,0 +1,139 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Csrf token"""
+type CsrfTokenDto {
+  """Token"""
+  token: String!
+}
+
+"""Devise configurations"""
+type DeviseConfigDto {
+  """Is the account confirmable"""
+  confirmation: Boolean!
+
+  """Is the account password editable"""
+  password: Boolean!
+
+  """Is the account registerable"""
+  registration: Boolean!
+
+  """Is the account lockable"""
+  unlock: Boolean!
+}
+
+"""Application settings for frontend"""
+type SettingsDto {
+  """Application version"""
+  version: String!
+
+  """Devise configurations"""
+  devise: DeviseConfigDto!
+}
+
+"""User DTO model"""
+type UserDto {
+  """User database ID"""
+  id: Int!
+
+  """User first name"""
+  firstName: String
+
+  """User last name"""
+  lastName: String
+
+  """User email"""
+  email: String!
+}
+
+"""Message Response DTO model"""
+type MessageResponseDto {
+  """Custom information message"""
+  message: String!
+}
+
+"""Sign In Response DTO model"""
+type SignInResponseDto {
+  """JWT expires in"""
+  expiresIn: Int!
+
+  """JSON web token"""
+  accessToken: String!
+}
+
+"""Sign Up Response DTO model"""
+type SignUpResponseDto {
+  """Custom information message"""
+  message: String!
+
+  """Path to redirect to after action performed"""
+  afterActionPath: String!
+
+  """JWT expires in"""
+  expiresIn: Int
+
+  """JSON web token"""
+  accessToken: String
+}
+
+type Query {
+  """Fetch a new csrf token"""
+  csrf: CsrfTokenDto!
+
+  """Get application settings for frontend"""
+  settings: SettingsDto!
+
+  """Get current user profile"""
+  profile: UserDto!
+
+  """Get user by ID"""
+  user(id: Int!): UserDto!
+}
+
+type Mutation {
+  """Request account confirmation instructions"""
+  confirmAccountRequest(data: EmailRequestDto!): MessageResponseDto!
+
+  """Request user password reset instructions"""
+  resetPasswordRequest(data: EmailRequestDto!): MessageResponseDto!
+
+  """Login as user"""
+  signIn(data: SignInRequestDto!): SignInResponseDto!
+
+  """Register as a new user"""
+  signUp(data: CreateUserDto!): SignUpResponseDto!
+
+  """Request account unlock instructions"""
+  unlockAccountRequest(data: EmailRequestDto!): MessageResponseDto!
+}
+
+"""Email Request DTO model"""
+input EmailRequestDto {
+  """User email"""
+  email: String!
+}
+
+"""Sign In Request DTO model"""
+input SignInRequestDto {
+  """User email"""
+  email: String!
+
+  """User password"""
+  password: String!
+}
+
+"""Create User DTO model"""
+input CreateUserDto {
+  """User first name"""
+  firstName: String
+
+  """User last name"""
+  lastName: String
+
+  """User email"""
+  email: String!
+
+  """User password"""
+  password: String!
+}

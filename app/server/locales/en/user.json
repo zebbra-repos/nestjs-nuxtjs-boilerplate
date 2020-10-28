@@ -1,0 +1,9 @@
+{
+  "email": "Email",
+  "errors": {
+    "messages": {
+      "already-exists": "This e-mail address is already taken.",
+      "does-not-exist": "Account was not found."
+    }
+  }
+}

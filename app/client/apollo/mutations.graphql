@@ -1,27 +1,45 @@
-mutation registerUser(
+mutation signUp(
   $firstName: String
   $lastName: String
   $email: String!
   $password: String!
 ) {
-  register(
-    createUserInput: {
+  signUp(
+    data: {
       firstName: $firstName
       lastName: $lastName
       email: $email
       password: $password
     }
   ) {
-    id
-    firstName
-    lastName
-    email
+    message
+    afterActionPath
+    expiresIn
+    accessToken
   }
 }
 
-mutation loginUser($email: String!, $password: String!) {
-  login(loginUserInput: { email: $email, password: $password }) {
+mutation signIn($email: String!, $password: String!) {
+  signIn(data: { email: $email, password: $password }) {
     accessToken
     expiresIn
+  }
+}
+
+mutation resetPasswordRequest($email: String!) {
+  resetPasswordRequest(data: { email: $email }) {
+    message
+  }
+}
+
+mutation confirmAccountRequest($email: String!) {
+  confirmAccountRequest(data: { email: $email }) {
+    message
+  }
+}
+
+mutation unlockAccountRequest($email: String!) {
+  unlockAccountRequest(data: { email: $email }) {
+    message
   }
 }

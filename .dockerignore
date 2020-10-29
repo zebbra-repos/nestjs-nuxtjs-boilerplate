@@ -11,3 +11,6 @@ deploy/*.yaml
 */coverage
 */docs
 */dist
+
+.env
+my-env.txt

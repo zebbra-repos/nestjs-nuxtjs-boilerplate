@@ -292,10 +292,10 @@ export const SignUpDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useSignUpMutation({
  *   variables: {
- *      firstName: // value for 'firstName'
- *      lastName: // value for 'lastName'
- *      email: // value for 'email'
- *      password: // value for 'password'
+ *     firstName: // value for 'firstName'
+ *     lastName: // value for 'lastName'
+ *     email: // value for 'email'
+ *     password: // value for 'password'
  *   },
  * });
  */
@@ -343,8 +343,8 @@ export const SignInDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useSignInMutation({
  *   variables: {
- *      email: // value for 'email'
- *      password: // value for 'password'
+ *     email: // value for 'email'
+ *     password: // value for 'password'
  *   },
  * });
  */
@@ -391,7 +391,7 @@ export const ResetPasswordRequestDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useResetPasswordRequestMutation({
  *   variables: {
- *      email: // value for 'email'
+ *     email: // value for 'email'
  *   },
  * });
  */
@@ -438,7 +438,7 @@ export const ConfirmAccountRequestDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useConfirmAccountRequestMutation({
  *   variables: {
- *      email: // value for 'email'
+ *     email: // value for 'email'
  *   },
  * });
  */
@@ -485,7 +485,7 @@ export const UnlockAccountRequestDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useUnlockAccountRequestMutation({
  *   variables: {
- *      email: // value for 'email'
+ *     email: // value for 'email'
  *   },
  * });
  */
@@ -532,10 +532,7 @@ export const GetProfileDocument = gql`
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useGetProfileQuery(
- *   {
- *   }
- * );
+ * const { result, loading, error } = useGetProfileQuery();
  */
 export function useGetProfileQuery(
   options:
@@ -556,11 +553,10 @@ export function useGetProfileQuery(
         >
       > = {},
 ) {
-  return VueApolloComposable.useQuery<GetProfileQuery, undefined>(
-    GetProfileDocument,
-    undefined,
-    options,
-  );
+  return VueApolloComposable.useQuery<
+    GetProfileQuery,
+    GetProfileQueryVariables
+  >(GetProfileDocument, {}, options);
 }
 export type GetProfileQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   GetProfileQuery,
@@ -590,10 +586,7 @@ export const AppSettingsDocument = gql`
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useAppSettingsQuery(
- *   {
- *   }
- * );
+ * const { result, loading, error } = useAppSettingsQuery();
  */
 export function useAppSettingsQuery(
   options:
@@ -614,11 +607,10 @@ export function useAppSettingsQuery(
         >
       > = {},
 ) {
-  return VueApolloComposable.useQuery<AppSettingsQuery, undefined>(
-    AppSettingsDocument,
-    undefined,
-    options,
-  );
+  return VueApolloComposable.useQuery<
+    AppSettingsQuery,
+    AppSettingsQueryVariables
+  >(AppSettingsDocument, {}, options);
 }
 export type AppSettingsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   AppSettingsQuery,
@@ -642,10 +634,7 @@ export const CsrfTokenDocument = gql`
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useCsrfTokenQuery(
- *   {
- *   }
- * );
+ * const { result, loading, error } = useCsrfTokenQuery();
  */
 export function useCsrfTokenQuery(
   options:
@@ -666,9 +655,9 @@ export function useCsrfTokenQuery(
         >
       > = {},
 ) {
-  return VueApolloComposable.useQuery<CsrfTokenQuery, undefined>(
+  return VueApolloComposable.useQuery<CsrfTokenQuery, CsrfTokenQueryVariables>(
     CsrfTokenDocument,
-    undefined,
+    {},
     options,
   );
 }

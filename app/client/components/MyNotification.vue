@@ -1,19 +1,21 @@
 <template lang="pug">
-  v-snackbar(
-    v-if='show'
-    bottom
-    :value='notification.message'
-    :timeout='notification.timeout'
-    :color='notification.color'
-    @input='faded'
-  )
-    | {{ notification.message }}
-    template(v-slot:action='{ attrs }')
-      v-btn(
-        color='notification.color'
-        text v-bind='attrs'
-        @click='hide'
-      ) {{ $t('notification.close') }}
+  .notification-bar
+    client-only
+      v-snackbar(
+        v-if='show'
+        bottom
+        :value='notification.message'
+        :timeout='notification.timeout'
+        :color='notification.color'
+        @input='faded'
+      )
+        | {{ notification.message }}
+        template(v-slot:action='{ attrs }')
+          v-btn(
+            color='notification.color'
+            text v-bind='attrs'
+            @click='hide'
+          ) {{ $t('notification.close') }}
 </template>
 
 <script lang="ts">

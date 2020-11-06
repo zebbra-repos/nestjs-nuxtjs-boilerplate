@@ -63,6 +63,10 @@ const config: NuxtConfig = {
       src: "~/plugins/validator.plugin",
       mode: "all",
     },
+    {
+      src: "~/plugins/auth.plugin",
+      mode: "client",
+    },
   ],
 
   /*

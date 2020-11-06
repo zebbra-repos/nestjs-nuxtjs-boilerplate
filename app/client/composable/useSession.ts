@@ -55,3 +55,36 @@ export async function useLogout(
     }
   }
 }
+
+export async function useAuth(
+  app: NuxtAppOptions,
+  redirect: (location: string) => void,
+  skipReset: boolean = false,
+  path: string,
+) {
+  if (path.startsWith("/devise")) {
+    return;
+  }
+
+  const token = app.$apolloHelpers.getToken();
+
+  if (!token) {
+    return await useLogout(
+      app,
+      redirect,
+      app.i18n.t("devise.failure.unauthenticated") as string,
+      skipReset,
+      path,
+    );
+  }
+
+  if (sessionStore.expired) {
+    return await useLogout(
+      app,
+      redirect,
+      app.i18n.t("devise.failure.timeout") as string,
+      skipReset,
+      path,
+    );
+  }
+}

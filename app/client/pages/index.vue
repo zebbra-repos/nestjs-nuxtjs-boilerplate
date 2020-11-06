@@ -52,5 +52,9 @@ import { defineComponent } from "@nuxtjs/composition-api";
 
 export default defineComponent({
   name: "Index",
+  middleware: "auth",
+  meta: {
+    auth: true,
+  },
 });
 </script>

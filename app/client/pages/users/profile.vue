@@ -1,13 +1,10 @@
 <template lang="pug">
   v-layout
     v-flex
-      client-only
-        my-loading-placeholder(slot='placeholder')
-        v-card
-          v-card-title(v-if='loading') {{ $t('profile.loading') }}
-          span(v-else-if='profile')
-            v-card-title {{ profile.firstName }} {{ profile.lastName }}
-            v-card-text {{ profile.email }}
+      v-card
+        span(v-if='profile')
+          v-card-title {{ profile.firstName }} {{ profile.lastName }}
+          v-card-text {{ profile.email }}
 </template>
 
 <script lang="ts">
@@ -18,6 +15,9 @@ import { useGetProfileQuery } from "~/apollo/generated-operations";
 export default defineComponent({
   name: "Profile",
   middleware: "auth",
+  meta: {
+    auth: true,
+  },
   setup() {
     const { loading, result } = useGetProfileQuery();
     const profile = useResult(result);

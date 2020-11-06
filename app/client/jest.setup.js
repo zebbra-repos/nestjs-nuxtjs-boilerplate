@@ -7,5 +7,6 @@ Vue.use(Vuetify);
 Vue.use(VueRouter);
 
 VueTestUtils.config.mocks.$t = (key) => key;
+VueTestUtils.config.stubs["client-only"] = { template: "<div><slot /></div>" };
 
 jest.setTimeout(1000 * 10); // in milliseconds

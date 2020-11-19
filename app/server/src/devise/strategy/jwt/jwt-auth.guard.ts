@@ -8,7 +8,7 @@ export class JwtAuthGuard extends AuthGuard("jwt") {
     const ctx = GqlExecutionContext.create(context);
     const req = ctx.getContext().req;
 
-    // if websocket connectino is unauthorized then req.headres
+    // if websocket connection is unauthorized then req.headers
     // is missing and passport jwt schema throws an error. thus
     // we add an empty headers object to the request in this case
     if (!req.headers) {

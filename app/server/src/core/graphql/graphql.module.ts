@@ -25,7 +25,13 @@ export const GraphQLModule = GraphQL.forRootAsync({
       installSubscriptionHandlers: true,
       debug: true,
       playground: configService.get<boolean>("production") === false,
-      context: ({ req }) => ({ req }),
+      context: ({ req, connection }) => {
+        // use connection context as request for subscriptions
+        if (connection) {
+          return { req: connection.context };
+        }
+        return { req };
+      },
       cors: {
         origin: configService.get<string>("accessControlAllowOrigin"),
         credentials: !configService.get<boolean>("production"),

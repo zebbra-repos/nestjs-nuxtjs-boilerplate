@@ -6,6 +6,15 @@ import { GqlExecutionContext } from "@nestjs/graphql";
 export class JwtAuthGuard extends AuthGuard("jwt") {
   public getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context);
-    return ctx.getContext().req;
+    const req = ctx.getContext().req;
+
+    // if websocket connectino is unauthorized then req.headres
+    // is missing and passport jwt schema throws an error. thus
+    // we add an empty headers object to the request in this case
+    if (!req.headers) {
+      req.headers = {};
+    }
+
+    return req;
   }
 }

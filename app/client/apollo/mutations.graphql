@@ -43,3 +43,9 @@ mutation unlockAccountRequest($email: String!) {
     message
   }
 }
+
+mutation ping {
+  ping {
+    id
+  }
+}

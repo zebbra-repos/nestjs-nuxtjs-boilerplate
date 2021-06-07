@@ -8,9 +8,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api";
+import {
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+} from "@nuxtjs/composition-api";
 import { useResult } from "@vue/apollo-composable";
-import { useGetProfileQuery } from "~/apollo/generated-operations";
+import {
+  useGetProfileQuery,
+  useOnUserAliveSubscription,
+  usePingMutation,
+} from "~/apollo/generated-operations";
 
 export default defineComponent({
   name: "Profile",
@@ -21,6 +29,20 @@ export default defineComponent({
   setup() {
     const { loading, result } = useGetProfileQuery();
     const profile = useResult(result);
+
+    const { onResult } = useOnUserAliveSubscription();
+    onResult((result) => {
+      console.log(result?.data?.userAlive.status);
+    });
+
+    const { mutate: ping } = usePingMutation();
+    let interval: number | undefined;
+    onMounted(() => {
+      interval = setInterval(ping, 1000 * 5);
+    });
+    onBeforeUnmount(() => {
+      clearInterval(interval);
+    });
 
     return {
       loading,

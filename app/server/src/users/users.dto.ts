@@ -33,3 +33,9 @@ export class CreateUserDto extends PickType(
 export class UpdateUserDto extends PartialType(
   OmitType(CreateUserDto, ["password"] as const),
 ) {}
+
+@ObjectType({ description: "Ping Response DTO model" })
+export class PingResponseDto {
+  @Field({ description: "Connection status" })
+  public status!: string;
+}

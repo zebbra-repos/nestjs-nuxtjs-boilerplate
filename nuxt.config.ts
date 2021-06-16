@@ -1,18 +1,12 @@
 import { NuxtConfig } from "@nuxt/types";
 
 const config: NuxtConfig = {
-  /*
-   ** Nuxt target
-   ** See https://nuxtjs.org/api/configuration-target
-   */
-  target: "server",
+  // Target: https://go.nuxtjs.dev/config-target
+  // target: "server",
+  // ssr: false,
 
-  /*
-   ** Headers of the page
-   ** See https://nuxtjs.org/api/configuration-head
-   */
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - " + process.env.npm_package_name,
     title: process.env.npm_package_name || "",
     meta: [
       { charset: "utf-8" },
@@ -26,22 +20,13 @@ const config: NuxtConfig = {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
 
-  /*
-   ** Customize the progress-bar color
-   */
+  // Customize the progress-bar color
   loading: { color: "#fff" },
 
-  /*
-   ** Global CSS
-   */
+  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
-  /*
-   ** Plugins to load before mounting the App
-   ** https://nuxtjs.org/guide/plugins
-   ** Make sure to include apollo.plugin first as other
-   ** plugins may relay on it
-   */
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {
       src: "~/plugins/apollo.plugin",
@@ -69,62 +54,46 @@ const config: NuxtConfig = {
     },
   ],
 
-  /*
-   ** Auto import components
-   ** See https://nuxtjs.org/api/configuration-components
-   */
+  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  /*
-   ** Nuxt.js dev-modules
-   */
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // Doc: https://typescript.nuxtjs.org/guide/setup.html#installation
+    // https://typescript.nuxtjs.org/guide/setup.html#installation
     "@nuxt/typescript-build",
-    // Doc: https://github.com/nuxt-community/stylelint-module
+    // https://github.com/nuxt-community/stylelint-module
     "@nuxtjs/stylelint-module",
-    // Doc: https://github.com/nuxt-community/vuetify-module
+    // https://github.com/nuxt-community/vuetify-module
     "@nuxtjs/vuetify",
-    // Doc: https://composition-api.now.sh/
-    "@nuxtjs/composition-api",
+    // https://composition-api.nuxtjs.org/
+    "@nuxtjs/composition-api/module",
   ],
 
-  /*
-   ** Nuxt.js modules
-   */
+  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // Doc: https://pwa.nuxtjs.org/
+    // https://pwa.nuxtjs.org/
     ["@nuxtjs/pwa", { meta: false, icon: false, manifest: false }],
-    // Doc: https://github.com/nuxt-community/apollo-module
+    // https://github.com/nuxt-community/apollo-module
     "@nuxtjs/apollo",
-    // Doc: https://i18n.nuxtjs.org/
+    // https://i18n.nuxtjs.org/
     "nuxt-i18n",
   ],
 
-  /*
-   ** apollo module configuration
-   ** See https://github.com/nuxt-community/apollo-module
-   */
+  // https://github.com/nuxt-community/apollo-module
   apollo: {
     clientConfigs: {
       default: "~/apollo/config/default",
     },
   },
 
-  /*
-   ** vuetify module configuration
-   ** See https://github.com/nuxt-community/vuetify-module
-   */
+  // https://github.com/nuxt-community/vuetify-module
   vuetify: {
     customVariables: ["~/assets/stylesheets/variables.scss"],
     treeShake: true,
     optionsPath: "~/vuetify.options.ts",
   },
 
-  /*
-   ** i18n module configuration
-   ** See https://i18n.nuxtjs.org/
-   */
+  // https://i18n.nuxtjs.org/
   i18n: {
     locales: [
       {
@@ -149,10 +118,14 @@ const config: NuxtConfig = {
     },
   },
 
-  /*
-   ** Nuxt.js api configuration
-   ** See https://nuxtjs.org/api
-   */
+  // PWA module configuration: https://go.nuxtjs.dev/pwa
+  pwa: {
+    manifest: {
+      lang: "en",
+    },
+  },
+
+  // https://nuxtjs.org/api
   srcDir: "app/client",
   buildDir: "dist/app/client",
   dir: {
@@ -166,7 +139,8 @@ const config: NuxtConfig = {
   server: {
     port: process.env.PORT || 5000,
   },
-  telemetry: false,
+
+  // Runtime config: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config
   publicRuntimeConfig: {
     apollo: {
       httpGraphQLEndpoint:
@@ -180,6 +154,8 @@ const config: NuxtConfig = {
       logErrors: process.env.NODE_ENV !== "production",
     },
   },
+
+  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extend(config) {
       config.node = {
@@ -187,6 +163,9 @@ const config: NuxtConfig = {
       };
     },
   },
+
+  // Do not send anonymous telemetry data: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-telemetry
+  telemetry: false,
 };
 
 export default config;

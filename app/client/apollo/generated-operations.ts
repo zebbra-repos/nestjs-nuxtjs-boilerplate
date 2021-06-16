@@ -5,6 +5,10 @@ export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 export type ReactiveFunction<TParam> = () => TParam;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -13,6 +17,18 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+};
+
+/** Create User DTO model */
+export type CreateUserDto = {
+  /** User first name */
+  firstName?: Maybe<Scalars["String"]>;
+  /** User last name */
+  lastName?: Maybe<Scalars["String"]>;
+  /** User email */
+  email: Scalars["String"];
+  /** User password */
+  password: Scalars["String"];
 };
 
 /** Csrf token */
@@ -35,24 +51,8 @@ export type DeviseConfigDto = {
   unlock: Scalars["Boolean"];
 };
 
-/** Application settings for frontend */
-export type SettingsDto = {
-  __typename?: "SettingsDto";
-  /** Application version */
-  version: Scalars["String"];
-  /** Devise configurations */
-  devise: DeviseConfigDto;
-};
-
-/** User DTO model */
-export type UserDto = {
-  __typename?: "UserDto";
-  /** User database ID */
-  id: Scalars["Int"];
-  /** User first name */
-  firstName?: Maybe<Scalars["String"]>;
-  /** User last name */
-  lastName?: Maybe<Scalars["String"]>;
+/** Email Request DTO model */
+export type EmailRequestDto = {
   /** User email */
   email: Scalars["String"];
 };
@@ -62,6 +62,73 @@ export type MessageResponseDto = {
   __typename?: "MessageResponseDto";
   /** Custom information message */
   message: Scalars["String"];
+};
+
+export type Mutation = {
+  __typename?: "Mutation";
+  /** Request account confirmation instructions */
+  confirmAccountRequest: MessageResponseDto;
+  /** Request user password reset instructions */
+  resetPasswordRequest: MessageResponseDto;
+  /** Register as a new user */
+  signUp: SignUpResponseDto;
+  /** Login as user */
+  signIn: SignInResponseDto;
+  /** Request account unlock instructions */
+  unlockAccountRequest: MessageResponseDto;
+};
+
+export type MutationConfirmAccountRequestArgs = {
+  data: EmailRequestDto;
+};
+
+export type MutationResetPasswordRequestArgs = {
+  data: EmailRequestDto;
+};
+
+export type MutationSignUpArgs = {
+  data: CreateUserDto;
+};
+
+export type MutationSignInArgs = {
+  data: SignInRequestDto;
+};
+
+export type MutationUnlockAccountRequestArgs = {
+  data: EmailRequestDto;
+};
+
+export type Query = {
+  __typename?: "Query";
+  /** Get application settings for frontend */
+  settings: SettingsDto;
+  /** Fetch a new csrf token */
+  csrf: CsrfTokenDto;
+  /** Get current user profile */
+  profile: UserDto;
+  /** Get user by ID */
+  user: UserDto;
+};
+
+export type QueryUserArgs = {
+  id: Scalars["Int"];
+};
+
+/** Application settings for frontend */
+export type SettingsDto = {
+  __typename?: "SettingsDto";
+  /** Application version */
+  version: Scalars["String"];
+  /** Devise configurations */
+  devise: DeviseConfigDto;
+};
+
+/** Sign In Request DTO model */
+export type SignInRequestDto = {
+  /** User email */
+  email: Scalars["String"];
+  /** User password */
+  password: Scalars["String"];
 };
 
 /** Sign In Response DTO model */
@@ -86,80 +153,17 @@ export type SignUpResponseDto = {
   accessToken?: Maybe<Scalars["String"]>;
 };
 
-export type Query = {
-  __typename?: "Query";
-  /** Fetch a new csrf token */
-  csrf: CsrfTokenDto;
-  /** Get application settings for frontend */
-  settings: SettingsDto;
-  /** Get current user profile */
-  profile: UserDto;
-  /** Get user by ID */
-  user: UserDto;
-};
-
-export type QueryUserArgs = {
+/** User DTO model */
+export type UserDto = {
+  __typename?: "UserDto";
+  /** User database ID */
   id: Scalars["Int"];
-};
-
-export type Mutation = {
-  __typename?: "Mutation";
-  /** Request account confirmation instructions */
-  confirmAccountRequest: MessageResponseDto;
-  /** Request user password reset instructions */
-  resetPasswordRequest: MessageResponseDto;
-  /** Login as user */
-  signIn: SignInResponseDto;
-  /** Register as a new user */
-  signUp: SignUpResponseDto;
-  /** Request account unlock instructions */
-  unlockAccountRequest: MessageResponseDto;
-};
-
-export type MutationConfirmAccountRequestArgs = {
-  data: EmailRequestDto;
-};
-
-export type MutationResetPasswordRequestArgs = {
-  data: EmailRequestDto;
-};
-
-export type MutationSignInArgs = {
-  data: SignInRequestDto;
-};
-
-export type MutationSignUpArgs = {
-  data: CreateUserDto;
-};
-
-export type MutationUnlockAccountRequestArgs = {
-  data: EmailRequestDto;
-};
-
-/** Email Request DTO model */
-export type EmailRequestDto = {
-  /** User email */
-  email: Scalars["String"];
-};
-
-/** Sign In Request DTO model */
-export type SignInRequestDto = {
-  /** User email */
-  email: Scalars["String"];
-  /** User password */
-  password: Scalars["String"];
-};
-
-/** Create User DTO model */
-export type CreateUserDto = {
   /** User first name */
   firstName?: Maybe<Scalars["String"]>;
   /** User last name */
   lastName?: Maybe<Scalars["String"]>;
   /** User email */
   email: Scalars["String"];
-  /** User password */
-  password: Scalars["String"];
 };
 
 export type SignUpMutationVariables = Exact<{
@@ -317,10 +321,11 @@ export function useSignUpMutation(
     SignUpMutationVariables
   >(SignUpDocument, options);
 }
-export type SignUpMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  SignUpMutation,
-  SignUpMutationVariables
->;
+export type SignUpMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<
+    SignUpMutation,
+    SignUpMutationVariables
+  >;
 export const SignInDocument = gql`
   mutation signIn($email: String!, $password: String!) {
     signIn(data: { email: $email, password: $password }) {
@@ -366,10 +371,11 @@ export function useSignInMutation(
     SignInMutationVariables
   >(SignInDocument, options);
 }
-export type SignInMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  SignInMutation,
-  SignInMutationVariables
->;
+export type SignInMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<
+    SignInMutation,
+    SignInMutationVariables
+  >;
 export const ResetPasswordRequestDocument = gql`
   mutation resetPasswordRequest($email: String!) {
     resetPasswordRequest(data: { email: $email }) {
@@ -413,10 +419,11 @@ export function useResetPasswordRequestMutation(
     ResetPasswordRequestMutationVariables
   >(ResetPasswordRequestDocument, options);
 }
-export type ResetPasswordRequestMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  ResetPasswordRequestMutation,
-  ResetPasswordRequestMutationVariables
->;
+export type ResetPasswordRequestMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<
+    ResetPasswordRequestMutation,
+    ResetPasswordRequestMutationVariables
+  >;
 export const ConfirmAccountRequestDocument = gql`
   mutation confirmAccountRequest($email: String!) {
     confirmAccountRequest(data: { email: $email }) {
@@ -460,10 +467,11 @@ export function useConfirmAccountRequestMutation(
     ConfirmAccountRequestMutationVariables
   >(ConfirmAccountRequestDocument, options);
 }
-export type ConfirmAccountRequestMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  ConfirmAccountRequestMutation,
-  ConfirmAccountRequestMutationVariables
->;
+export type ConfirmAccountRequestMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<
+    ConfirmAccountRequestMutation,
+    ConfirmAccountRequestMutationVariables
+  >;
 export const UnlockAccountRequestDocument = gql`
   mutation unlockAccountRequest($email: String!) {
     unlockAccountRequest(data: { email: $email }) {
@@ -507,10 +515,11 @@ export function useUnlockAccountRequestMutation(
     UnlockAccountRequestMutationVariables
   >(UnlockAccountRequestDocument, options);
 }
-export type UnlockAccountRequestMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  UnlockAccountRequestMutation,
-  UnlockAccountRequestMutationVariables
->;
+export type UnlockAccountRequestMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<
+    UnlockAccountRequestMutation,
+    UnlockAccountRequestMutationVariables
+  >;
 export const GetProfileDocument = gql`
   query getProfile {
     profile {
@@ -558,10 +567,8 @@ export function useGetProfileQuery(
     GetProfileQueryVariables
   >(GetProfileDocument, {}, options);
 }
-export type GetProfileQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  GetProfileQuery,
-  GetProfileQueryVariables
->;
+export type GetProfileQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<GetProfileQuery, GetProfileQueryVariables>;
 export const AppSettingsDocument = gql`
   query appSettings {
     settings {
@@ -612,10 +619,11 @@ export function useAppSettingsQuery(
     AppSettingsQueryVariables
   >(AppSettingsDocument, {}, options);
 }
-export type AppSettingsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  AppSettingsQuery,
-  AppSettingsQueryVariables
->;
+export type AppSettingsQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<
+    AppSettingsQuery,
+    AppSettingsQueryVariables
+  >;
 export const CsrfTokenDocument = gql`
   query csrfToken {
     csrf {
@@ -661,7 +669,5 @@ export function useCsrfTokenQuery(
     options,
   );
 }
-export type CsrfTokenQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  CsrfTokenQuery,
-  CsrfTokenQueryVariables
->;
+export type CsrfTokenQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<CsrfTokenQuery, CsrfTokenQueryVariables>;

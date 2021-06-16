@@ -41,9 +41,8 @@ describe("UserResolver (e2e)", () => {
     const dbConnection = moduleRef.get(Connection);
     const manager = moduleRef.get(EntityManager);
 
-    queryRunner = (manager.queryRunner as any) = dbConnection.createQueryRunner(
-      "master",
-    );
+    queryRunner = (manager.queryRunner as any) =
+      dbConnection.createQueryRunner("master");
     await queryRunner.startTransaction();
     user = await factory(User).make();
     token = await createToken(app, user);

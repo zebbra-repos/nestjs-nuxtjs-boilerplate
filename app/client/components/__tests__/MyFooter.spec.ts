@@ -1,5 +1,5 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
-import Vuetify, { Vuetify as VuetifyType } from "vuetify";
+import Vuetify from "vuetify";
 import Vuex from "vuex";
 
 import AppBarStore from "@/store/AppBar";
@@ -10,7 +10,7 @@ import MyFooter from "@/components/MyFooter.vue";
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-let vuetify: VuetifyType;
+let vuetify: Vuetify;
 
 describe("MyFooter", () => {
   beforeEach(() => {

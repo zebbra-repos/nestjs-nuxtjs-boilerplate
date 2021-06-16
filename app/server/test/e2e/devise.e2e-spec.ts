@@ -24,9 +24,8 @@ describe("DeviseResolver (e2e)", () => {
     const dbConnection = moduleRef.get(Connection);
     const manager = moduleRef.get(EntityManager);
 
-    queryRunner = (manager.queryRunner as any) = dbConnection.createQueryRunner(
-      "master",
-    );
+    queryRunner = (manager.queryRunner as any) =
+      dbConnection.createQueryRunner("master");
   });
 
   afterAll(async () => {

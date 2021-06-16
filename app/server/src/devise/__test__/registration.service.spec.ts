@@ -28,9 +28,8 @@ describe("Registration Service", () => {
     }).compile();
     await moduleRef.init();
 
-    registrationService = moduleRef.get<RegistrationService>(
-      RegistrationService,
-    );
+    registrationService =
+      moduleRef.get<RegistrationService>(RegistrationService);
     repository = moduleRef.get(getRepositoryToken(User));
 
     user = await factory(User).make();

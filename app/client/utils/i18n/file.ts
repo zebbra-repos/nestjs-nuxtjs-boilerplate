@@ -2,6 +2,10 @@ import { Dirent, existsSync, promises as fsp } from "fs";
 import { join } from "path";
 
 export const getFiles = async (dirPath: string, pattern: RegExp) => {
+  if (fsp === undefined) {
+    return [];
+  }
+
   const dirs = await fsp.readdir(dirPath, { withFileTypes: true });
 
   return dirs

@@ -1,7 +1,7 @@
 <template lang="pug">
   client-only
     my-loading-placeholder(slot='placeholder')
-    v-card.pt-3(:loading='loading')
+    v-card(:loading='loading')
       v-toolbar(color='accent' flat)
         v-toolbar-title {{ $t('devise.registrations.new.sign-up') }}
       v-card-text
@@ -120,30 +120,29 @@ export default defineComponent({
       });
     }
 
-    const { mutate: register, error, loading, onDone } = useSignUpMutation(
-      () => ({
-        errorPolicy: "all",
-        fetchPolicy: "no-cache",
-        variables: {
-          firstName: input.firstName,
-          lastName: input.lastName,
-          email: input.email,
-          password: input.password,
-        },
-      }),
-    );
+    const {
+      mutate: register,
+      error,
+      loading,
+      onDone,
+    } = useSignUpMutation(() => ({
+      errorPolicy: "all",
+      fetchPolicy: "no-cache",
+      variables: {
+        firstName: input.firstName,
+        lastName: input.lastName,
+        email: input.email,
+        password: input.password,
+      },
+    }));
 
     const globalError = ref("");
     onDone((data) => {
       if (data?.errors) {
         errorHandler(data.errors, messages, globalError);
       } else {
-        const {
-          message,
-          afterActionPath,
-          expiresIn,
-          accessToken,
-        } = data?.data?.signUp!;
+        const { message, afterActionPath, expiresIn, accessToken } =
+          data?.data?.signUp!;
 
         if (expiresIn && accessToken) {
           sessionStore.updateAfterSignInPath(afterActionPath);

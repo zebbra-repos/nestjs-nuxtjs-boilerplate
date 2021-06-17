@@ -14,6 +14,7 @@ WORKDIR /src
 
 # Install build dependencies
 ADD package.json yarn.lock scripts /src/
+ADD scripts/ /src/scripts/
 RUN yarn install
 
 # Build application
@@ -41,7 +42,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Install runtime dependencies
-ADD package.json yarn.lock scripts /app/
+ADD package.json yarn.lock /app/
+ADD scripts/ /app/scripts/
 RUN yarn install
 
 # Copy app from former build stage

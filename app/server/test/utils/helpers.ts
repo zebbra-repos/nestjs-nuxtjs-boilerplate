@@ -4,23 +4,27 @@ import request from "supertest";
 import { User } from "../../src/users";
 
 export function signUp(app: INestApplication, user: User) {
-  return request(app.getHttpServer()).post("/graphql").send({
-    operationName: null,
-    query: `
+  return request(app.getHttpServer())
+    .post("/graphql")
+    .send({
+      operationName: null,
+      query: `
       mutation($email: String!, $password: String!) {
         signUp(data: { email: $email, password: $password }) {
           message
         }
       }
     `,
-    variables: user,
-  });
+      variables: user,
+    });
 }
 
 export function signIn(app: INestApplication, user: User) {
-  return request(app.getHttpServer()).post("/graphql").send({
-    operationName: null,
-    query: `
+  return request(app.getHttpServer())
+    .post("/graphql")
+    .send({
+      operationName: null,
+      query: `
       mutation($email: String!, $password: String!) {
         signIn(data: { email: $email, password: $password }) {
           expiresIn
@@ -28,8 +32,8 @@ export function signIn(app: INestApplication, user: User) {
         }
       }
     `,
-    variables: user,
-  });
+      variables: user,
+    });
 }
 
 export async function createToken(

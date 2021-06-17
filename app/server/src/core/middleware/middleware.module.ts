@@ -37,7 +37,7 @@ export class MiddlewareModule implements NestModule {
       name: "connect.sid",
       store: new TypeormStore({
         cleanupLimit: 2,
-      }).connect(this.sessionRepository),
+      }).connect(this.sessionRepository) as any,
       rolling: false,
       resave: false,
       saveUninitialized: false,

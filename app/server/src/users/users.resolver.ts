@@ -7,7 +7,7 @@ import {
   Subscription,
 } from "@nestjs/graphql";
 import { Inject, UseGuards } from "@nestjs/common";
-import { PubSub } from "graphql-subscriptions";
+import { RedisPubSub } from "graphql-redis-subscriptions";
 
 import { PUB_SUB } from "../core";
 import { CurrentUser } from "../common/decorators";
@@ -17,10 +17,12 @@ import { PingResponseDto, UserDto } from "./users.dto";
 import { User } from "./users.entity";
 import { UsersService } from "./users.service";
 
+const USER_ALIVE_EVENT = "userAlive";
+
 @Resolver(() => User)
 export class UsersResolver {
   constructor(
-    @Inject(PUB_SUB) private readonly pubSub: PubSub,
+    @Inject(PUB_SUB) private readonly pubSub: RedisPubSub,
     private readonly usersService: UsersService,
   ) {}
 
@@ -50,7 +52,7 @@ export class UsersResolver {
   public pingUser(@CurrentUser() user: User) {
     // publish for current user only. user will be used
     // in subscription filter
-    this.pubSub.publish("userAlive", { status: "ok", user });
+    this.pubSub.publish(USER_ALIVE_EVENT, { status: "ok", user });
     return user;
   }
 
@@ -59,12 +61,15 @@ export class UsersResolver {
   // connection is authorized and the user is set on context.req.user
   // we publish event only to the current user by filtering with payload.user
   @Subscription(() => PingResponseDto, {
-    filter: (payload, _variables, { req: { user } }) =>
-      payload.user.id === user.id,
-    resolve: (payload) => ({ status: payload.status }),
+    filter: (payload, _variables, { req: { user } }) => {
+      return payload.user.id === user.id;
+    },
+    resolve: (payload) => {
+      return { status: payload ? payload.status : "NOT OK" };
+    },
   })
   @UseGuards(JwtAuthGuard)
   userAlive() {
-    return this.pubSub.asyncIterator("userAlive");
+    return this.pubSub.asyncIterator(USER_ALIVE_EVENT);
   }
 }

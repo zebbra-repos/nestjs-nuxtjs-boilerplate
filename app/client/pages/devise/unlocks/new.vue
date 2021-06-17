@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card.pt-3(:loading='loading')
+  v-card(:loading='loading')
     v-toolbar(color='accent' flat)
       v-toolbar-title {{ $t('devise.unlocks.new.resend-unlock-instructions') }}
     v-card-text

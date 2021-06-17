@@ -29,7 +29,7 @@ export default defineComponent({
       locale: computed(() => i18n.locale),
       setLocale: i18n.setLocale,
       availableLocales: computed(() =>
-        i18n.locales?.filter((i: any) => i.code !== i18n.locale),
+        (i18n.locales as any[]).filter((i) => i.code !== i18n.locale),
       ),
     };
   },

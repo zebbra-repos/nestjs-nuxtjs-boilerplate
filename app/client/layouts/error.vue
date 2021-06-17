@@ -10,8 +10,8 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  layout: "empty",
   name: "ErrorLayout",
+  layout: "empty",
   props: {
     error: {
       type: Object,

@@ -1,5 +1,6 @@
 import { Injectable, NestMiddleware } from "@nestjs/common";
-import { NextFunction, Request, Response } from "express";
+import { NextFunction } from "express";
+import { Request, Response } from "express-serve-static-core";
 
 import cors from "cors";
 

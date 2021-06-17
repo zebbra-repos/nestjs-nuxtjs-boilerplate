@@ -1,7 +1,7 @@
 ##########################################################################
 #### BUILD CONTAINER
 ##########################################################################
-FROM node:14.2.0-slim AS builder
+FROM node:14.16.0-slim AS builder
 
 RUN apt-get update && \
   apt-get -y install g++ build-essential python && \
@@ -26,7 +26,7 @@ RUN find ./dist/app/client -mindepth 1 ! -regex '^./dist/app/client/dist.*' -del
 ##########################################################################
 #### RUNTIME CONTAINER
 ##########################################################################
-FROM node:14.2.0-slim
+FROM node:14.16.0-slim
 
 RUN apt-get update && \
   apt-get -y install g++ build-essential python && \

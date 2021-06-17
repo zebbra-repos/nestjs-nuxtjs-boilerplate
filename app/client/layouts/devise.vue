@@ -3,10 +3,10 @@
     my-notification
     my-app-bar(compact)
     v-main
-      v-container.d-flex.flex-fill.py-0(fluid)
+      v-container.d-flex.flex-fill(fluid)
         v-row.flex-fill
           v-col.d-none.d-sm-block.backdrop(cols='12' sm='4' md='6')
-          v-col.py-0(cols='12' sm='8' md='6')
+          v-col(cols='12' sm='8' md='6')
             nuxt
     my-footer
 </template>

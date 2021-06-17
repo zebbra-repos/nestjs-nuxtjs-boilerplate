@@ -7,7 +7,7 @@ import { getFiles } from "~/utils/i18n/file";
 export const loadTranslations = async (
   dirPath: string,
   i18nPath: string,
-  pattern: RegExp = new RegExp(".*.json"),
+  pattern: RegExp = /^.*\.json$/,
 ) => {
   const files = await getFiles(join(i18nPath, dirPath), pattern);
   const translations: { [x: string]: string } = {};

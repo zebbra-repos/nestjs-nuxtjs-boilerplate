@@ -72,10 +72,10 @@ export type Mutation = {
   confirmAccountRequest: MessageResponseDto;
   /** Request user password reset instructions */
   resetPasswordRequest: MessageResponseDto;
-  /** Register as a new user */
-  signUp: SignUpResponseDto;
   /** Login as user */
   signIn: SignInResponseDto;
+  /** Register as a new user */
+  signUp: SignUpResponseDto;
   /** Request account unlock instructions */
   unlockAccountRequest: MessageResponseDto;
 };
@@ -88,12 +88,12 @@ export type MutationResetPasswordRequestArgs = {
   data: EmailRequestDto;
 };
 
-export type MutationSignUpArgs = {
-  data: CreateUserDto;
-};
-
 export type MutationSignInArgs = {
   data: SignInRequestDto;
+};
+
+export type MutationSignUpArgs = {
+  data: CreateUserDto;
 };
 
 export type MutationUnlockAccountRequestArgs = {
@@ -109,10 +109,10 @@ export type PingResponseDto = {
 
 export type Query = {
   __typename?: "Query";
-  /** Get application settings for frontend */
-  settings: SettingsDto;
   /** Fetch a new csrf token */
   csrf: CsrfTokenDto;
+  /** Get application settings for frontend */
+  settings: SettingsDto;
   /** Get current user profile */
   profile: UserDto;
   /** Get user by ID */

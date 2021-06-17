@@ -13,7 +13,7 @@ RUN apt-get update && \
 WORKDIR /src
 
 # Install build dependencies
-ADD package.json yarn.lock /src/
+ADD package.json yarn.lock scripts /src/
 RUN yarn install
 
 # Build application
@@ -41,7 +41,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Install runtime dependencies
-ADD package.json yarn.lock /app/
+ADD package.json yarn.lock scripts /app/
 RUN yarn install
 
 # Copy app from former build stage

@@ -47,6 +47,12 @@ type UserDto {
   email: String!
 }
 
+"""Ping Response DTO model"""
+type PingResponseDto {
+  """Connection status"""
+  status: String!
+}
+
 """Message Response DTO model"""
 type MessageResponseDto {
   """Custom information message"""
@@ -92,6 +98,9 @@ type Query {
 }
 
 type Mutation {
+  """Ping currently signed in user"""
+  ping: UserDto!
+
   """Request account confirmation instructions"""
   confirmAccountRequest(data: EmailRequestDto!): MessageResponseDto!
 
@@ -136,4 +145,8 @@ input SignInRequestDto {
 
   """User password"""
   password: String!
+}
+
+type Subscription {
+  userAlive: PingResponseDto!
 }

@@ -5,6 +5,7 @@ export * from "./i18n";
 export * from "./logger";
 export * from "./middleware";
 export * from "./nuxt";
+export * from "./pubsub";
 export * from "./sendgrid";
 export * from "./sendgrid";
 export * from "./settings";

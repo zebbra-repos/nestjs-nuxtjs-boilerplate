@@ -66,6 +66,8 @@ export type MessageResponseDto = {
 
 export type Mutation = {
   __typename?: "Mutation";
+  /** Ping currently signed in user */
+  ping: UserDto;
   /** Request account confirmation instructions */
   confirmAccountRequest: MessageResponseDto;
   /** Request user password reset instructions */
@@ -96,6 +98,13 @@ export type MutationSignInArgs = {
 
 export type MutationUnlockAccountRequestArgs = {
   data: EmailRequestDto;
+};
+
+/** Ping Response DTO model */
+export type PingResponseDto = {
+  __typename?: "PingResponseDto";
+  /** Connection status */
+  status: Scalars["String"];
 };
 
 export type Query = {
@@ -151,6 +160,11 @@ export type SignUpResponseDto = {
   expiresIn?: Maybe<Scalars["Int"]>;
   /** JSON web token */
   accessToken?: Maybe<Scalars["String"]>;
+};
+
+export type Subscription = {
+  __typename?: "Subscription";
+  userAlive: PingResponseDto;
 };
 
 /** User DTO model */
@@ -228,6 +242,12 @@ export type UnlockAccountRequestMutation = {
   } & Pick<MessageResponseDto, "message">;
 };
 
+export type PingMutationVariables = Exact<{ [key: string]: never }>;
+
+export type PingMutation = { readonly __typename?: "Mutation" } & {
+  readonly ping: { readonly __typename?: "UserDto" } & Pick<UserDto, "id">;
+};
+
 export type GetProfileQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetProfileQuery = { readonly __typename?: "Query" } & {
@@ -257,6 +277,17 @@ export type CsrfTokenQuery = { readonly __typename?: "Query" } & {
   readonly csrf: { readonly __typename?: "CsrfTokenDto" } & Pick<
     CsrfTokenDto,
     "token"
+  >;
+};
+
+export type OnUserAliveSubscriptionVariables = Exact<{ [key: string]: never }>;
+
+export type OnUserAliveSubscription = {
+  readonly __typename?: "Subscription";
+} & {
+  readonly userAlive: { readonly __typename?: "PingResponseDto" } & Pick<
+    PingResponseDto,
+    "status"
   >;
 };
 
@@ -520,6 +551,47 @@ export type UnlockAccountRequestMutationCompositionFunctionResult =
     UnlockAccountRequestMutation,
     UnlockAccountRequestMutationVariables
   >;
+export const PingDocument = gql`
+  mutation ping {
+    ping {
+      id
+    }
+  }
+`;
+
+/**
+ * __usePingMutation__
+ *
+ * To run a mutation, you first call `usePingMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `usePingMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = usePingMutation();
+ */
+export function usePingMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        PingMutation,
+        PingMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          PingMutation,
+          PingMutationVariables
+        >
+      > = {},
+) {
+  return VueApolloComposable.useMutation<PingMutation, PingMutationVariables>(
+    PingDocument,
+    options,
+  );
+}
+export type PingMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<PingMutation, PingMutationVariables>;
 export const GetProfileDocument = gql`
   query getProfile {
     profile {
@@ -671,3 +743,52 @@ export function useCsrfTokenQuery(
 }
 export type CsrfTokenQueryCompositionFunctionResult =
   VueApolloComposable.UseQueryReturn<CsrfTokenQuery, CsrfTokenQueryVariables>;
+export const OnUserAliveDocument = gql`
+  subscription onUserAlive {
+    userAlive {
+      status
+    }
+  }
+`;
+
+/**
+ * __useOnUserAliveSubscription__
+ *
+ * To run a query within a Vue component, call `useOnUserAliveSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useOnUserAliveSubscription` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the subscription, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/subscription.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useOnUserAliveSubscription();
+ */
+export function useOnUserAliveSubscription(
+  options:
+    | VueApolloComposable.UseSubscriptionOptions<
+        OnUserAliveSubscription,
+        OnUserAliveSubscriptionVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseSubscriptionOptions<
+          OnUserAliveSubscription,
+          OnUserAliveSubscriptionVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseSubscriptionOptions<
+          OnUserAliveSubscription,
+          OnUserAliveSubscriptionVariables
+        >
+      > = {},
+) {
+  return VueApolloComposable.useSubscription<
+    OnUserAliveSubscription,
+    OnUserAliveSubscriptionVariables
+  >(OnUserAliveDocument, {}, options);
+}
+export type OnUserAliveSubscriptionCompositionFunctionResult =
+  VueApolloComposable.UseSubscriptionReturn<
+    OnUserAliveSubscription,
+    OnUserAliveSubscriptionVariables
+  >;

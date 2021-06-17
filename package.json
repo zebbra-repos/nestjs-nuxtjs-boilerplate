@@ -79,7 +79,7 @@
     "csurf": "^1.11.0",
     "express-session": "^1.17.2",
     "flat": "^5.0.2",
-    "graphql": "^15.4.0",
+    "graphql": "^15.5.0",
     "graphql-redis-subscriptions": "^2.4.0",
     "helmet": "^4.6.0",
     "joi": "^17.4.0",

@@ -14,3 +14,17 @@ ingress:
     - secretName: nest-nuxt-boilerplate-tls
       hosts:
         - nest-nuxt-boilerplate.demo.zebbra.ch
+
+redis:
+  enabled: true
+  usePassword: false
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  master:
+    persistence:
+      size: 1Gi
+  slave:
+    persistence:
+      size: 1Gi

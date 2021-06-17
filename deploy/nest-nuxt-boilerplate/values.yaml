@@ -77,3 +77,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+redis:
+  enabled: false

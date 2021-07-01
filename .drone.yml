@@ -24,7 +24,7 @@ steps:
       JWT_SECRET: secret
       CSRF_SECRET: secret
     commands:
-      - apt update && apt install python g++ build-essential -y
+      - apt update && apt install python g++ build-essential git -y && apt-get clean
       - yarn install --pure-lockfile
       - yarn lint
       - yarn db:migrate

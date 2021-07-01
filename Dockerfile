@@ -4,7 +4,7 @@
 FROM node:14.16.0-slim AS builder
 
 RUN apt-get update && \
-  apt-get -y install g++ build-essential python && \
+  apt-get -y install g++ build-essential python git -y && \
   apt-get clean
 
 # Configure the main working directory. This is the base

@@ -58,7 +58,7 @@
     "@nestjs/typeorm": "^7.1.5",
     "@ntegral/nestjs-sentry": "^2.0.7",
     "@nuxtjs/apollo": "^4.0.1-rc.4",
-    "@nuxtjs/composition-api": "^0.24.5",
+    "@nuxtjs/composition-api": "^0.24.6",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/vuetify": "^1.12.1",
     "@sentry/browser": "^6.8.0",

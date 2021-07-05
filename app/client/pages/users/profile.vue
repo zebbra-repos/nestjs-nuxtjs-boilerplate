@@ -36,12 +36,14 @@ export default defineComponent({
     });
 
     const { mutate: ping } = usePingMutation();
-    let interval: number | undefined;
+    let interval: NodeJS.Timer | undefined;
     onMounted(() => {
       interval = setInterval(ping, 1000 * 5);
     });
     onBeforeUnmount(() => {
-      clearInterval(interval);
+      if (interval) {
+        clearInterval(interval);
+      }
     });
 
     return {

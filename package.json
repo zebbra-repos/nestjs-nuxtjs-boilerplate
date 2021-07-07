@@ -122,7 +122,7 @@
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie-parser": "^1.4.2",
-    "@types/csurf": "^1.11.1",
+    "@types/csurf": "^1.11.2",
     "@types/express": "^4.17.12",
     "@types/express-session": "^1.17.3",
     "@types/faker": "^5.5.6",

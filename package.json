@@ -125,7 +125,7 @@
     "@types/csurf": "^1.11.1",
     "@types/express": "^4.17.12",
     "@types/express-session": "^1.17.3",
-    "@types/faker": "^5.5.6",
+    "@types/faker": "^5.5.7",
     "@types/flat": "^5.0.1",
     "@types/jest": "^26.0.23",
     "@types/node": "^16.0.0",

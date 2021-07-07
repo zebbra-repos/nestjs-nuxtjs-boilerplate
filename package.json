@@ -124,7 +124,7 @@
     "@types/cookie-parser": "^1.4.2",
     "@types/csurf": "^1.11.1",
     "@types/express": "^4.17.12",
-    "@types/express-session": "^1.17.3",
+    "@types/express-session": "^1.17.4",
     "@types/faker": "^5.5.6",
     "@types/flat": "^5.0.1",
     "@types/jest": "^26.0.23",

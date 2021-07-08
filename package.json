@@ -132,7 +132,7 @@
     "@types/nodemailer": "^6.4.2",
     "@types/nodemailer-sendgrid": "^1.0.0",
     "@types/passport-jwt": "^3.0.5",
-    "@types/passport-local": "^1.0.33",
+    "@types/passport-local": "^1.0.34",
     "@types/supertest": "^2.0.11",
     "@vue/test-utils": "^1.2.1",
     "apollo-client": "^2.6.10",

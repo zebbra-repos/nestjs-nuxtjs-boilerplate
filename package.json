@@ -131,7 +131,7 @@
     "@types/node": "^16.0.0",
     "@types/nodemailer": "^6.4.2",
     "@types/nodemailer-sendgrid": "^1.0.0",
-    "@types/passport-jwt": "^3.0.5",
+    "@types/passport-jwt": "^3.0.6",
     "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.11",
     "@vue/test-utils": "^1.2.1",

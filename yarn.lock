@@ -2996,10 +2996,10 @@
   resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-0.4.1.tgz#e7fe038f0bdda7b8f858fa79ca8516b8f9069b1a"
   integrity sha512-JXrw2LMangSU3vnaXWXVX47GRG1FbbNh4aVBbidDjxT3zlghsoNQY6qyWtT001MCl8lJGo8I6i6+DurBRRxl/Q==
 
-"@nestjs/passport@^7.1.6":
-  version "7.1.6"
-  resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-7.1.6.tgz#608bb265dfd85602aa74bbceacc012ffb2e9d25d"
-  integrity sha512-iHD/4D01CsKKWg7kUzo4yGNS4m90z1an0eUz+6nBlE5VeEOuCzhGFoBKAt0OKLJLOTEsJKuj4C2b5QfjqXVTyQ==
+"@nestjs/passport@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-8.0.0.tgz#dda83945ad5ee75bf81f0d0bded0aaff48fb0536"
+  integrity sha512-pIuOA+dEgOW0hg/qVV9uegitUHN1dKY8nEZhOtwj9FErJfCVZpQce8OH06n7yngqGTzvkkjjr/TzfuA1o8/A5A==
 
 "@nestjs/platform-express@^8.0.0":
   version "8.0.0"
@@ -3039,10 +3039,10 @@
     optional "0.1.4"
     tslib "2.3.0"
 
-"@nestjs/typeorm@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/typeorm/-/typeorm-8.0.0.tgz#974fd83933e44b4ecf7321fa06ed91c36da99c82"
-  integrity sha512-KbiGzkoNM+wdrJfqUZ+eJFeyNMR/HeMpE+uleHAnggt+bNqRzPWuiwY0B/ris3TpU9iUYmD4RJYvky13XD4s8w==
+"@nestjs/typeorm@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/typeorm/-/typeorm-8.0.1.tgz#2bd4acd687058aefa70f8d1d3261f662db1ac3f0"
+  integrity sha512-710zOLk4j5kkv7STkKVNPpqBaGAhFjDblLaUHllqogw9z4gkjuPv59xfnqzwle4oAex25nihh0QGqtpB21zw7w==
   dependencies:
     uuid "8.3.2"
 
@@ -4576,15 +4576,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.56.tgz#83591a89723d8ec3eaf722137e1784a7351edb6c"
   integrity sha512-8OdIupOIZtmObR13fvGyTvpcuzKmMugkATeVcfNwCjGtHxhjEKmOvLqXwR8U9VOtNnZ4EXaSfNiLVsPinaCXkQ==
 
-"@types/node@^15.3.0":
-  version "15.12.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.12.2.tgz#1f2b42c4be7156ff4a6f914b2fb03d05fa84e38d"
-  integrity sha512-zjQ69G564OCIWIOHSXyQEEDpdpGl+G348RAKY0XXy9Z5kU9Vzv1GMNnkar/ZJ8dzXB3COzD9Mo9NtRZ4xfgUww==
-
-"@types/node@^16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.0.1.tgz#70cedfda26af7a2ca073fdcc9beb2fff4aa693f8"
-  integrity sha512-hBOx4SUlEPKwRi6PrXuTGw1z6lz0fjsibcWCM378YxsSu/6+C30L6CR49zIBKHiwNWCYIcOLjg4OHKZaFeLAug==
+"@types/node@^16.3.0":
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.0.tgz#1836664e4fad13b51b07eb6e882a53925e6543c4"
+  integrity sha512-OydMCocGMGqw/1BnWbhtK+AtwyWTOigtrQlRe57OQmTNcI3HKlVI5FGlh+c4mSqInMPLynFrTlYjfajPu9O/eQ==
 
 "@types/nodemailer-sendgrid@^1.0.0":
   version "1.0.0"
@@ -4600,10 +4595,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/nodemailer@^6.4.3":
-  version "6.4.3"
-  resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.3.tgz#1ce6ecf492f8b7e88f29cbf70a7f6daced93533e"
-  integrity sha512-8toJ+VnbmAOMLJoIfbtoNXTRi3NYEvpXajbuhuBnMwDLOFcNq+//mSzuy0TLAbIps1JaBWcc/7252vvKD/zPkQ==
+"@types/nodemailer@^6.4.4":
+  version "6.4.4"
+  resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.4.tgz#c265f7e7a51df587597b3a49a023acaf0c741f4b"
+  integrity sha512-Ksw4t7iliXeYGvIQcSIgWQ5BLuC/mljIEbjf615svhZL10PE9t+ei8O9gDaD3FPCasUJn9KTLwz2JFJyiiyuqw==
   dependencies:
     "@types/node" "*"
 
@@ -16452,13 +16447,12 @@ pino-http@^5.0.0:
     pino "^6.0.0"
     pino-std-serializers "^2.4.0"
 
-pino-pretty@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/pino-pretty/-/pino-pretty-5.1.0.tgz#a7e6dcace4da4fd0d9763ff95957ebbf4b810fbb"
-  integrity sha512-fpDU80MKP59XOWxqV8crTDjRegC2fbDsA56zTr5s1guiv6QuYHILc9x1a4+o9SNPtfmF2kQdpAZS+bIExtbELQ==
+pino-pretty@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/pino-pretty/-/pino-pretty-5.1.1.tgz#387aebbe0c4504b9e3f6f51148e36d1b336cb16d"
+  integrity sha512-bG8a6A2QcZYJXD/ZL7PXn8CDNIUP5TKyQwR9Yjzn5dpGyQ7Wbyl707Dxhx+tPT3BG6YpsXF93Hhe9EUnx0SsPw==
   dependencies:
     "@hapi/bourne" "^2.0.0"
-    "@types/node" "^15.3.0"
     args "^5.0.1"
     chalk "^4.0.0"
     dateformat "^4.5.1"

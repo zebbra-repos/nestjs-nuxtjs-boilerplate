@@ -82,7 +82,7 @@
     "graphql": "^15.4.0",
     "graphql-redis-subscriptions": "^2.4.0",
     "helmet": "^4.6.0",
-    "joi": "^17.4.0",
+    "joi": "^17.4.1",
     "nestjs-command": "^2.0.0",
     "nestjs-i18n": "^8.1.2",
     "nestjs-pino": "^1.4.0",

@@ -2924,10 +2924,10 @@
     lodash.set "4.3.2"
     uuid "8.3.2"
 
-"@nestjs/core@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-8.0.0.tgz#db609c46cb7482279bac9b1aef7bce343df38bad"
-  integrity sha512-DGlqMoPvWZmPPTXX2B2ln5l9WHMCfCPkF+/PoSmnDLuuVo/QlKBAlDbZELVRuELShpXVXiJlcManFQ579dxhOA==
+"@nestjs/core@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-8.0.1.tgz#0ec7f06325451a4b5c3a94f65ee9f61805804b8d"
+  integrity sha512-5ikIdzHp8axcodDsMxBI8Bx+Fx/1HP9opDT8eltHs5FWG1gbhUZnjjI82A7mcrrlt9PkPyoInuX6d/F4DTeuAg==
   dependencies:
     "@nuxtjs/opencollective" "0.3.2"
     fast-safe-stringify "2.0.7"
@@ -20261,7 +20261,7 @@ tsconfig@^7.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
-tslib@2.0.1, tslib@^2.0.0, tslib@^2.0.1, tslib@~2.0.0, tslib@~2.0.1:
+tslib@2.0.1, tslib@~2.0.0, tslib@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
   integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
@@ -20271,7 +20271,7 @@ tslib@2.2.0, tslib@~2.2.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
-tslib@2.3.0, tslib@^2, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@~2.3.0:
+tslib@2.3.0, tslib@^2, tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@~2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
@@ -20820,12 +20820,12 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@8.3.0, uuid@^8.0.0:
+uuid@8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.0.tgz#ab738085ca22dc9a8c92725e459b1d507df5d6ea"
   integrity sha512-fX6Z5o4m6XsXBdli9g7DtWgAx+osMsRRZFKma1mIUsLCz6vRvv+pz5VNbyu9UEDzpMWulZfvpgb/cmDXVulYFQ==
 
-uuid@8.3.2, uuid@^8.3.2:
+uuid@8.3.2, uuid@^8.0.0, uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==

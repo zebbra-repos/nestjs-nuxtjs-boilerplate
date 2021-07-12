@@ -30,15 +30,19 @@ export default defineComponent({
     const { loading, result } = useGetProfileQuery();
     const profile = useResult(result);
 
-    const { onResult } = useOnUserAliveSubscription();
-    onResult((result) => {
-      console.log(result?.data?.userAlive.status);
-    });
+    if (process.client) {
+      const { onResult } = useOnUserAliveSubscription();
+      onResult((result) => {
+        console.log(result?.data?.userAlive.status);
+      });
+    }
 
     const { mutate: ping } = usePingMutation();
     let interval: NodeJS.Timer | undefined;
     onMounted(() => {
-      interval = setInterval(ping, 1000 * 5);
+      if (process.client) {
+        interval = setInterval(ping, 1000 * 5);
+      }
     });
     onBeforeUnmount(() => {
       if (interval) {

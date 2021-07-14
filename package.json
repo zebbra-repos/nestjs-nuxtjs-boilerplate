@@ -110,7 +110,7 @@
     "@graphql-codegen/cli": "^1.21.6",
     "@graphql-codegen/typescript": "^1.22.4",
     "@graphql-codegen/typescript-operations": "^1.18.3",
-    "@graphql-codegen/typescript-vue-apollo": "^2.3.8",
+    "@graphql-codegen/typescript-vue-apollo": "^2.3.9",
     "@nestjs/cli": "^8.0.2",
     "@nestjs/schematics": "^8.0.1",
     "@nestjs/testing": "^8.0.2",

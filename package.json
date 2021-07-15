@@ -86,7 +86,7 @@
     "nestjs-command": "^2.0.0",
     "nestjs-i18n": "^8.1.2",
     "nestjs-pino": "^1.4.0",
-    "nodemailer": "^6.6.2",
+    "nodemailer": "^6.6.3",
     "nodemailer-sendgrid": "^1.0.3",
     "nuxt": "^2.15.7",
     "nuxt-i18n": "6.21.1",

@@ -113,7 +113,7 @@
     "@graphql-codegen/typescript-vue-apollo": "^2.3.9",
     "@nestjs/cli": "^8.0.2",
     "@nestjs/schematics": "^8.0.1",
-    "@nestjs/testing": "^8.0.2",
+    "@nestjs/testing": "^8.0.4",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxt/vue-app": "^2.15.7",

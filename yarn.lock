@@ -2028,10 +2028,10 @@
     ts-node "^8"
     tslib "^1"
 
-"@eslint/eslintrc@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.2.tgz#f63d0ef06f5c0c57d76c4ab5f63d3835c51b0179"
-  integrity sha512-8nmGq/4ycLpIwzvhI4tNDmQztZ8sp+hI7cyG8i1nQDhkAbRzHpXPidRAHlNvCZQpJTKw5ItIpMw9RSToGF00mg==
+"@eslint/eslintrc@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.3.tgz#9e42981ef035beb3dd49add17acb96e8ff6f394c"
+  integrity sha512-J6KFFz5QCYUJq3pf0mjEcCJVERbzv71PUIDczuh9JkwGEzced6CO5ADLHB1rbf/+oPBtoPfMYNOpGDzCANlbXw==
   dependencies:
     ajv "^6.12.4"
     debug "^4.1.1"
@@ -2913,10 +2913,10 @@
     webpack "5.43.0"
     webpack-node-externals "3.0.0"
 
-"@nestjs/common@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-8.0.2.tgz#4f8b82280073ae43a2f392557fe675ff6ba0656f"
-  integrity sha512-Onr29APFiOG/Ahox1ytIdNXGXBVn6ViOWErFVNRIz3ZB4guLeFlr9Cly8U3Dssrd6rxuQG22YGD8cRhBNyQHvQ==
+"@nestjs/common@^8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-8.0.4.tgz#00e801dfcfad4c4e0445b925a61cf6047285acb6"
+  integrity sha512-qgQTHH+0y64btdnqSuQSo8Ou7Okb6+8l2StjDOlzaPK36Ln1uBLoa6jQnwqxlAHUHqEocmraL1V5+wnSYz2CRA==
   dependencies:
     axios "0.21.1"
     iterare "1.2.1"
@@ -2935,10 +2935,10 @@
     lodash.set "4.3.2"
     uuid "8.3.2"
 
-"@nestjs/core@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-8.0.2.tgz#9840ed8011a40f79097679904df4d5bccbceb3b3"
-  integrity sha512-zRXD33FR8wcbMsWuMXsAxjz74PG6JvfqlZO+FKAWZaY0kAwQuNnIfhmWYh1WIVZCy+HHbXmt/x0FbZBGG1x/1A==
+"@nestjs/core@^8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-8.0.4.tgz#fcef4fa0f62f8b205f6e741bf6cd2da01c94d98a"
+  integrity sha512-1clCaGtVZTE7/tEvVj1FLwgFTHIlaCvwfPSMgxhGalTrx+cM8MoqEGLWklqS5bS+YfQscI1+Gn3OLdWlRcGbRQ==
   dependencies:
     "@nuxtjs/opencollective" "0.3.2"
     fast-safe-stringify "2.0.8"
@@ -3012,10 +3012,10 @@
   resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-8.0.0.tgz#dda83945ad5ee75bf81f0d0bded0aaff48fb0536"
   integrity sha512-pIuOA+dEgOW0hg/qVV9uegitUHN1dKY8nEZhOtwj9FErJfCVZpQce8OH06n7yngqGTzvkkjjr/TzfuA1o8/A5A==
 
-"@nestjs/platform-express@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.0.2.tgz#9aa61fcdde2eb2c685f5d062c9b2ea81c591cba9"
-  integrity sha512-lDXDbxHp6yyJ2CBJ80+IkWJA51BxEPxIwzebVSeNVocAOzZg4TLe2oROmpHvawkjC0svWHjAWCCY2qi2Ojebsw==
+"@nestjs/platform-express@^8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.0.4.tgz#506e58fa5b888be3d5006b069ab7099048ad93f0"
+  integrity sha512-qndJl/PsXArtuc/aguFrGrF9EIzyPX9kthKTAPXlqjtBMuApXupghG9T+QowSlPIppp52wRG6WAdJt0IQA9o/A==
   dependencies:
     body-parser "1.19.0"
     cors "2.8.5"
@@ -3034,10 +3034,10 @@
     jsonc-parser "3.0.0"
     pluralize "8.0.0"
 
-"@nestjs/schematics@^8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/schematics/-/schematics-8.0.1.tgz#773e6e76cd23a971f43862c41a5f26994b0c38e0"
-  integrity sha512-rD/eqpguJpjOVI4uK1MOpqC1vPz+XvC/xT1IYiWDFU9rdJMVhHC5maTKVs/RjkwYRmPzNRTWAoMV3yOD/jC+gw==
+"@nestjs/schematics@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/schematics/-/schematics-8.0.2.tgz#ff0d92fcdfd885e66f69132d4ebbd97e4ab56ef5"
+  integrity sha512-iWtpXfn1Zh4Vm37BzY8OSJ60Y9TqNOjk8J+KLIwcql9EuP+0C/C4WUn+vIQMfmnut3MxRmAYFE2B/LFYrjGC5Q==
   dependencies:
     "@angular-devkit/core" "12.0.5"
     "@angular-devkit/schematics" "12.0.5"
@@ -3053,10 +3053,10 @@
     check-disk-space "2.1.0"
     deprecate "^1.1.1"
 
-"@nestjs/testing@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-8.0.2.tgz#c012d790a8bdb6c775b7c3bcc85e214711aa4410"
-  integrity sha512-5IYw7TVeXnjKV82cvm1LIOUxQod2u0v9LUy8g+UQpSO5LluKT/l3mpWomsLH/jfcwqlPhGiynrEt1rVdwUAXdw==
+"@nestjs/testing@^8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-8.0.4.tgz#2b7d4fa87df23d2e3307350ae41699a37bac8ad9"
+  integrity sha512-uc5dQJSOWoSJ9pWLjE9i5LgKbWuvp8Nqaq54iosRRuF4t13B0BmK2QrBaEWNTH96919R3bS3JURBHZIu5rBBwg==
   dependencies:
     optional "0.1.4"
     tslib "2.3.0"
@@ -3096,10 +3096,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@ntegral/nestjs-sentry@^2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-2.0.8.tgz#47b9c8918e21675613f5585c5ccf465edf0dc248"
-  integrity sha512-tfuLRyaEiq/DlycPY+5HyLzFHNxgN1HHe+4rPkQcDLHbi5LbSrepNFevWvFqUM8knNYQn8aTAot5GV78FdWX9A==
+"@ntegral/nestjs-sentry@^2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-2.0.9.tgz#9f94a64903ecf0ff5b6875645dd52baf2e185dd7"
+  integrity sha512-nGKXbcBe7aKx7ROFKP3jamKioll02AiqA8eZOVWJUCczLEzstOYsLBaGISkkzpbJY39/zSLPwLB+2pngS0ILEA==
   optionalDependencies:
     "@nestjs/graphql" "^7.9.9"
 
@@ -4598,10 +4598,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.56.tgz#83591a89723d8ec3eaf722137e1784a7351edb6c"
   integrity sha512-8OdIupOIZtmObR13fvGyTvpcuzKmMugkATeVcfNwCjGtHxhjEKmOvLqXwR8U9VOtNnZ4EXaSfNiLVsPinaCXkQ==
 
-"@types/node@^16.3.2":
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.2.tgz#655432817f83b51ac869c2d51dd8305fb8342e16"
-  integrity sha512-jJs9ErFLP403I+hMLGnqDRWT0RYKSvArxuBVh2veudHV7ifEC1WAmjJADacZ7mRbA2nWgHtn8xyECMAot0SkAw==
+"@types/node@^16.3.3":
+  version "16.3.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.3.tgz#0c30adff37bbbc7a50eb9b58fae2a504d0d88038"
+  integrity sha512-8h7k1YgQKxKXWckzFCMfsIwn0Y61UK6tlD6y2lOb3hTOIMlK3t9/QwHOhc81TwU+RMf0As5fj7NPjroERCnejQ==
 
 "@types/nodemailer-sendgrid@^1.0.0":
   version "1.0.0"
@@ -10218,13 +10218,13 @@ eslint-webpack-plugin@^2.4.1:
     normalize-path "^3.0.0"
     schema-utils "^3.0.0"
 
-eslint@^7.30.0:
-  version "7.30.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.30.0.tgz#6d34ab51aaa56112fd97166226c9a97f505474f8"
-  integrity sha512-VLqz80i3as3NdloY44BQSJpFw534L9Oh+6zJOUaViV4JPd+DaHwutqP7tcpkW3YiXbK6s05RZl7yl7cQn+lijg==
+eslint@^7.31.0:
+  version "7.31.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.31.0.tgz#f972b539424bf2604907a970860732c5d99d3aca"
+  integrity sha512-vafgJpSh2ia8tnTkNUkwxGmnumgckLh5aAbLa1xRmIn9+owi8qBNGKL+B881kNKNTy7FFqTEkpNkUvmw0n6PkA==
   dependencies:
     "@babel/code-frame" "7.12.11"
-    "@eslint/eslintrc" "^0.4.2"
+    "@eslint/eslintrc" "^0.4.3"
     "@humanwhocodes/config-array" "^0.5.0"
     ajv "^6.10.0"
     chalk "^4.0.0"
@@ -15246,15 +15246,15 @@ nestjs-command@^2.0.0:
     lodash.compact "^3.0.1"
     lodash.flattendeep "^4.4.0"
 
-nestjs-i18n@^8.1.2:
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/nestjs-i18n/-/nestjs-i18n-8.1.2.tgz#cecd80c89f2aab1a29dc6fea96ed7fb9c98a4c6b"
-  integrity sha512-y0AW/xa8tkXO7vNJ3G3m845OR2AGCdQq296VsbWg0gTlVpZ7AgnekvTP1WhNUgkWLsoFxnC+enV0Zqsf67eC9g==
+nestjs-i18n@^8.1.3:
+  version "8.1.3"
+  resolved "https://registry.yarnpkg.com/nestjs-i18n/-/nestjs-i18n-8.1.3.tgz#26c6129e0c3515d9cd38ded0ddc1cbc87a3e824d"
+  integrity sha512-XWd5T54Vo8P5HOioZ8JGlq8jyyuWikitP4JFVXV2ZGdBs+4EWdYMIT0ufLH6LGhSztJpugVGSoG25047RUsskA==
   dependencies:
     accept-language-parser "^1.5.0"
     chokidar "^3.5.1"
     cookie "^0.4.1"
-    rxjs "^6.6.7"
+    rxjs "^7.1.0"
     string-format "^2.0.0"
 
 nestjs-pino@^1.4.0:
@@ -15424,10 +15424,10 @@ nodemailer@^6.5.0:
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.1.tgz#2a05fbf205b897d71bf43884167b5d4d3bd01b99"
   integrity sha512-1xzFN3gqv+/qJ6YRyxBxfTYstLNt0FCtZaFRvf4Sg9wxNGWbwFmGXVpfSi6ThGK6aRxAo+KjHtYSW8NvCsNSAg==
 
-nodemailer@^6.6.2:
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.2.tgz#e184c9ed5bee245a3e0bcabc7255866385757114"
-  integrity sha512-YSzu7TLbI+bsjCis/TZlAXBoM4y93HhlIgo0P5oiA2ua9Z4k+E2Fod//ybIzdJxOlXGRcHIh/WaeCBehvxZb/Q==
+nodemailer@^6.6.3:
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.3.tgz#31fb53dd4d8ae16fc088a65cb9ffa8d928a69b48"
+  integrity sha512-faZFufgTMrphYoDjvyVpbpJcYzwyFnbAMmQtj1lVBYAUSm3SOy2fIdd9+Mr4UxPosBa0JRw9bJoIwQn+nswiew==
 
 nodemon@^1.19.4:
   version "1.19.4"
@@ -18489,7 +18489,7 @@ rxjs@^6.3.3, rxjs@^6.6.0:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.2.0:
+rxjs@^7.1.0, rxjs@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.2.0.tgz#5cd12409639e9514a71c9f5f9192b2c4ae94de31"
   integrity sha512-aX8w9OpKrQmiPKfT1bqETtUr9JygIz6GZ+gql8v7CijClsP0laoFUdKzxFAoWuRdSlOdU2+crss+cMf+cqMTnw==

@@ -3012,10 +3012,10 @@
   resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-8.0.0.tgz#dda83945ad5ee75bf81f0d0bded0aaff48fb0536"
   integrity sha512-pIuOA+dEgOW0hg/qVV9uegitUHN1dKY8nEZhOtwj9FErJfCVZpQce8OH06n7yngqGTzvkkjjr/TzfuA1o8/A5A==
 
-"@nestjs/platform-express@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.0.2.tgz#9aa61fcdde2eb2c685f5d062c9b2ea81c591cba9"
-  integrity sha512-lDXDbxHp6yyJ2CBJ80+IkWJA51BxEPxIwzebVSeNVocAOzZg4TLe2oROmpHvawkjC0svWHjAWCCY2qi2Ojebsw==
+"@nestjs/platform-express@^8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.0.4.tgz#506e58fa5b888be3d5006b069ab7099048ad93f0"
+  integrity sha512-qndJl/PsXArtuc/aguFrGrF9EIzyPX9kthKTAPXlqjtBMuApXupghG9T+QowSlPIppp52wRG6WAdJt0IQA9o/A==
   dependencies:
     body-parser "1.19.0"
     cors "2.8.5"
@@ -20293,7 +20293,7 @@ tsconfig@^7.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
-tslib@2.0.1, tslib@^2.0.0, tslib@^2.0.1, tslib@~2.0.0, tslib@~2.0.1:
+tslib@2.0.1, tslib@~2.0.0, tslib@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
   integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
@@ -20303,7 +20303,7 @@ tslib@2.2.0, tslib@~2.2.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
-tslib@2.3.0, tslib@^2, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@~2.3.0:
+tslib@2.3.0, tslib@^2, tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@~2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==

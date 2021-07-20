@@ -56,7 +56,7 @@
     "@nestjs/platform-express": "^8.0.4",
     "@nestjs/terminus": "^7.2.0",
     "@nestjs/typeorm": "^8.0.1",
-    "@ntegral/nestjs-sentry": "^2.0.9",
+    "@ntegral/nestjs-sentry": "^3.0.3",
     "@nuxtjs/apollo": "^4.0.1-rc.4",
     "@nuxtjs/composition-api": "^0.24.7",
     "@nuxtjs/pwa": "^3.3.5",

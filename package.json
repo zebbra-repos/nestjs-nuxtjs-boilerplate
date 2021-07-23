@@ -62,7 +62,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/vuetify": "^1.12.1",
     "@sentry/browser": "^6.9.0",
-    "@sentry/integrations": "^6.9.0",
+    "@sentry/integrations": "^6.10.0",
     "@sentry/node": "^6.9.0",
     "@vue/apollo-composable": "^4.0.0-alpha.10",
     "@vue/apollo-util": "^4.0.0-alpha.6",

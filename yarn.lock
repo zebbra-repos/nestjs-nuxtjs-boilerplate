@@ -2954,10 +2954,10 @@
     tslib "2.3.0"
     uuid "8.3.2"
 
-"@nestjs/config@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-1.0.0.tgz#966067195826b9b82b6fc63e990e31af28912185"
-  integrity sha512-Id5dQsCISMxWu0oPKcEP4ltQ5Z6eY748WHIXNOFc2Q9qehvHVk8iMRMmTIzTJ+eCOB6qKBAdhTI4KuRyRlwAuQ==
+"@nestjs/config@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-1.0.1.tgz#3d794a8af7fb2cc2b1605a8a293eeae14b2d290d"
+  integrity sha512-azMl4uYlFIhYsywFxPJT81RxF3Pnn0TZW3EEmr0Wa0Wex8R2xpvBNrCcrOgW3TB1xGMP7eqBrlfsVh5ZP82szg==
   dependencies:
     dotenv "10.0.0"
     dotenv-expand "5.1.0"
@@ -20662,12 +20662,12 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@8.3.0, uuid@^8.0.0:
+uuid@8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.0.tgz#ab738085ca22dc9a8c92725e459b1d507df5d6ea"
   integrity sha512-fX6Z5o4m6XsXBdli9g7DtWgAx+osMsRRZFKma1mIUsLCz6vRvv+pz5VNbyu9UEDzpMWulZfvpgb/cmDXVulYFQ==
 
-uuid@8.3.2, uuid@^8.3.2:
+uuid@8.3.2, uuid@^8.0.0, uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==

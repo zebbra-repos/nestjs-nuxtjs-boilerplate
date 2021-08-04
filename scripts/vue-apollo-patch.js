@@ -1,12 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 
-const loadTrackingPath = path.resolve(
-  __dirname,
-  "../node_modules/@vue/apollo-composable/dist/util/loadingTracking.js",
-);
+const endings = [".esm.js", ".esm.js.map", ".js", ".js.map"];
 
-fs.writeFileSync(
-  loadTrackingPath,
-  fs.readFileSync(loadTrackingPath, "utf8").replace(/\.\$root/m, ".root"),
-);
+function applyPatch(ending) {
+  const loadTrackingPath = `${path.resolve(
+    __dirname,
+    "../node_modules/@vue/apollo-composable/dist/index",
+  )}${ending}`;
+
+  fs.writeFileSync(
+    loadTrackingPath,
+    fs.readFileSync(loadTrackingPath, "utf8").replace(/\.\$root/m, ".root"),
+  );
+}
+
+endings.forEach(applyPatch);

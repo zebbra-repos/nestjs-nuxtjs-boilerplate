@@ -23,8 +23,8 @@ export const GraphQLModule = GraphQL.forRootAsync({
     const config: GqlModuleOptions = {
       autoSchemaFile,
       installSubscriptionHandlers: true,
+      autoTransformHttpErrors: false,
       debug: true,
-      playground: configService.get<boolean>("production") === false,
       context: ({ req, connection }) => {
         // use connection context as request for subscriptions
         if (connection) {

@@ -1,7 +1,7 @@
 import { onError } from "apollo-link-error";
-import { logErrorMessages } from "@vue/apollo-util";
 import { Context } from "@nuxt/types";
 import { Observable } from "apollo-link";
+import consola from "consola";
 
 import { csrfStore, sessionStore } from "~/store";
 import { ErrorNames } from "~/utils/enums/error-names.enum";
@@ -80,10 +80,10 @@ export default function errorLink(ctx: Context) {
 
     if (!handled) {
       if (graphQLErrors) {
-        logErrorMessages(graphQLErrors);
+        consola.error(graphQLErrors as any);
       }
       if (networkError) {
-        logErrorMessages(networkError);
+        consola.error(networkError as any);
       }
     }
   });

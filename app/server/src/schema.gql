@@ -84,11 +84,11 @@ type SignUpResponseDto {
 }
 
 type Query {
-  """Fetch a new csrf token"""
-  csrf: CsrfTokenDto!
-
   """Get application settings for frontend"""
   settings: SettingsDto!
+
+  """Fetch a new csrf token"""
+  csrf: CsrfTokenDto!
 
   """Get current user profile"""
   profile: UserDto!
@@ -107,11 +107,11 @@ type Mutation {
   """Request user password reset instructions"""
   resetPasswordRequest(data: EmailRequestDto!): MessageResponseDto!
 
-  """Login as user"""
-  signIn(data: SignInRequestDto!): SignInResponseDto!
-
   """Register as a new user"""
   signUp(data: CreateUserDto!): SignUpResponseDto!
+
+  """Login as user"""
+  signIn(data: SignInRequestDto!): SignInResponseDto!
 
   """Request account unlock instructions"""
   unlockAccountRequest(data: EmailRequestDto!): MessageResponseDto!
@@ -123,15 +123,6 @@ input EmailRequestDto {
   email: String!
 }
 
-"""Sign In Request DTO model"""
-input SignInRequestDto {
-  """User email"""
-  email: String!
-
-  """User password"""
-  password: String!
-}
-
 """Create User DTO model"""
 input CreateUserDto {
   """User first name"""
@@ -140,6 +131,15 @@ input CreateUserDto {
   """User last name"""
   lastName: String
 
+  """User email"""
+  email: String!
+
+  """User password"""
+  password: String!
+}
+
+"""Sign In Request DTO model"""
+input SignInRequestDto {
   """User email"""
   email: String!
 

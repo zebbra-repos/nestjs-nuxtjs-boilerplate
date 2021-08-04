@@ -72,10 +72,10 @@ export type Mutation = {
   confirmAccountRequest: MessageResponseDto;
   /** Request user password reset instructions */
   resetPasswordRequest: MessageResponseDto;
-  /** Login as user */
-  signIn: SignInResponseDto;
   /** Register as a new user */
   signUp: SignUpResponseDto;
+  /** Login as user */
+  signIn: SignInResponseDto;
   /** Request account unlock instructions */
   unlockAccountRequest: MessageResponseDto;
 };
@@ -88,12 +88,12 @@ export type MutationResetPasswordRequestArgs = {
   data: EmailRequestDto;
 };
 
-export type MutationSignInArgs = {
-  data: SignInRequestDto;
-};
-
 export type MutationSignUpArgs = {
   data: CreateUserDto;
+};
+
+export type MutationSignInArgs = {
+  data: SignInRequestDto;
 };
 
 export type MutationUnlockAccountRequestArgs = {
@@ -109,10 +109,10 @@ export type PingResponseDto = {
 
 export type Query = {
   __typename?: "Query";
-  /** Fetch a new csrf token */
-  csrf: CsrfTokenDto;
   /** Get application settings for frontend */
   settings: SettingsDto;
+  /** Fetch a new csrf token */
+  csrf: CsrfTokenDto;
   /** Get current user profile */
   profile: UserDto;
   /** Get user by ID */
@@ -187,11 +187,15 @@ export type SignUpMutationVariables = Exact<{
   password: Scalars["String"];
 }>;
 
-export type SignUpMutation = { readonly __typename?: "Mutation" } & {
-  readonly signUp: { readonly __typename?: "SignUpResponseDto" } & Pick<
-    SignUpResponseDto,
-    "message" | "afterActionPath" | "expiresIn" | "accessToken"
-  >;
+export type SignUpMutation = {
+  readonly __typename?: "Mutation";
+  readonly signUp: {
+    readonly __typename?: "SignUpResponseDto";
+    readonly message: string;
+    readonly afterActionPath: string;
+    readonly expiresIn?: Maybe<number>;
+    readonly accessToken?: Maybe<string>;
+  };
 };
 
 export type SignInMutationVariables = Exact<{
@@ -199,11 +203,13 @@ export type SignInMutationVariables = Exact<{
   password: Scalars["String"];
 }>;
 
-export type SignInMutation = { readonly __typename?: "Mutation" } & {
-  readonly signIn: { readonly __typename?: "SignInResponseDto" } & Pick<
-    SignInResponseDto,
-    "accessToken" | "expiresIn"
-  >;
+export type SignInMutation = {
+  readonly __typename?: "Mutation";
+  readonly signIn: {
+    readonly __typename?: "SignInResponseDto";
+    readonly accessToken: string;
+    readonly expiresIn: number;
+  };
 };
 
 export type ResetPasswordRequestMutationVariables = Exact<{
@@ -212,10 +218,10 @@ export type ResetPasswordRequestMutationVariables = Exact<{
 
 export type ResetPasswordRequestMutation = {
   readonly __typename?: "Mutation";
-} & {
   readonly resetPasswordRequest: {
     readonly __typename?: "MessageResponseDto";
-  } & Pick<MessageResponseDto, "message">;
+    readonly message: string;
+  };
 };
 
 export type ConfirmAccountRequestMutationVariables = Exact<{
@@ -224,10 +230,10 @@ export type ConfirmAccountRequestMutationVariables = Exact<{
 
 export type ConfirmAccountRequestMutation = {
   readonly __typename?: "Mutation";
-} & {
   readonly confirmAccountRequest: {
     readonly __typename?: "MessageResponseDto";
-  } & Pick<MessageResponseDto, "message">;
+    readonly message: string;
+  };
 };
 
 export type UnlockAccountRequestMutationVariables = Exact<{
@@ -236,59 +242,67 @@ export type UnlockAccountRequestMutationVariables = Exact<{
 
 export type UnlockAccountRequestMutation = {
   readonly __typename?: "Mutation";
-} & {
   readonly unlockAccountRequest: {
     readonly __typename?: "MessageResponseDto";
-  } & Pick<MessageResponseDto, "message">;
+    readonly message: string;
+  };
 };
 
 export type PingMutationVariables = Exact<{ [key: string]: never }>;
 
-export type PingMutation = { readonly __typename?: "Mutation" } & {
-  readonly ping: { readonly __typename?: "UserDto" } & Pick<UserDto, "id">;
+export type PingMutation = {
+  readonly __typename?: "Mutation";
+  readonly ping: { readonly __typename?: "UserDto"; readonly id: number };
 };
 
 export type GetProfileQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetProfileQuery = { readonly __typename?: "Query" } & {
-  readonly profile: { readonly __typename?: "UserDto" } & Pick<
-    UserDto,
-    "id" | "firstName" | "lastName" | "email"
-  >;
+export type GetProfileQuery = {
+  readonly __typename?: "Query";
+  readonly profile: {
+    readonly __typename?: "UserDto";
+    readonly id: number;
+    readonly firstName?: Maybe<string>;
+    readonly lastName?: Maybe<string>;
+    readonly email: string;
+  };
 };
 
 export type AppSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AppSettingsQuery = { readonly __typename?: "Query" } & {
-  readonly settings: { readonly __typename?: "SettingsDto" } & Pick<
-    SettingsDto,
-    "version"
-  > & {
-      readonly devise: { readonly __typename?: "DeviseConfigDto" } & Pick<
-        DeviseConfigDto,
-        "confirmation" | "password" | "registration" | "unlock"
-      >;
+export type AppSettingsQuery = {
+  readonly __typename?: "Query";
+  readonly settings: {
+    readonly __typename?: "SettingsDto";
+    readonly version: string;
+    readonly devise: {
+      readonly __typename?: "DeviseConfigDto";
+      readonly confirmation: boolean;
+      readonly password: boolean;
+      readonly registration: boolean;
+      readonly unlock: boolean;
     };
+  };
 };
 
 export type CsrfTokenQueryVariables = Exact<{ [key: string]: never }>;
 
-export type CsrfTokenQuery = { readonly __typename?: "Query" } & {
-  readonly csrf: { readonly __typename?: "CsrfTokenDto" } & Pick<
-    CsrfTokenDto,
-    "token"
-  >;
+export type CsrfTokenQuery = {
+  readonly __typename?: "Query";
+  readonly csrf: {
+    readonly __typename?: "CsrfTokenDto";
+    readonly token: string;
+  };
 };
 
 export type OnUserAliveSubscriptionVariables = Exact<{ [key: string]: never }>;
 
 export type OnUserAliveSubscription = {
   readonly __typename?: "Subscription";
-} & {
-  readonly userAlive: { readonly __typename?: "PingResponseDto" } & Pick<
-    PingResponseDto,
-    "status"
-  >;
+  readonly userAlive: {
+    readonly __typename?: "PingResponseDto";
+    readonly status: string;
+  };
 };
 
 export const SignUpDocument = gql`

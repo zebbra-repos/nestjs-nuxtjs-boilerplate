@@ -4569,10 +4569,10 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@^26.0.24":
-  version "26.0.24"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.24.tgz#943d11976b16739185913a1936e0de0c4a7d595a"
-  integrity sha512-E/X5Vib8BWqZNRlDxj9vYXhsDwPYbPINqKF9BsnSoon4RQ0D9moEuLD8txgyypFLH7J4+Lho9Nr/c8H0Fi+17w==
+"@types/jest@^27.0.0":
+  version "27.0.0"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-27.0.0.tgz#f1c28f741371739c7cd0e8edb5ed8e67acfa6c35"
+  integrity sha512-IlpQZVpxufe+3qPaAqEoSPHVSxnJh1cf0BqqWHJeKiAUbwnHdmNzjP3ZCWSZSTbmAGXQPNk9QmM3Bif0pR54rg==
   dependencies:
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
@@ -14906,10 +14906,10 @@ nestjs-command@^2.0.1:
     lodash.compact "^3.0.1"
     lodash.flattendeep "^4.4.0"
 
-nestjs-i18n@^8.1.3:
-  version "8.1.3"
-  resolved "https://registry.yarnpkg.com/nestjs-i18n/-/nestjs-i18n-8.1.3.tgz#26c6129e0c3515d9cd38ded0ddc1cbc87a3e824d"
-  integrity sha512-XWd5T54Vo8P5HOioZ8JGlq8jyyuWikitP4JFVXV2ZGdBs+4EWdYMIT0ufLH6LGhSztJpugVGSoG25047RUsskA==
+nestjs-i18n@^8.1.4:
+  version "8.1.4"
+  resolved "https://registry.yarnpkg.com/nestjs-i18n/-/nestjs-i18n-8.1.4.tgz#f2c34176e1799451498ecee99aae7683d13755ed"
+  integrity sha512-GCwlpHxfBb1edGuUw8KZHhKPsNG41NM3/l0uXxqlVncky7y2EeiJaMk6PAW1dASsXUXF79pi8ZyeUOHYMrXC2g==
   dependencies:
     accept-language-parser "^1.5.0"
     chokidar "^3.5.1"
@@ -16090,10 +16090,10 @@ pino-http@^5.0.0:
     pino "^6.0.0"
     pino-std-serializers "^2.4.0"
 
-pino-pretty@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/pino-pretty/-/pino-pretty-5.1.2.tgz#1c0e89cc86f7add87492edbe6c50ae4dd5982fa9"
-  integrity sha512-20HWKSHFvF/pF/C4spBVW0RQdnBYptCj4Bwgb6pFkWY5FOYiElCGHkkPU1173iK8fsoiBMHMEvS0wB2loQZJ+Q==
+pino-pretty@^5.1.3:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/pino-pretty/-/pino-pretty-5.1.3.tgz#c4085093d1dffda359ab52731f87d96f7f832dc9"
+  integrity sha512-Zj+0TVdYKkAAIx9EUCL5e4TttwgsaFvJh2ceIMQeFCY8ak9tseEZQGSgpvyjEj1/iIVGIh5tdhkGEQWSMILKHA==
   dependencies:
     "@hapi/bourne" "^2.0.0"
     args "^5.0.1"

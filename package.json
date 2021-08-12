@@ -113,7 +113,7 @@
     "@nestjs/cli": "^8.1.1",
     "@nestjs/schematics": "^8.0.2",
     "@nestjs/testing": "^8.0.6",
-    "@nuxt/types": "^2.15.7",
+    "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxt/vue-app": "^2.15.7",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",

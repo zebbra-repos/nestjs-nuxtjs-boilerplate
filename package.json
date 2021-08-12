@@ -87,7 +87,7 @@
     "nestjs-pino": "^1.4.0",
     "nodemailer": "^6.6.3",
     "nodemailer-sendgrid": "^1.0.3",
-    "nuxt": "^2.15.7",
+    "nuxt": "^2.15.8",
     "nuxt-i18n": "6.21.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",

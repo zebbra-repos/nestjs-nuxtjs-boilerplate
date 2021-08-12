@@ -154,7 +154,7 @@
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-standard": "^22.0.0",
-    "supertest": "^6.1.4",
+    "supertest": "^6.1.5",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.2.0",
     "typeorm-factories": "^1.0.1",

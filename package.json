@@ -97,7 +97,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.3.0",
-    "typeorm": "^0.2.36",
+    "typeorm": "^0.2.37",
     "typeorm-static": "^1.1.1",
     "vuex-module-decorators": "^1.0.1"
   },

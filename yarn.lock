@@ -3282,10 +3282,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@ntegral/nestjs-sentry@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-3.0.3.tgz#c1b60ee22465ceb719bf0bd68c8f6c1344189100"
-  integrity sha512-Z28lPRItDseKauT8U87J1G8jE/HqdfFgzIDAhuA92ZwnGqYBEWT5lO0V0QyHSoYTQAzavvgDDVpeQwtelReRNg==
+"@ntegral/nestjs-sentry@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-3.0.5.tgz#f916f02e611709ee9fb5a3d2e4c77890a2bcd5b9"
+  integrity sha512-aJ7GztOOeNh+YWu0hRpjsx0A2HG8ER/rC1ccxopGXUwusNCf30VJX5gB3e+RvbtJxHFQtvz3tGxhgEDF0ggAEA==
   optionalDependencies:
     "@nestjs/graphql" "8.0.2"
 

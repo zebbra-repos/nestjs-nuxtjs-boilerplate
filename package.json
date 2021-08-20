@@ -106,7 +106,7 @@
     "@babel/preset-env": "^7.15.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@graphql-codegen/cli": "^2.0.1",
+    "@graphql-codegen/cli": "^2.1.0",
     "@graphql-codegen/typescript": "^2.0.0",
     "@graphql-codegen/typescript-operations": "^2.0.1",
     "@graphql-codegen/typescript-vue-apollo": "^3.0.0",
